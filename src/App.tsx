@@ -14,7 +14,7 @@ function App() {
 
   return (
     <SignUp />
-    //테스트
+    //테스트 123xw
   );
 }
 
