@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import "./App.css"
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import MainPage from './pages/MainPage';
 
 function App() {
   
@@ -15,7 +16,10 @@ function App() {
   })
 
   return (
-    <SignUp />
+    <>
+      <SignUp />
+      {/* <MainPage /> */}
+    </>
   );
 }
 
