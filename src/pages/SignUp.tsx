@@ -1,6 +1,7 @@
 import Nav from "../components/Nav";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import axios from "axios";
 
 export default function SignUp() {
     // const navigate = useNavigate();
@@ -9,13 +10,29 @@ export default function SignUp() {
         //navigate(메인페이지 주소);
     }
 
+    const data = {
+        "userId": "YH",
+        "password": "1",
+        "nickname": "YHYH",
+        "email": "123@naver.com",
+        "phone" : "010-1111-1111"
+    }
+
     useEffect(() => {
-        fetch("http://3.34.149.107:8081/user/register", {
-            method: "GET",
-        })
-            .then((response) => response.json())
-            .then((data) => console.log(data));
-    });
+        fetch("http://3.34.149.07:8082/api/user/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                userId: "YH",
+                password: "123",
+                nickname: "YHYH",
+                email: "hoon0367@naver.com",
+                phone: "010-3333-3333",
+            }),
+        }).then((response) => console.log(response));
+    },[]);
 
 
 
