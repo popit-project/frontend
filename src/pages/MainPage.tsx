@@ -3,7 +3,7 @@ import RecomList from "../components/RecomList";
 
 const MainPage = () => {
   return (
-    <div className="">
+    <div>
       <div className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
