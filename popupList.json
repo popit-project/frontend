@@ -1,0 +1,114 @@
+{
+  "popupList": [
+    {
+      "id": 1,
+      "image": "",
+      "name": "PopupStore 1",
+      "address": "서울 영등포구 여의대로 108 - 1",
+      "period": "20203.06.01 ~ 2023.06.30 -1",
+      "operatingTime": "10:00 ~ 20:00",
+      "comments": 3,
+      "likes": 3,
+      "isLike": false
+    },
+    {
+      "id": 2,
+      "image": "",
+      "name": "PopupStore 2",
+      "address": "서울 영등포구 여의대로 108 - 2",
+      "period": "20203.06.01 ~ 2023.06.30 -2",
+      "operatingTime": "10:00 ~ 20:00",
+      "comments": 3,
+      "likes": 3,
+      "isLike": false
+    },
+    {
+      "id": 3,
+      "image": "",
+      "name": "PopupStore 3",
+      "address": "서울 영등포구 여의대로 108 - 3",
+      "period": "20203.06.01 ~ 2023.06.30 -3",
+      "operatingTime": "10:00 ~ 20:00",
+      "comments": 3,
+      "likes": 3,
+      "isLike": false
+    },
+    {
+      "id": 4,
+      "image": "",
+      "name": "PopupStore 4",
+      "address": "서울 영등포구 여의대로 108 - 4",
+      "period": "20203.06.01 ~ 2023.06.30 -4",
+      "operatingTime": "10:00 ~ 20:00",
+      "comments": 3,
+      "likes": 3,
+      "isLike": false
+    },
+    {
+      "id": 5,
+      "image": "",
+      "name": "PopupStore 5",
+      "address": "서울 영등포구 여의대로 108 - 5",
+      "period": "20203.06.01 ~ 2023.06.30 -5",
+      "operatingTime": "10:00 ~ 20:00",
+      "comments": 3,
+      "likes": 3,
+      "isLike": false
+    },
+    {
+      "id": 6,
+      "image": "",
+      "name": "PopupStore 6",
+      "address": "서울 영등포구 여의대로 108 - 6",
+      "period": "20203.06.01 ~ 2023.06.30 -6",
+      "operatingTime": "10:00 ~ 20:00",
+      "comments": 3,
+      "likes": 3,
+      "isLike": false
+    },
+    {
+      "id": 7,
+      "image": "",
+      "name": "PopupStore 7",
+      "address": "서울 영등포구 여의대로 108 - 7",
+      "period": "20203.06.01 ~ 2023.06.30 -7",
+      "operatingTime": "10:00 ~ 20:00",
+      "comments": 3,
+      "likes": 3,
+      "isLike": false
+    },
+    {
+      "id": 8,
+      "image": "",
+      "name": "PopupStore 8",
+      "address": "서울 영등포구 여의대로 108 - 8",
+      "period": "20203.06.01 ~ 2023.06.30 -8",
+      "operatingTime": "10:00 ~ 20:00",
+      "comments": 3,
+      "likes": 3,
+      "isLike": false
+    },
+    {
+      "id": 9,
+      "image": "",
+      "name": "PopupStore 9",
+      "address": "서울 영등포구 여의대로 108 - 9",
+      "period": "20203.06.01 ~ 2023.06.30 -9",
+      "operatingTime": "10:00 ~ 20:00",
+      "comments": 3,
+      "likes": 3,
+      "isLike": false
+    },
+    {
+      "id": 10,
+      "image": "",
+      "name": "PopupStore 10",
+      "address": "서울 영등포구 여의대로 108 - 10",
+      "period": "20203.06.01 ~ 2023.06.30 -10",
+      "operatingTime": "10:00 ~ 20:00",
+      "comments": 3,
+      "likes": 3,
+      "isLike": false
+    }
+  ]
+}

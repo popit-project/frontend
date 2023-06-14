@@ -1,14 +1,17 @@
-import { useEffect, useState } from 'react'
-import "./App.css"
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
-import Review from './pages/Review';
+import { useEffect, useState } from "react";
+import "./App.css";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import Review from "./pages/Review";
+import PopupListPage from "./pages/PopupListPage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-function App() { 
-
+function App() {
   return (
-    <Review />
+    <>
+      <PopupListPage />
+    </>
   );
 }
 
-export default App
+export default App;
