@@ -96,4 +96,84 @@ const CartIcon = ({
   </svg>
 );
 
-export { LikeIcon, FillLikeIcon, CommentIcon, CartIcon };
+//location 아이콘
+const LocationICon = ({
+  width,
+  height,
+  fill,
+}: {
+  width: number;
+  height: number;
+  fill: string;
+}) => (
+  <svg
+    width={width}
+    height={height}
+    viewBox="0 0 30 30"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M15 14.375C14.1712 14.375 13.3763 14.0458 12.7903 13.4597C12.2042 12.8737 11.875 12.0788 11.875 11.25C11.875 10.4212 12.2042 9.62634 12.7903 9.04029C13.3763 8.45424 14.1712 8.125 15 8.125C15.8288 8.125 16.6237 8.45424 17.2097 9.04029C17.7958 9.62634 18.125 10.4212 18.125 11.25C18.125 11.6604 18.0442 12.0667 17.8871 12.4459C17.7301 12.825 17.4999 13.1695 17.2097 13.4597C16.9195 13.7499 16.575 13.9801 16.1959 14.1371C15.8167 14.2942 15.4104 14.375 15 14.375ZM15 2.5C12.6794 2.5 10.4538 3.42187 8.81282 5.06282C7.17187 6.70376 6.25 8.92936 6.25 11.25C6.25 17.8125 15 27.5 15 27.5C15 27.5 23.75 17.8125 23.75 11.25C23.75 8.92936 22.8281 6.70376 21.1872 5.06282C19.5462 3.42187 17.3206 2.5 15 2.5Z"
+      fill={fill}
+    />
+  </svg>
+);
+
+//time 아이콘
+const TimeICon = ({
+  width,
+  height,
+  fill,
+}: {
+  width: number;
+  height: number;
+  fill: string;
+}) => (
+  <svg
+    width={width}
+    height={height}
+    viewBox="0 0 30 30"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M15 27.5C8.09625 27.5 2.5 21.9037 2.5 15C2.5 8.09625 8.09625 2.5 15 2.5C21.9037 2.5 27.5 8.09625 27.5 15C27.5 21.9037 21.9037 27.5 15 27.5ZM16.25 15V8.75H13.75V17.5H21.25V15H16.25Z"
+      fill={fill}
+    />
+  </svg>
+);
+
+//calendar 아이콘
+const CalendarICon = ({
+  width,
+  height,
+  fill,
+}: {
+  width: number;
+  height: number;
+  fill: string;
+}) => (
+  <svg
+    width={width}
+    height={height}
+    viewBox="0 0 30 30"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M23.75 23.75H6.25V10H23.75M20 1.25V3.75H10V1.25H7.5V3.75H6.25C4.8625 3.75 3.75 4.8625 3.75 6.25V23.75C3.75 24.413 4.01339 25.0489 4.48223 25.5178C4.95107 25.9866 5.58696 26.25 6.25 26.25H23.75C24.413 26.25 25.0489 25.9866 25.5178 25.5178C25.9866 25.0489 26.25 24.413 26.25 23.75V6.25C26.25 5.58696 25.9866 4.95107 25.5178 4.48223C25.0489 4.01339 24.413 3.75 23.75 3.75H22.5V1.25M21.25 15H15V21.25H21.25V15Z"
+      fill={fill}
+    />
+  </svg>
+);
+
+export {
+  LikeIcon,
+  FillLikeIcon,
+  CommentIcon,
+  CartIcon,
+  LocationICon,
+  TimeICon,
+  CalendarICon,
+};

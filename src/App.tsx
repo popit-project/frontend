@@ -6,6 +6,8 @@ import Review from "./pages/Review";
 import MainPage from "./pages/MainPage";
 import SellerRegis from "./pages/SellerRegis";
 import PopupListPage from "./pages/PopupListPage";
+import PopupDetail from "./pages/PopupDetail";
+import "./tailwind.css";
 
 function App() {
   return (
