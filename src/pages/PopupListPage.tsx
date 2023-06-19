@@ -1,5 +1,6 @@
-import { CommentIcon, LikeIcon } from "../assets/icons/Icons";
+import { CommentIcon, FillLikeIcon, LikeIcon } from "../assets/icons/Icons";
 import { useEffect, useState } from "react";
+import Navbar from "../components/Navbar";
 import axios from "axios";
 
 interface Popup {
@@ -24,8 +25,29 @@ export default function PopupListPage() {
     fetchPopups();
   }, []);
 
+  const handleLiked = (id: number) => {
+    axios
+      .post("http://localhost:3000/popupList")
+      .then(() => {
+        setPopupList((prevPopupList) => {
+          return prevPopupList.map((popup) => {
+            if (popup.id === id) {
+              if (popup.isLike) {
+                return { ...popup, isLike: false, likes: popup.likes - 1 };
+              } else {
+                return { ...popup, isLike: true, likes: popup.likes + 1 };
+              }
+            }
+            return popup;
+          });
+        });
+      })
+      .catch((error) => console.error(error));
+  };
+
   return (
     <>
+      <Navbar />
       <div className="grid grid-cols-1 gap-2 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
         {popupList.map((popup) => (
           <div key={popup.id}>
@@ -49,7 +71,15 @@ export default function PopupListPage() {
                   {popup.comments}
                 </div>
                 <div className="flex items-center">
-                  <LikeIcon width={30} height={30} fill="#F24E1E" />
+                  {popup.isLike ? (
+                    <span onClick={() => handleLiked(popup.id)}>
+                      <FillLikeIcon width={30} height={30} fill="#F24E1E" />
+                    </span>
+                  ) : (
+                    <span onClick={() => handleLiked(popup.id)}>
+                      <LikeIcon width={30} height={30} fill="#F24E1E" />
+                    </span>
+                  )}
                   {popup.likes}
                 </div>
               </div>
