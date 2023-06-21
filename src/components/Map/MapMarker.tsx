@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import { useEffect, useLayoutEffect, useMemo, useRef } from "react"
 import { PlaceType } from "./mapTypes"
-import { useMap } from "../../hooks/useMap"
+import { useMap } from "../hooks/useMap"
 
 interface MapMarkerProps {
   place: PlaceType

@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useRef, useState } from "react"
-import { useMap } from "../../hooks/useMap"
+import { useMap } from "../hooks/useMap"
 import { PlaceType } from "./mapTypes"
 
 interface SearchLocationProps {

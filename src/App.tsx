@@ -13,12 +13,14 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
+import MapPage from "./pages/MapPage";
 
 function App() {
   return (
-    <RecoilRoot>
-      <ProductRegis />
-    </RecoilRoot>
+    // <RecoilRoot>
+    //   <ProductRegis />
+    // </RecoilRoot>
+    <MapPage />
   );
 }
 

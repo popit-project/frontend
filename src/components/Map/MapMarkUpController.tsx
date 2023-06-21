@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { useMap } from "../../hooks/useMap"
+import { useMap } from "../hooks/useMap"
 import MapMarker from "./MapMarker"
 import { PlaceType } from "./mapTypes"
 
