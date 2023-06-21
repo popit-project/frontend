@@ -8,8 +8,9 @@ import SellerRegis from './pages/SellerRegis';
 import ProductRegis from './pages/ProductRegis';
 import { RecoilRoot,atom,selector,useRecoilState,useRecoilValue } from 'recoil';
 
-function App() { 
 
+
+function App() {
   return (
     <RecoilRoot>
       <ProductRegis />
@@ -17,4 +18,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

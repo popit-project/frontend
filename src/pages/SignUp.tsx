@@ -19,12 +19,19 @@ export default function SignUp() {
     }
 
     useEffect(() => {
-        fetch(
-            "http://3.34.149.107:8082/api/user",
-            {
-                method: "GET"                   
-            }
-        ).then((response) => console.log(response));
+        fetch("http://3.34.149.07:8082/api/user/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                userId: "YH",
+                password: "123",
+                nickname: "YHYH",
+                email: "hoon0367@naver.com",
+                phone: "010-3333-3333",
+            }),
+        }).then((response) => console.log(response));
     },[]);
 
 
