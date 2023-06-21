@@ -2,6 +2,7 @@ import { CommentIcon, FillLikeIcon, LikeIcon } from "../assets/icons/Icons";
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 interface Popup {
   id: number;
@@ -51,19 +52,19 @@ export default function PopupListPage() {
       <div className="grid grid-cols-1 gap-2 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
         {popupList.map((popup) => (
           <div key={popup.id}>
-            {/* <Link to={`/popupList/${popup.id}`}> */}
-            <figure className="bg-gray-500 h-80">
-              <img src="" alt="" />
-              <span>팝업스토어 사진</span>
-            </figure>
-            <div className="p-3">
-              <div className="mb-3 text-left">
-                <h3 className="font-bold">{popup.name}</h3>
-                <p>{popup.address}</p>
-                <p>{popup.period}</p>
+            <Link to={`/${popup.id}`}>
+              <figure className="bg-gray-500 h-80">
+                <img src="" alt="" />
+                <span className="text-slate-800">팝업스토어 사진</span>
+              </figure>
+              <div className="p-3">
+                <div className="mb-3 text-left color text-slate-800">
+                  <h3 className="font-bold">{popup.name}</h3>
+                  <p>{popup.address}</p>
+                  <p>{popup.period}</p>
+                </div>
               </div>
-            </div>
-            {/* </Link> */}
+            </Link>
             <div>
               <div className="flex items-center justify-end">
                 <div className="flex items-center">
