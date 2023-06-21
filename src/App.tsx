@@ -5,11 +5,15 @@ import SignUp from './pages/SignUp';
 import Review from './pages/Review';
 import MainPage from './pages/MainPage';
 import SellerRegis from './pages/SellerRegis';
+import ProductRegis from './pages/ProductRegis';
+import { RecoilRoot,atom,selector,useRecoilState,useRecoilValue } from 'recoil';
 
 function App() { 
 
   return (
-    <SellerRegis />
+    <RecoilRoot>
+      <ProductRegis />
+    </RecoilRoot>
   );
 }
 
