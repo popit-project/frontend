@@ -1,7 +1,6 @@
 import { ReactNode, useEffect, useRef, useState } from "react"
 import { KakaoMapContext } from "../../hooks/useMap"
 
-
 interface DynamicMapProps {
   children: ReactNode
 }
@@ -9,8 +8,8 @@ interface DynamicMapProps {
 const DynamicMap = (props:DynamicMapProps) => {
   const [map, setMap] = useState<kakao.maps.Map>()
   const kakaoMapRef = useRef<HTMLDivElement>(null)
-  const [myLocationMarker, setMyLocationMarker] = useState<kakao.maps.Marker | null>(null)
 
+  const [myLocationMarker, setMyLocationMarker] = useState<kakao.maps.Marker | null>(null)
   useEffect(() => {
     if(!kakaoMapRef.current) {
       return

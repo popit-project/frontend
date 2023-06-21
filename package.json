@@ -15,7 +15,8 @@
     "kakao.maps.d.ts": "^0.1.38",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "recoil": "^0.7.7"
+    "recoil": "^0.7.7",
+    "react-router-dom": "^6.13.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",
