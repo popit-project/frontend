@@ -4,6 +4,8 @@ import { PlaceType } from "./mapTypes"
 
 interface SearchLocationProps {
   onUpdatePlaces: (places:PlaceType[]) => void
+  onSelect: (placeId:string) => void
+  onFindMyLocation: () => void
 }
 
 const SearchLocation = (props:SearchLocationProps) => {
@@ -68,7 +70,12 @@ const SearchLocation = (props:SearchLocationProps) => {
   const handleItemClick = (place:PlaceType) => {
     map.setCenter(place.position)
     map.setLevel(4)
+    props.onSelect(place.id)
   }
+
+  const handleFindMyLocation = () => {
+    props.onFindMyLocation()
+  } 
 
   return (
     <div className="absolute z-10 h-full bg-white opacity-80 overflow-y-auto">
@@ -76,6 +83,9 @@ const SearchLocation = (props:SearchLocationProps) => {
         <input className="min-w-[200px] w-full p-2 border border-solid border-slate-400" value={keyword} onChange={(e) => {
           setKeyword(e.target.value)
         }} />
+        <button type="button" onClick={handleFindMyLocation}>
+          내 위치 찾기
+        </button>
       </form>
       <ul className="list-none m-0 p-0">
         {
