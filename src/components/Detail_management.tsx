@@ -1,12 +1,10 @@
 import { useState } from "react";
-import Home from "./Tab/Management/Home";
-import News from "./Tab/Management/News";
-import Product from "./Tab/Management/Product";
-import Review from "./Tab/Management/Review";
-import { useParams } from "react-router-dom";
+import Home from "./Tab/Home";
+import News from "./Tab/News";
+import Product from "./Tab/Product";
+import Review from "./Tab/Review";
 
 export default function Detail_management() {
-  const { id } = useParams();
   const [activeTab, setActiveTab] = useState<string>("tab1");
 
   const handleTab = (tabName: string) => {
