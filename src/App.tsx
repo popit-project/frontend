@@ -9,16 +9,40 @@ import ProductRegis from "./pages/ProductRegis";
 import { RecoilRoot } from "recoil";
 import MapPage from "./pages/MapPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import PopupListPage from "./pages/PopupListPage";
+import MyProfilePage from "./components/MyProfilePage";
+import Cart from "./pages/Cart";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
     <RecoilRoot>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login />} />
+          {isLoggedIn ? (
+            <>
+              <Route path="/" element={<MainPage />} />
+              <Route path="/map" element={<MapPage />} />
+              <Route path="/popuplist" element={<PopupListPage />} />
+              <Route path="/profile" element={<MyProfilePage />} />
+              <Route path="/cart" element={<Cart />} />
+            </> 
+          )
+          
+          : ( 
+            <>
+            <Route path="/">
+              <Login />
+            </Route>
+            <Route path="/">
+              <SignUp />
+            </Route>
+            </>
+          )}
         </Routes>
       </BrowserRouter>
     </RecoilRoot>
+    
   );
 }
 

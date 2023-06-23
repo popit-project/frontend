@@ -1,6 +1,6 @@
 import { CommentIcon, FillLikeIcon, LikeIcon } from "../assets/icons/Icons";
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/MainNav";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";

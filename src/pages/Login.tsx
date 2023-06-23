@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import Nav from "../components/Nav";
+import Nav from "../components/LoginNav";
 import google from "../icon/google.256x256.png";
 import naver from "../icon/naver-line.256x233.png";
 import kakao from "../icon/kakaotalk.256x236.png";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 import { useState } from "react";
-import NavBar from "../components/Navbar";
+import NavBar from "../components/MainNav";
 
 export default function Login() {
   //아래 내비게이트 포함하면 오류나면서 렌더링안됌.

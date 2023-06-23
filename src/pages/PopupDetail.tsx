@@ -5,7 +5,7 @@ import Product from "../components/Tab/PopupDetail/Product";
 import Review from "../components/Tab/PopupDetail/Review";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import NavBar from "../components/Navbar";
+import NavBar from "../components/MainNav";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 
 interface Popup {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Nav from "../components/Nav";
+import Nav from "../components/LoginNav";
 import google from '../icon/google.256x256.png';
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 

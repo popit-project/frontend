@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import Nav from "../components/Nav";
+import Nav from "../components/LoginNav";
 import Footer from "../components/Footer";
 
 export default function SellerRegis() {

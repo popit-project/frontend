@@ -40,7 +40,7 @@ export default function Cart() {
       {cartList.length === 0 ? (
         <div className="bg-slate-300 p-5 rounded-md mt-14">
           <p className="mb-5 font-semibold text-2xl">장바구니가 비었어요!</p>
-          <Link to="/">
+          <Link to="/popuplist">
             <button className="btn btn-outline">가게 둘러보기</button>
           </Link>
         </div>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { CommentIcon, LikeIcon } from "../assets/icons/Icons";
+import { CommentIcon, FillLikeIcon, LikeIcon } from "../assets/icons/Icons";
+import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 
 interface Popup {
   id: number;
@@ -30,6 +31,38 @@ const RecomList = () => {
     fetchPopups();
   }, []);
 
+  useEffect(() => {
+    axiosInstance
+      .get("/popupList")
+      .then((response) => {
+        const data = response.data;
+        setPopupList(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const handleLiked = (id: number) => {
+    axiosInstance
+      .patch(`/popupList/${id}`, { isLike: true })
+      .then(() => {
+        setPopupList((prevPopupList) => {
+          return prevPopupList.map((popup) => {
+            if (popup.id === id) {
+              const updatedLikes = popup.isLike
+                ? popup.likes - 1
+                : popup.likes + 1;
+              return { ...popup, isLike: !popup.isLike, likes: updatedLikes };
+            }
+            return popup;
+          });
+        });
+      })
+      .catch((error) => console.error(error));
+  };
+
+
   return (
     <div>
       <p>내 주변 인기 스토어</p>
@@ -51,11 +84,19 @@ const RecomList = () => {
             <div className="mt-32 ml-10">
               <div className="flex items-center justify-end">
                 <div className="flex items-center">
-                  {/* <CommentIcon width={30} height={30} fill={"orange"} /> */}
+                  <CommentIcon width={30} height={30} fill={"orange"} />
                   {popup.comments}
                 </div>
                 <div className="flex items-center">
-                  {/* <LikeIcon width={30} height={30} fill="#F24E1E" /> */}
+                  {popup.isLike ? (
+                    <span onClick={() => handleLiked(popup.id)}>
+                      <FillLikeIcon width={30} height={30} fill="#F24E1E" />
+                    </span>
+                  ) : (
+                    <span onClick={() => handleLiked(popup.id)}>
+                      <LikeIcon width={30} height={30} fill="#F24E1E" />
+                    </span>
+                  )}
                   {popup.likes}
                 </div>
               </div>
