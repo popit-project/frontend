@@ -6,28 +6,15 @@ import Review from "./pages/Review";
 import MainPage from "./pages/MainPage";
 import SellerRegis from "./pages/SellerRegis";
 import ProductRegis from "./pages/ProductRegis";
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from "recoil";
+import { RecoilRoot } from "recoil";
 import MapPage from "./pages/MapPage";
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <RecoilRoot>
       <SellerRegis />
     </RecoilRoot>
-    // <MainPage />
-  //   <BrowserRouter>
-  //   <Routes>
-  //     <Route path="/" element={<MainPage />} />
-  //     <Route path="/map" element={<MapPage />} />
-  //   </Routes>
-  // </BrowserRouter>
   );
 }
 

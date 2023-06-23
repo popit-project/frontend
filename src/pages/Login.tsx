@@ -1,38 +1,40 @@
 import { useNavigate } from "react-router-dom";
 import Nav from "../components/Nav";
-import google from '../icon/google.256x256.png'
-import naver from '../icon/naver-line.256x233.png'
-import kakao from '../icon/kakaotalk.256x236.png'
+import google from "../icon/google.256x256.png";
+import naver from "../icon/naver-line.256x233.png";
+import kakao from "../icon/kakaotalk.256x236.png";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 import { useState } from "react";
+import NavBar from "../components/Navbar";
 
 export default function Login() {
-    //아래 내비게이트 포함하면 오류나면서 렌더링안됌.
-    // const navigate = useNavigate();
-    const [loginData, setLoginData] = useState({userId : '', password: ''});
+  //아래 내비게이트 포함하면 오류나면서 렌더링안됌.
+  // const navigate = useNavigate();
+  const [loginData, setLoginData] = useState({ userId: "", password: "" });
 
-    const loginRequest = async (e : React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+  const loginRequest = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-        try {
-            const response = await axiosInstance.post("http://3.34.149.07:8082/api/user/login", loginData);
-            
-            const { accessToken, refreshToken } = response.data;
+    try {
+      const response = await axiosInstance.post(
+        "http://3.34.149.07:8082/api/user/login",
+        loginData
+      );
 
-            localStorage.setItem('accessToken', accessToken);
-            localStorage.setItem('refreshToken', refreshToken);
-            // navigate("/main");
-        }
-        catch (error) {
-            console.error('로그인 실패', error);
-        }
-        
+      const { accessToken, refreshToken } = response.data;
+
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
+      // navigate("/main");
+    } catch (error) {
+      console.error("로그인 실패", error);
     }
+  };
 
-    const changeData = (e : React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setLoginData((prevData) => ({ ...prevData, [name]: value }));
-    }  
+  const changeData = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setLoginData((prevData) => ({ ...prevData, [name]: value }));
+  };
 
     return (
         <>
