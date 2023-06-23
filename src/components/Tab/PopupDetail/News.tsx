@@ -24,7 +24,7 @@ export default function News() {
   }, []);
 
   return (
-    <div className="m-10 bg-slate-100 rounded-lg text-left p-5">
+    <div className="m-10 bg-indigo-50 rounded-lg text-left p-5">
       {news.length === 0 ? (
         <div className="text-center text-xl font-semibold">
           아직 소식이 없어요! 🥲

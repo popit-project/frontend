@@ -49,7 +49,7 @@ export default function Review() {
   };
 
   return (
-    <div className="m-10 bg-slate-100 rounded-lg text-left p-5">
+    <div className="m-10 bg-indigo-50 rounded-lg text-left p-5">
       <div className="mb-16">
         <form className="flex flex-col items-center sm:flex-row">
           <input
@@ -61,7 +61,7 @@ export default function Review() {
           ></input>
           <button
             type="submit"
-            className="btn btn-outline w-full mt-2 focus:outline-none sm:ml-3 sm:w-auto sm:mt-0"
+            className="btn btn-outline w-full mt-2 focus:outline-none sm:ml-3 sm:w-auto sm:mt-0 border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400"
             onClick={(e) => {
               e.preventDefault();
               handleReviewSubmit();
@@ -80,13 +80,10 @@ export default function Review() {
           {reviewList.map((review, index) => (
             <div
               key={index}
-              className="py-8 border-b border-slate-300 first:pt-0 last:border-none"
+              className="py-8 border-b border-indigo-200 first:pt-0 last:border-none"
             >
               <div className="flex items-center mb-2">
-                <figure className="w-16 h-16 rounded-full bg-gray-400">
-                  <img src="" alt="" />
-                </figure>
-                <div className="ml-3 text-left">
+                <div className="text-left">
                   <p className="font-bold text-base">{review.name}</p>
                   <div className="text-slate-500">
                     <span>{review.location}</span>

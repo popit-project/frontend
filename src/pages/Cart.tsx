@@ -38,10 +38,12 @@ export default function Cart() {
     <div className="max-w-5xl mx-auto">
       <h3 className="text-2xl font-bold text-center mb-10">장바구니</h3>
       {cartList.length === 0 ? (
-        <div className="bg-slate-300 p-5 rounded-md mt-14">
+        <div className="bg-indigo-100 p-5 rounded-md mt-14 flex direction flex-col items-center">
           <p className="mb-5 font-semibold text-2xl">장바구니가 비었어요!</p>
           <Link to="/popuplist">
-            <button className="btn btn-outline">가게 둘러보기</button>
+            <button className="btn btn-outline border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400 focus:outline-none">
+              가게 둘러보기
+            </button>
           </Link>
         </div>
       ) : (
@@ -68,13 +70,13 @@ export default function Cart() {
                       onClick={() => {
                         addCount(item.id);
                       }}
-                      className="btn join-item hover:bg-slate-600 hover:text-white outline-0"
+                      className="btn join-item border-0 hover:bg-indigo-400 hover:text-white focus:outline-none"
                     >
                       +
                     </button>
                     <button className="btn join-item">{item.quantity}</button>
                     <button
-                      className="btn join-item hover:bg-slate-600 hover:text-white"
+                      className="btn join-item border-0 hover:bg-indigo-400 hover:text-white focus:outline-none"
                       onClick={() => {
                         removeCount(item.id);
                       }}
@@ -88,7 +90,7 @@ export default function Cart() {
                 </div>
               </div>
               <button
-                className="flex-grow-0 ml-auto mb-4 text-gray-300 sm:ml-5 sm:mb-0"
+                className="flex-grow-0 ml-auto mb-4 border-0 bg-transparent text-indigo-300 sm:ml-5 sm:mb-0"
                 onClick={() => {
                   removeProduct(item.id);
                 }}
@@ -97,10 +99,13 @@ export default function Cart() {
               </button>
             </div>
           ))}
-          <div className="bg-slate-300 flex items-center justify-between p-3 rounded-md mt-14">
+          <div className="border-t-2 flex items-center justify-between p-3 rounded-md mt-14">
             <p className="text-base">결제금액</p>
             <p className="text-2xl">{totalPrice} 원</p>
           </div>
+          <button className="flex ml-auto text-xl py-2.5 px-7 text-white font-semibold rounded-xl bg-indigo-400 mt-3">
+            결제하기
+          </button>
         </>
       )}
     </div>
