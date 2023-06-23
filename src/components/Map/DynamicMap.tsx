@@ -1,5 +1,7 @@
 import { ReactNode, useEffect, useRef, useState } from "react"
 import { KakaoMapContext } from "../hooks/useMap"
+import NavBar from "../MainNav"
+import Footer from "../Footer"
 
 interface DynamicMapProps {
   children: ReactNode
@@ -61,20 +63,22 @@ const DynamicMap = (props:DynamicMapProps) => {
 
   return (
     <>
-      <div className="absolute right-0 left-0 top-0 bottom-0">
-        <div className="static w-full h-full" ref={kakaoMapRef}/>
+    <div className="max-w-screen-lg my-0 mx-auto">
+      <NavBar />
+      <div className="right-0 left-0 top-0 bottom-0">
+        <div className="max-w-screen-lg" ref={kakaoMapRef} style={{ height: '550px' }} />
       </div>
-      {
-        map ? (
-          <KakaoMapContext.Provider value={map}>
-            { props.children }
-          </KakaoMapContext.Provider>
-        ) : (
-          <div>
-              지도 정보를 가져오는데 실패하였습니다.
-          </div>
-        )
-      }
+      {map ? (
+        <KakaoMapContext.Provider value={map}>
+          {props.children}
+        </KakaoMapContext.Provider>
+      ) : (
+        <div>
+          지도 정보를 가져오는데 실패하였습니다.
+        </div>
+      )}
+      <Footer />
+        </div>
     </>
   )
 }

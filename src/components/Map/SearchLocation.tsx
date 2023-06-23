@@ -78,14 +78,18 @@ const SearchLocation = (props:SearchLocationProps) => {
   } 
 
   return (
-    <div className="absolute z-10 h-full bg-white opacity-80 overflow-y-auto">
+    <div className="absolute z-10 bg-white opacity-80 overflow-y-auto" style={{ height: '550px', top: '70px' }}>
       <form className="flex sticky top-0" onSubmit={handleSubmit}>
         <input className="min-w-[200px] w-full p-2 border border-solid border-slate-400" value={keyword} onChange={(e) => {
           setKeyword(e.target.value)
         }} />
-        <button type="button" onClick={handleFindMyLocation}>
-          내 위치 찾기
-        </button>
+      <button
+        type="button"
+        onClick={handleFindMyLocation}
+        className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-1 px-2 rounded"
+      >
+        내 위치 찾기
+      </button>
       </form>
       <ul className="list-none m-0 p-0">
         {
@@ -106,5 +110,4 @@ const SearchLocation = (props:SearchLocationProps) => {
     </div>
   )
 }
-
 export default SearchLocation

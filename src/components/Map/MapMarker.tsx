@@ -76,17 +76,32 @@ const MapMarker = (props:MapMarkerProps) => {
   return (
     container.current ? 
       ReactDOM.createPortal(
-        <div 
-          className='flex flex-col items-center justify-center w-52 h-14 -ml-24 rounded-2xl bg-orange-50 bg-opacity-90'
+        <div
+          className='flex flex-col items-center justify-center -ml-24 rounded-2xl bg-indigo-100 bg-opacity-90'
+          style={{ minHeight: '190px', minWidth: '200px' }}
           onClick={() => {
-            infowindow.setMap(null)
-          }}>
+            infowindow.setMap(null);
+          }}
+        >
+          <p
+            className='text-s w-full mb-2 p-2 border-b-2 border-indigo-200 hover:bg-indigo-200 hover:rounded-t-2xl flex justify-center'
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            바로가기
+          </p>
+
+          <div className='w-28 h-28 bg-indigo-200'>
+            이미지 박스
+          </div>
           <label className='font-bold py-1.5 px-2'>{props.place.title}</label>
           <span className='text-xs pt-0 px-1.5 pb-1.5'>{props.place.address}</span>
         </div>
        , container.current) : null
   )
 }
+
 
 
 export default MapMarker
