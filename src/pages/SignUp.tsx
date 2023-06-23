@@ -5,7 +5,7 @@ import axios from "axios";
 
 //스웨거에 있는 api참조해서 로그인 회원가입 쪽 기능 구현 다 해보기.
 //정리 : api/user/register 일단 완료. login도 완료.
-
+//닉네임란 만들기(회원가입 정보데이터에)
 
 export default function SignUp() {
     // const navigate = useNavigate();
@@ -106,7 +106,7 @@ export default function SignUp() {
                 </form>
                 <div className="form-control w-screen">
                     <button
-                        className="btn bg-green-500 max-w-xs mb-[3rem] mt-[3rem] w-screen mx-auto"
+                        className="btn bg-violet-400 hover:bg-violet-300 max-w-xs mb-[3rem] mt-[3rem] w-screen mx-auto"
                         onClick={handleClick}
                     >
                         회원가입 완료
