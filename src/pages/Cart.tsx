@@ -1,16 +1,37 @@
 import { useRecoilState, useRecoilValue } from "recoil";
-import { cartListAtom } from "../recoil/cart";
+import { cartListAtom, TotalPrice } from "../recoil/cart";
 import { Link } from "react-router-dom";
 
 export default function Cart() {
   const cartList = useRecoilValue(cartListAtom);
+  const totalPrice = useRecoilValue(TotalPrice);
+  const [cartListState, setCartListState] = useRecoilState(cartListAtom);
 
-  const addProduct = (id: number) => {
-    const product = cartList.find((item) => item.id === id);
-    if (product) {
-      const updateCount = product.quantity + 1;
-      console.log(product, updateCount);
-    }
+  const addCount = (id: number) => {
+    const updatedCartList = cartList.map((cartItem) => {
+      if (cartItem.id === id) {
+        return { ...cartItem, quantity: cartItem.quantity + 1 };
+      }
+      return cartItem;
+    });
+    setCartListState([...updatedCartList]);
+  };
+
+  const removeCount = (id: number) => {
+    const updatedCartList = cartList.map((cartItem) => {
+      if (cartItem.id === id) {
+        const updatedQuantity =
+          cartItem.quantity > 1 ? cartItem.quantity - 1 : 1;
+        return { ...cartItem, quantity: updatedQuantity };
+      }
+      return cartItem;
+    });
+    setCartListState([...updatedCartList]);
+  };
+
+  const removeProduct = (id: number) => {
+    const updatedCartList = cartList.filter((cartItem) => cartItem.id !== id);
+    setCartListState(updatedCartList);
   };
 
   return (
@@ -42,17 +63,22 @@ export default function Cart() {
                   <p className="text-left line-clamp-1 min-w-0 font-semibold sm:grow sm:w-96">
                     {item.itemNm}
                   </p>
-                  <div className="join join-horizontal order-last flex-grow-0 sm:ml-10 sm:order-none">
+                  <div className="join join-horizontal order-last flex-grow-0 sm:ml-10 sm:order-none ">
                     <button
                       onClick={() => {
-                        addProduct(item.id);
+                        addCount(item.id);
                       }}
-                      className="btn join-item hover:bg-slate-600 hover:text-white"
+                      className="btn join-item hover:bg-slate-600 hover:text-white outline-0"
                     >
                       +
                     </button>
                     <button className="btn join-item">{item.quantity}</button>
-                    <button className="btn join-item hover:bg-slate-600 hover:text-white">
+                    <button
+                      className="btn join-item hover:bg-slate-600 hover:text-white"
+                      onClick={() => {
+                        removeCount(item.id);
+                      }}
+                    >
                       -
                     </button>
                   </div>
@@ -61,14 +87,19 @@ export default function Cart() {
                   </span>
                 </div>
               </div>
-              <button className="flex-grow-0 ml-auto mb-4 text-gray-300 sm:ml-5 sm:mb-0">
+              <button
+                className="flex-grow-0 ml-auto mb-4 text-gray-300 sm:ml-5 sm:mb-0"
+                onClick={() => {
+                  removeProduct(item.id);
+                }}
+              >
                 X
               </button>
             </div>
           ))}
           <div className="bg-slate-300 flex items-center justify-between p-3 rounded-md mt-14">
             <p className="text-base">결제금액</p>
-            <p className="text-2xl">10000 원</p>
+            <p className="text-2xl">{totalPrice} 원</p>
           </div>
         </>
       )}

@@ -1,33 +1,55 @@
 import { CartIcon } from "../../../assets/icons/Icons";
 import { useRecoilState } from "recoil";
 import { CartItem, cartListAtom } from "../../../recoil/cart";
+import { useEffect, useState } from "react";
+import { axiosInstance } from "../../AxiosInstance/AxiosConfig";
 
-const products = [
-  { itemNm: "대형 피자 (1판)", price: 25000, id: 1, image: "" },
-  { itemNm: "치즈버거", price: 11000, id: 2, image: "" },
-  { itemNm: "짜장면", price: 8000, id: 3, image: "" },
-  { itemNm: "연어초밥(10pc)", price: 18000, id: 4, image: "" },
-  { itemNm: "아메리카노", price: 2500, id: 5, image: "" },
-  { itemNm: "돈까스", price: 11000, id: 6, image: "" },
-  { itemNm: "치킨샌드위치", price: 9000, id: 7, image: "" },
-  { itemNm: "제육덮밥", price: 8500, id: 8, image: "" },
-  { itemNm: "타코", price: 4300, id: 9, image: "" },
-  { itemNm: "파스타", price: 14300, id: 10, image: "" },
-];
+interface products {
+  itemNm: string;
+  price: number;
+  id: number;
+  image: string;
+}
 
 export default function Product() {
   const [cartItems, setCartItems] = useRecoilState<CartItem[]>(cartListAtom);
+  const [products, setProducts] = useState<products[]>([]);
+
+  useEffect(() => {
+    axiosInstance
+      .get("/productList")
+      .then((response) => {
+        const data = response.data;
+        setProducts(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   const addToCart = (id: number) => {
     const selectedItem = products.find((product) => product.id === id);
     if (selectedItem) {
-      const newCartItem: CartItem = {
-        ...selectedItem,
-        quantity: 1,
-      };
-      const updatedCart = [...cartItems, newCartItem];
-      setCartItems(updatedCart);
-      console.log(updatedCart);
+      const existingItem = cartItems.find((item) => item.id === id);
+      if (existingItem) {
+        const updatedCart = cartItems.map((item) => {
+          if (item.id === id) {
+            return {
+              ...item,
+              quantity: item.quantity + 1,
+            };
+          }
+          return item;
+        });
+        setCartItems(updatedCart);
+      } else {
+        const newCartItem: CartItem = {
+          ...selectedItem,
+          quantity: 1,
+        };
+        const updatedCart = [...cartItems, newCartItem];
+        setCartItems(updatedCart);
+      }
     }
   };
 

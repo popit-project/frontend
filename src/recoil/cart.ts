@@ -24,3 +24,15 @@ export const QuantityItem = selector({
     return totalQuantity;
   },
 });
+
+export const TotalPrice = selector({
+  key: "TotalPrice",
+  get: ({ get }) => {
+    const cartItems = get(cartListAtom);
+    const totalPrice = cartItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+    return totalPrice;
+  },
+});

@@ -6,6 +6,7 @@ import Review from "../components/Tab/PopupDetail/Review";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import NavBar from "../components/Navbar";
+import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 
 interface Popup {
   id: number;
@@ -29,7 +30,7 @@ export default function Detail_management() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/popupList");
+        const response = await axiosInstance.get("/popupList");
         const popupList: Popup[] = response.data;
         const selectPopup = popupList.find(
           (popup: Popup) => popup.id === Number(id)
@@ -66,7 +67,7 @@ export default function Detail_management() {
       </div>
       <div>
         <div>
-          <ul className="flex items-center justify-around font-semibold">
+          <ul className="flex items-center justify-around font-semibold text-center">
             <li
               onClick={() => handleTab("tab1")}
               className={`tab1 cursor-pointer grow border-b border-slate-400 py-2.5 ${

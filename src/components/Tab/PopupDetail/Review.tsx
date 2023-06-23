@@ -1,46 +1,51 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { axiosInstance } from "../../AxiosInstance/AxiosConfig";
 
-const reviews = [
-  {
-    name: "자칭 맛잘알",
-    location: "위치(논현동)",
-    date: "1년전",
-    content:
-      "돈까스가 너무 땡겨서 바로 주문하였습니다. 맛도 맛있고 배달도 정말 빨랐습니다. 서비스도 좋고 배송도 빨랐습니다. 맛있는 식사했습니다.👍 감사합니다~!!",
-  },
-  {
-    name: "자칭 맛잘알",
-    location: "위치(논현동)",
-    date: "1년전",
-    content:
-      "돈까스가 너무 땡겨서 바로 주문하였습니다. 맛도 맛있고 배달도 정말 빨랐습니다. 서비스도 좋고 배송도 빨랐습니다. 맛있는 식사했습니다.👍 감사합니다~!!",
-  },
-  {
-    name: "자칭 맛잘알",
-    location: "위치(논현동)",
-    date: "1년전",
-    content:
-      "돈까스가 너무 땡겨서 바로 주문하였습니다. 맛도 맛있고 배달도 정말 빨랐습니다. 서비스도 좋고 배송도 빨랐습니다. 맛있는 식사했습니다.👍 감사합니다~!!",
-  },
-];
+interface review {
+  name: string;
+  location: string;
+  date: string;
+  content: string;
+}
 
 export default function Review() {
-  const [reviewList, setReviewList] = useState(reviews);
+  const [reviewList, setReviewList] = useState<review[]>([]);
   const [newReview, setNewReview] = useState("");
 
-  const handleReviewSubmit = (e: any) => {
-    e.preventDefault();
+  useEffect(() => {
+    axiosInstance
+      .get("/reviews?_sort=id&_order=desc")
+      .then((response) => {
+        const data = response.data;
+        setReviewList(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const handleReviewSubmit = () => {
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleString();
 
     const newReviewItem = {
       name: "새로운 사용자",
       location: "위치",
-      date: "방금",
+      date: formattedDate,
       content: newReview,
     };
 
-    const updatedReviews = [newReviewItem, ...reviewList];
-    setNewReview("");
-    setReviewList(updatedReviews);
+    axiosInstance
+      .post("/reviews", newReviewItem)
+      .then((response) => {
+        console.log("Review submitted:", response.data);
+        const updatedReviews = [response.data, ...reviewList];
+        setNewReview("");
+        setReviewList(updatedReviews);
+      })
+      .catch((error) => {
+        console.error("Failed to submit review:", error);
+      });
   };
 
   return (
@@ -57,13 +62,16 @@ export default function Review() {
           <button
             type="submit"
             className="btn btn-outline w-full mt-2 focus:outline-none sm:ml-3 sm:w-auto sm:mt-0"
-            onClick={handleReviewSubmit}
+            onClick={(e) => {
+              e.preventDefault();
+              handleReviewSubmit();
+            }}
           >
             등록
           </button>
         </form>
       </div>
-      {reviews.length === 0 ? (
+      {reviewList.length === 0 ? (
         <div className="text-center text-xl font-semibold leading-8 mb-10">
           <p>아직 가게 후기가 없어요! 🥲</p>
         </div>
