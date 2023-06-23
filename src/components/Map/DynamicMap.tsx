@@ -1,6 +1,5 @@
 import { ReactNode, useEffect, useRef, useState } from "react"
-import { KakaoMapContext } from "../../hooks/useMap"
-
+import { KakaoMapContext } from "../hooks/useMap"
 
 interface DynamicMapProps {
   children: ReactNode
