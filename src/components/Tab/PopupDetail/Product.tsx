@@ -54,14 +54,14 @@ export default function Product() {
   };
 
   return (
-    <div className="m-10 bg-slate-100 rounded-lg text-left p-5">
+    <div className="m-10 bg-indigo-50 rounded-lg text-left p-5">
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
         {products.map((product, index) => (
           <div
             key={index}
-            className="border border-gray-400 rounded-xl bg-white"
+            className="border border-indigo-200 rounded-xl bg-white"
           >
-            <div className="m-4 divide-y divide-slate-300">
+            <div className="m-4 divide-y divide-indigo-100">
               <img src="" alt="" className="h-40 mx-auto mb-4" />
               <div className="flex justify-between items-center">
                 <div className="w-3/4 mt-2">
@@ -69,7 +69,7 @@ export default function Product() {
                   <p className="text-slate-500">{product.price}원</p>
                 </div>
                 <button
-                  className="btn btn-ghost btn-circle cursor-pointer focus:outline-none"
+                  className="btn btn-ghost btn-circle cursor-pointer focus:outline-none hover:bg-indigo-100"
                   onClick={() => addToCart(product.id)}
                 >
                   <CartIcon width={30} height={30} fill="black" />

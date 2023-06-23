@@ -4,9 +4,9 @@ import News from "../components/Tab/PopupDetail/News";
 import Product from "../components/Tab/PopupDetail/Product";
 import Review from "../components/Tab/PopupDetail/Review";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import NavBar from "../components/MainNav";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
+import MainNav from "../components/MainNav";
 
 interface Popup {
   id: number;
@@ -48,7 +48,7 @@ export default function Detail_management() {
 
   return (
     <div>
-      <NavBar />
+      <MainNav />
       <div>
         <figure className="h-60 bg-gray-400">
           <img src="" alt="" />

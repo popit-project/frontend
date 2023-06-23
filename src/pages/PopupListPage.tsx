@@ -55,7 +55,7 @@ export default function PopupListPage() {
       <div className="grid grid-cols-1 gap-2 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
         {popupList.map((popup) => (
           <div key={popup.id}>
-            <Link to={`/${popup.id}`}>
+            <Link to={`/popuplist/${popup.id}`}>
               <figure className="bg-gray-500 h-80">
                 <img src="" alt="" />
                 <span className="text-slate-800">팝업스토어 사진</span>
@@ -71,17 +71,17 @@ export default function PopupListPage() {
             <div>
               <div className="flex items-center justify-end">
                 <div className="flex items-center">
-                  <CommentIcon width={30} height={30} fill={"orange"} />
+                  <CommentIcon width={30} height={30} fill="#a5b4fc" />
                   {popup.comments}
                 </div>
-                <div className="flex items-center">
+                <div className="flex items-center ml-2">
                   {popup.isLike ? (
                     <span onClick={() => handleLiked(popup.id)}>
-                      <FillLikeIcon width={30} height={30} fill="#F24E1E" />
+                      <FillLikeIcon width={30} height={30} fill="#a5b4fc" />
                     </span>
                   ) : (
                     <span onClick={() => handleLiked(popup.id)}>
-                      <LikeIcon width={30} height={30} fill="#F24E1E" />
+                      <LikeIcon width={30} height={30} fill="#a5b4fc" />
                     </span>
                   )}
                   {popup.likes}

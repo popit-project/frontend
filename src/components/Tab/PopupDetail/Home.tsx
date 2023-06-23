@@ -21,18 +21,18 @@ interface HomeProps {
 
 export default function Home({ popup }: HomeProps) {
   return (
-    <div className="m-10 bg-slate-100 rounded-lg text-left p-5">
+    <div className="m-10 bg-indigo-50 rounded-lg text-left p-5">
       <h2 className="text-2xl font-semibold mb-6">{popup?.name}</h2>
       <div className="flex item-center mb-3">
-        <LocationICon width={30} height={30} fill="gray" />
+        <LocationICon width={30} height={30} fill="#818cf8" />
         <span className="ml-3">{popup?.address}</span>
       </div>
       <div className="flex items-center mb-3">
-        <TimeICon width={30} height={30} fill="gray" />
+        <TimeICon width={30} height={30} fill="#818cf8" />
         <span className="ml-3">오전 11:00~오후 9:00</span>
       </div>
       <div className="flex items-center">
-        <CalendarICon width={30} height={30} fill="gray" />
+        <CalendarICon width={30} height={30} fill="#818cf8" />
         <span className="ml-3">{popup?.period}</span>
       </div>
     </div>

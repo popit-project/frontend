@@ -12,6 +12,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PopupListPage from "./pages/PopupListPage";
 import MyProfilePage from "./components/MyProfilePage";
 import Cart from "./pages/Cart";
+import PopupDetail from "./pages/PopupDetail";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -24,27 +25,24 @@ function App() {
               <Route path="/" element={<MainPage />} />
               <Route path="/map" element={<MapPage />} />
               <Route path="/popuplist" element={<PopupListPage />} />
+              <Route path="/popuplist/:id" element={<PopupDetail />} />
               <Route path="/profile" element={<MyProfilePage />} />
               <Route path="/cart" element={<Cart />} />
-            </> 
-          )
-          
-          : ( 
+            </>
+          ) : (
             <>
-            <Route path="/">
-              <Login />
-            </Route>
-            <Route path="/">
-              <SignUp />
-            </Route>
+              <Route path="/">
+                <Login />
+              </Route>
+              <Route path="/">
+                <SignUp />
+              </Route>
             </>
           )}
         </Routes>
       </BrowserRouter>
     </RecoilRoot>
-    
   );
 }
 
 export default App;
-
