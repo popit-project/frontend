@@ -14,13 +14,20 @@ import {
   useRecoilValue,
 } from "recoil";
 import MapPage from "./pages/MapPage";
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 function App() {
   return (
-    // <RecoilRoot>
-    //   <ProductRegis />
-    // </RecoilRoot>
-    <MapPage />
+    <RecoilRoot>
+      <ProductRegis />
+    </RecoilRoot>
+    // <MainPage />
+  //   <BrowserRouter>
+  //   <Routes>
+  //     <Route path="/" element={<MainPage />} />
+  //     <Route path="/map" element={<MapPage />} />
+  //   </Routes>
+  // </BrowserRouter>
   );
 }
 

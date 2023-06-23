@@ -58,7 +58,7 @@ function MapPage() {
           />
         </DynamicMap>
       </MapScriptLoader> 
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }

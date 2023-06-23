@@ -1,5 +1,9 @@
 import Footer from "../components/Footer";
 import RecomList from "../components/RecomList";
+import { FiSearch } from 'react-icons/Fi';
+import { AiOutlineUser } from 'react-icons/Ai';
+import { Link } from "react-router-dom";
+
 
 const MainPage = () => {
   return (
@@ -23,13 +27,15 @@ const MainPage = () => {
             </ul>
           </div>
           <a className="btn btn-ghost normal-case text-xl">POPIT</a>
+          <FiSearch />
+          <AiOutlineUser size="20"/>
         </div>
         {/* <div className="navbar-end">
           <a className="btn">Button</a>
         </div> */}
       </div>
       <div className="">
-        <input type="text" placeholder="검색하세요!" className="input input-bordered w-full max-w-xs" />
+        <input type="text" placeholder="스토어나 동네를 검색하세요!" className="input input-bordered w-full max-w-xs" />
       </div>
       <div className="card w-96 bg-base-100 shadow-xl image-full w-full">
         {/* <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure> */}
@@ -37,15 +43,17 @@ const MainPage = () => {
           <h2 className="card-title">POPIT!</h2>
           <p>내 주변 팝업 스토어 찾기</p>
           <div className="card-actions justify-end">
+            <Link to="/map">
             <button className="btn btn-primary">바로가기</button>
+            </Link>
           </div>
         </div>
       </div>
       <div>
         <div className="flex flex-col w-full">
-          <div className="grid h-20 card bg-base-300 rounded-box place-items-center">팝업스토어 보기</div> 
+          <div className="btn grid h-20 card bg-base-300 rounded-box place-items-center">팝업스토어 보기</div> 
           <div className="divider"></div> 
-          <div className="grid h-20 card bg-base-300 rounded-box place-items-center">셀러 등록하러 가기</div>
+          <div className="btn grid h-20 card bg-base-300 rounded-box place-items-center">셀러 등록하러 가기</div>
         </div>
       </div>
 
