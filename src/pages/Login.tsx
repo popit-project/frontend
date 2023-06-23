@@ -44,17 +44,20 @@ export default function Login() {
                         placeholder="아이디"
                         name="userId"
                         onChange={changeData}
-                        className="input input-bordered input-success w-full max-w-xs block mb-[3rem] mt-[8rem] mx-auto"
+                        className="input input-bordered input-success w-full max-w-xs block mb-[3rem] mt-[8rem] mx-auto border-violet-500 hover:border-violet-500 focus:outline-violet-500"
                     />
                     <input
                         type="text"
                         placeholder="비밀번호"
                         name="password"
                         onChange={changeData}
-                        className="input input-bordered input-success w-full max-w-xs block mb-[3rem] mx-auto"
+                        className="input input-bordered input-success w-full max-w-xs block mb-[3rem] mx-auto border-violet-500 hover:border-violet-500 focus:outline-violet-500"
                     />
                     <div className="w-screen flex justify-center">
-                        <button type="button" className="btn btn-wide bg-green-500 max-w-xs w-full mb-[3rem]">
+                        <button
+                            type="button"
+                            className="btn bg-violet-400 hover:bg-violet-300 max-w-xs w-full mb-[3rem]"
+                        >
                             로그인
                         </button>
                     </div>
@@ -69,8 +72,12 @@ export default function Login() {
                 <img className="w-8 h-8 mx-auto" src={kakao}></img>
             </div>
             <div className="w-screen flex justify-center">
-                <button className="btn btn-success mr-[1rem]">회원가입</button>
-                <button className="btn btn-success ">비밀번호 찾기</button>
+                <button className="btn bg-violet-400 hover:bg-violet-300 mr-[1rem]">
+                    회원가입
+                </button>
+                <button className="btn bg-violet-400 hover:bg-violet-300">
+                    비밀번호 찾기
+                </button>
             </div>
         </>
     );

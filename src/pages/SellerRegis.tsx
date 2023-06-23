@@ -1,77 +1,110 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState,useRef } from "react";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 
 export default function SellerRegis() {
+    const selectFile = useRef<HTMLInputElement>(null);
+    const [image, setImage] = useState<string | null>(null);
 
-    const [selectedFile, setSelectedFile] = useState<File | null>(null);
-    const [previewUrl, setPreviewUrl] = useState<string>('');
-
-    const handleFile = (e : ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files && e.target.files[0];
-        setSelectedFile(file);
-
+  
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
         if (file) {
             const reader = new FileReader();
-            reader.onloadend = () => {
-                setPreviewUrl(reader.result as string);
-            }
+            reader.onload = () => {
+                const uploadedImage = reader.result as string;
+                setImage(uploadedImage);
+            };
             reader.readAsDataURL(file);
         }
-    }
+    };
+
+    const handleFileClick = () => {
+        if (selectFile.current !== null && selectFile.current !== undefined) {
+            selectFile.current.click();
+        }
+    };
 
     return (
         <div>
             <Nav />
-            <div className="flex justify-center w-screen">
-                <input
-                    type="file"
-                    className="file-input file-input-bordered file-input-success w-full max-w-xs mt-[4rem]"
-                    onChange={handleFile}
-                />
-            </div>
-            <div className="flex justify-center w-screen">
-                {previewUrl && (
-                    <div>
+            <div className="w-screen flex justify-center mt-[2rem]">
+                <div className="border-2 border-violet-500 rounded-lg h-[13rem] w-[20rem] flex justify-center items-center">
+                    {image ? (
                         <img
-                            src={previewUrl}
-                            className="w-[20rem] h-[15rem] mt-[3rem] mb-[3rem]"
-                        ></img>
-                    </div>
-                )}
+                            className="h-[12rem] w-[19rem]"
+                            src={image}
+                            alt="Product"
+                        />
+                    ) : (
+                        "No image"
+                    )}
+                </div>
+            </div>
+            <input
+                type="file"
+                id="input-file"
+                className="hidden"
+                ref={selectFile}
+                onChange={handleFileChange}
+            ></input>
+            <div className="w-screen flex justify-center">
+                <button
+                    className="btn bg-violet-400 hover:bg-violet-300 mt-[1rem]"
+                    onClick={handleFileClick}
+                >
+                    사진 등록
+                </button>
             </div>
             <div>
-                <form className="w-screen">
-                    <div>
-                        <label className="block text-2xl">팝업스토어 이름</label>
-                        <input
-                            type="text"
-                            placeholder="팝업스토어 이름"
-                            className="input input-bordered input-accent w-full max-w-xs mt-[2rem] mb-[1rem]"
-                        />
+                <form>
+                    <div className="flex justify-center w-screen">
+                        <div>
+                            <label className="block text-2xl text-center mt-[2rem] ">
+                                팝업스토어 이름
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="팝업스토어 이름"
+                                className="input input-bordered input-accent w-screen max-w-xs mt-[1rem] mb-[1rem] border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                            />
+                        </div>
                     </div>
-                    <div>
-                        <label className="block text-2xl">주소</label>
-                        <input
-                            type="text"
-                            placeholder="주소"
-                            className="input input-bordered input-accent w-full max-w-xs mt-[2rem] mb-[1rem]"
-                        />
+                    <div className="flex justify-center w-screen">
+                        <div>
+                            <label className="block text-2xl text-center mt-[2rem]">
+                                주소
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="주소"
+                                className="input input-bordered input-accent w-screen max-w-xs mt-[1rem] mb-[1rem] border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                            />
+                        </div>
                     </div>
-                    <div>
-                        <label className="block text-2xl">운영 시간</label>
-                        <input
-                            type="text"
-                            placeholder="운영 시간"
-                            className="input input-bordered input-accent w-full max-w-xs mt-[2rem] mb-[1rem]"
-                        />
+                    <div className="flex justify-center w-screen">
+                        <div>
+                            <label className="block text-2xl text-center mt-[2rem]">
+                                운영 시간
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="운영 시간"
+                                className="input input-bordered input-accent w-screen max-w-xs mt-[1rem] mb-[1rem] border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                            />
+                        </div>
                     </div>
-                    <button type="button" className="btn btn-success m-[2rem] ">
-                        등록하기!
-                    </button>
+                    <div className="w-screen flex justify-center">
+                        <button
+                            type="button"
+                            className="btn bg-violet-400 hover:bg-violet-300 m-[2rem] "
+                        >
+                            등록하기
+                        </button>
+                    </div>
                 </form>
             </div>
-            <Footer/>
+            <Footer />
         </div>
     );
 }

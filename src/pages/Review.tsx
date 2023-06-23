@@ -61,7 +61,7 @@ export default function Review() {
                 <div className="dropdown">
                     <label
                         tabIndex={0}
-                        className="btn m-1 bg-green-500 hover:bg-green-300 mx-auto"
+                        className="btn m-1 bg-violet-400 hover:bg-violet-300 mx-auto"
                     >
                         팝업 스토어 선택
                     </label>
@@ -86,7 +86,7 @@ export default function Review() {
                     <div className="flex justify-center w-screen mt-[2rem]">
                         <button
                             type="button"
-                            className="btn bg-green-500 hover:bg-green-300 mb-[3rem]"
+                            className="btn bg-violet-400 hover:bg-violet-300 mb-[3rem]"
                             onClick={sendReivew}
                         >
                             리뷰 작성 완료
@@ -124,16 +124,28 @@ export default function Review() {
                     </div>
                 </div>
                 <div className="flex justify-center w-full py-2 gap-2">
-                    <a href="#item1" className="btn btn-xs">
+                    <a
+                        href="#item1"
+                        className="btn bg-violet-400 hover:bg-violet-300"
+                    >
                         1
                     </a>
-                    <a href="#item2" className="btn btn-xs">
+                    <a
+                        href="#item2"
+                        className="btn bg-violet-400 hover:bg-violet-300"
+                    >
                         2
                     </a>
-                    <a href="#item3" className="btn btn-xs">
+                    <a
+                        href="#item3"
+                        className="btn bg-violet-400 hover:bg-violet-300"
+                    >
                         3
                     </a>
-                    <a href="#item4" className="btn btn-xs">
+                    <a
+                        href="#item4"
+                        className="btn bg-violet-400 hover:bg-violet-300"
+                    >
                         4
                     </a>
                 </div>

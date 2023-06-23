@@ -12,6 +12,8 @@ import { productDataAtom } from "../recoilAtom/ProductDataAtom";
 import Footer from "../components/Footer";
 
 export default function ProductRegis() {
+
+    // 가게이름
     const [list, setList] = useRecoilState(productListAtom);
     const [productDataList, setProductDataList] =
         useRecoilState(productDataAtom);        
@@ -38,7 +40,10 @@ export default function ProductRegis() {
             <Nav />
             <div className="flex justify-center items-center mt-[3rem] w-screen">
                 <div className="text-2xl mr-[5rem]">상품 등록 및 리스트</div>
-                <button className="btn btn-success" onClick={addProduct}>
+                <button
+                    className="btn bg-violet-400 hover:bg-violet-300"
+                    onClick={addProduct}
+                >
                     항목 추가
                 </button>
             </div>
@@ -53,7 +58,7 @@ export default function ProductRegis() {
                     </div>
                 ))}
             </div>
-            <Footer/>
+            <Footer />
         </div>
     );
 }
