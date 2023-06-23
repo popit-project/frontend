@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 
 interface Popup {
   id: number;
@@ -17,27 +18,29 @@ interface Popup {
 export default function PopupListPage() {
   const [popupList, setPopupList] = useState<Popup[]>([]);
 
-  const fetchPopups = async () => {
-    const { data } = await axios.get("http://localhost:3000/popupList");
-    setPopupList(data);
-  };
-
   useEffect(() => {
-    fetchPopups();
+    axiosInstance
+      .get("/popupList")
+      .then((response) => {
+        const data = response.data;
+        setPopupList(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }, []);
 
   const handleLiked = (id: number) => {
-    axios
-      .post("http://localhost:3000/popupList")
+    axiosInstance
+      .patch(`/popupList/${id}`, { isLike: true })
       .then(() => {
         setPopupList((prevPopupList) => {
           return prevPopupList.map((popup) => {
             if (popup.id === id) {
-              if (popup.isLike) {
-                return { ...popup, isLike: false, likes: popup.likes - 1 };
-              } else {
-                return { ...popup, isLike: true, likes: popup.likes + 1 };
-              }
+              const updatedLikes = popup.isLike
+                ? popup.likes - 1
+                : popup.likes + 1;
+              return { ...popup, isLike: !popup.isLike, likes: updatedLikes };
             }
             return popup;
           });
