@@ -13,7 +13,7 @@ interface ProductProps {
     onDelete: (id: number) => void;
 }
 
-//오늘 여기서 데이터 쏠수 있게끔 정리해두고. 로그인 회원가입 다시 하기.
+//질문내용 : 중간 데이터 삭제시 뒤에 데이터들 적혀있던게 사라짐!
 
 export default function Product({ id, onDelete }: ProductProps) {
     const selectFile = useRef<HTMLInputElement>(null);   

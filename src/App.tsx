@@ -13,7 +13,7 @@ import { RecoilRoot,atom,selector,useRecoilState,useRecoilValue } from 'recoil';
 function App() {
   return (
     <RecoilRoot>
-      <ProductRegis />
+      <Review />
     </RecoilRoot>
   );
 }

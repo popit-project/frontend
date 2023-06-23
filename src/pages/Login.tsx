@@ -3,13 +3,12 @@ import Nav from "../components/Nav";
 import google from '../icon/google.256x256.png'
 import naver from '../icon/naver-line.256x233.png'
 import kakao from '../icon/kakaotalk.256x236.png'
-import { Axios } from "axios";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 import { useState } from "react";
 
-
 export default function Login() {
-    const navigate = useNavigate();
+    //아래 내비게이트 포함하면 오류나면서 렌더링안됌.
+    // const navigate = useNavigate();
     const [loginData, setLoginData] = useState({userId : '', password: ''});
 
     const loginRequest = async (e : React.FormEvent<HTMLFormElement>) => {
@@ -22,7 +21,7 @@ export default function Login() {
 
             localStorage.setItem('accessToken', accessToken);
             localStorage.setItem('refreshToken', refreshToken);
-            navigate("/main");
+            // navigate("/main");
         }
         catch (error) {
             console.error('로그인 실패', error);
@@ -33,14 +32,12 @@ export default function Login() {
     const changeData = (e : React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setLoginData((prevData) => ({ ...prevData, [name]: value }));
-    }
-
-    
+    }  
 
     return (
         <>
             <Nav />
-            <div className="loginForm">
+            <div className="loginForm w-screen">
                 <form onSubmit={loginRequest}>
                     <input
                         type="text"
@@ -56,19 +53,25 @@ export default function Login() {
                         onChange={changeData}
                         className="input input-bordered input-success w-full max-w-xs block mb-[3rem] mx-auto"
                     />
-                    <button type="button" className="btn btn-wide bg-green-500 max-w-xs w-full mb-[3rem]">
-                        로그인
-                    </button>
+                    <div className="w-screen flex justify-center">
+                        <button type="button" className="btn btn-wide bg-green-500 max-w-xs w-full mb-[3rem]">
+                            로그인
+                        </button>
+                    </div>
                 </form>
             </div>
-            <div className="mb-[2rem]">SNS로 로그인하기</div>
-            <div className="connect flex justify-center mb-[3rem]">
+            <div className="w-screen flex justify-center">
+                <div className="mb-[2rem]">SNS로 로그인하기</div>
+            </div>
+            <div className="connect w-screen flex justify-center mb-[3rem]">
                 <img className="w-8 h-8 mx-auto" src={google}></img>
                 <img className="w-8 h-8 mx-auto" src={naver}></img>
                 <img className="w-8 h-8 mx-auto" src={kakao}></img>
             </div>
-            <button className="btn btn-success mr-[1rem]">회원가입</button>
-            <button className="btn btn-success ">비밀번호 찾기</button>
+            <div className="w-screen flex justify-center">
+                <button className="btn btn-success mr-[1rem]">회원가입</button>
+                <button className="btn btn-success ">비밀번호 찾기</button>
+            </div>
         </>
     );
 }
