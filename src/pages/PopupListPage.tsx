@@ -1,18 +1,25 @@
 import { CommentIcon, FillLikeIcon, LikeIcon } from "../assets/icons/Icons";
 import { useEffect, useState } from "react";
 import Navbar from "../components/MainNav";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 
 interface Popup {
-  id: number;
-  name: string;
-  address: string;
-  period: string;
-  comments: number;
-  isLike: boolean;
+  storeAddress: string;
+  y: number;
+  storeName: string;
+  x: number;
+  storePhone: string;
+  openDate: string;
+  openTime: string;
+  closeTime: string;
+  closeDate: string;
+  storeType: string;
+  id: 1;
+  // 이 아래는 각각 api 알아봐야함. 즉, 없어지거나 수정예정
   likes: number;
+  isLike: boolean;
+  comments: number;
 }
 
 export default function PopupListPage() {
@@ -62,9 +69,11 @@ export default function PopupListPage() {
               </figure>
               <div className="p-3">
                 <div className="mb-3 text-left color text-slate-800">
-                  <h3 className="font-bold">{popup.name}</h3>
-                  <p>{popup.address}</p>
-                  <p>{popup.period}</p>
+                  <h3 className="font-bold">{popup.storeName}</h3>
+                  <p>{popup.storeAddress}</p>
+                  <p>
+                    {popup.openDate} ~ {popup.closeDate}
+                  </p>
                 </div>
               </div>
             </Link>

@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { axiosInstance } from "../../AxiosInstance/AxiosConfig";
 
 interface review {
-  name: string;
+  email: string;
   location: string;
   date: string;
-  content: string;
+  comment: string;
 }
 
 export default function Review() {
@@ -29,10 +29,11 @@ export default function Review() {
     const formattedDate = currentDate.toLocaleString();
 
     const newReviewItem = {
-      name: "새로운 사용자",
+      // 사용자의 email을 어떻게 받을 수 있는가
+      email: "새로운 사용자", 
       location: "위치",
       date: formattedDate,
-      content: newReview,
+      comment: newReview,
     };
 
     axiosInstance
@@ -84,7 +85,7 @@ export default function Review() {
             >
               <div className="flex items-center mb-2">
                 <div className="text-left">
-                  <p className="font-bold text-base">{review.name}</p>
+                  <p className="font-bold text-base">{review.email}</p>
                   <div className="text-slate-500">
                     <span>{review.location}</span>
                     <span className="ml-1">•</span>
@@ -92,7 +93,7 @@ export default function Review() {
                   </div>
                 </div>
               </div>
-              <div>{review.content}</div>
+              <div>{review.comment}</div>
             </div>
           ))}
         </div>

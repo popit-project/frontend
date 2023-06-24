@@ -9,13 +9,21 @@ import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 import MainNav from "../components/MainNav";
 
 interface Popup {
-  id: number;
-  name: string;
-  address: string;
-  period: string;
-  comments: number;
-  isLike: boolean;
+  storeAddress: string;
+  y: number;
+  storeName: string;
+  x: number;
+  storePhone: string;
+  openDate: string;
+  openTime: string;
+  closeTime: string;
+  closeDate: string;
+  storeType: string;
+  id: 1;
+  // 이 아래는 각각 api 알아봐야함. 즉, 없어지거나 수정예정
   likes: number;
+  isLike: boolean;
+  comments: number;
 }
 
 export default function Detail_management() {
@@ -55,13 +63,9 @@ export default function Detail_management() {
           <span>팝업이미지</span>
         </figure>
         <div className="flex items-center h-24 m-6">
-          <figure className="w-24 h-24 rounded-full bg-gray-400">
-            <img src="" alt="" />
-            <span></span>
-          </figure>
           <div className="ml-8 text-left">
-            <p className="font-bold text-xl mb-2">{popup?.name}</p>
-            <span>{popup?.address}</span>
+            <p className="font-bold text-xl mb-2">{popup?.storeName}</p>
+            <span>{popup?.storeAddress}</span>
           </div>
         </div>
       </div>

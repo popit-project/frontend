@@ -26,6 +26,7 @@ function App() {
               <Route path="/map" element={<MapPage />} />
               <Route path="/popuplist" element={<PopupListPage />} />
               <Route path="/popuplist/:id" element={<PopupDetail />} />
+              <Route path="/seller" element={<PopupDetail />} />
               <Route path="/profile" element={<MyProfilePage />} />
               <Route path="/cart" element={<Cart />} />
             </>
