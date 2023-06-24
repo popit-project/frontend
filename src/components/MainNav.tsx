@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { QuantityItem } from "../recoil/cart.ts";
+import { QuantityItem } from "../recoilAtom/cart.ts";
 import { Link } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/Ai";
 
@@ -10,7 +10,7 @@ export default function NavBar() {
       <div className="navbar bg-base-100 border-b">
         <div className="navbar-start">
           <Link to="/">
-            <a className="btn btn-ghost normal-case text-xl">POPIT</a>
+            <div className="btn btn-ghost normal-case text-xl">POPIT</div>
           </Link>
         </div>
         <div className="navbar-end">
