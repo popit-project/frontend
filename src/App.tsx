@@ -17,11 +17,25 @@ function App() {
     <RecoilRoot>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<SellerRegis />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/findId" element={<FindId />} />
-          <Route path="/findId" element={<FindId />} />
-          <Route path="/findPassword" element={<FindPassword />} />
+          {isLoggedIn ? (
+            <>
+              <Route path="/" element={<MainPage />} />
+              <Route path="/map" element={<MapPage />} />
+              <Route path="/popuplist" element={<PopupListPage />} />
+              <Route path="/popuplist/:id" element={<PopupDetail />} />
+              <Route path="/seller" element={<PopupDetail />} />
+              <Route path="/profile" element={<MyProfilePage />} />
+              <Route path="/cart" element={<Cart />} />
+            </>
+          ) : (
+            <>
+              <Route path="/" element={<SellerRegis />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/findId" element={<FindId />} />
+              <Route path="/findId" element={<FindId />} />
+              <Route path="/findPassword" element={<FindPassword />} />
+            </>
+          )}
         </Routes>
       </BrowserRouter>      
     </RecoilRoot>
