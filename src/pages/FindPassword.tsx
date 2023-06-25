@@ -1,4 +1,4 @@
-import NavBar from "../components/Navbar";
+import Nav from "../components/LoginNav";
 import Footer from "../components/Footer";
 import { useState } from "react";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
@@ -29,7 +29,7 @@ export default function FindPassword() {
 
     return (
         <>
-            <NavBar />
+            <Nav />
             <div className="w-screen flex justify-center mx-auto mt-[3rem] mb-[3rem]">
                 <div>
                     <label className="label">
