@@ -1,5 +1,5 @@
 import { redirect } from "react-router-dom";
-import Nav from "../components/Nav";
+import Nav from "../components/LoginNav";
 import google from "../icon/google.256x256.png";
 import naver from "../icon/naver-line.256x233.png";
 import kakao from "../icon/kakaotalk.256x236.png";

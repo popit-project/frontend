@@ -1,4 +1,4 @@
-import Nav from "../components/Nav";
+import Nav from "../components/LoginNav";
 import React, { useEffect, useState } from "react";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 
