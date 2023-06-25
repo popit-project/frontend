@@ -6,7 +6,7 @@ import { AiOutlineUser } from "react-icons/Ai";
 export default function MainNav() {
   const totalQuantityValue = useRecoilValue(QuantityItem);
   return (
-    <div className="w-screen">
+    <div className="w-full">
       <div className="navbar bg-base-100 border-b">
         <div className="navbar-start">
           <Link to="/">
@@ -60,7 +60,10 @@ export default function MainNav() {
               </span>
             </div>
           </button>
-          <Link to="/profile">
+          <Link
+            to="/profile"
+            className="w-12 h-12 flex items-center justify-center hover:bg-zinc-300 hover:rounded-[50%] transition-colors"
+          >
             <AiOutlineUser size="20" />
           </Link>
         </div>
