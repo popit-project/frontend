@@ -1,6 +1,6 @@
 import { CartIcon } from "../../../assets/icons/Icons";
 import { useRecoilState } from "recoil";
-import { CartItem, cartListAtom } from "../../../recoil/cart";
+import { CartItem, cartListAtom } from "../../../recoilAtom/cart";
 import { useEffect, useState } from "react";
 import { axiosInstance } from "../../AxiosInstance/AxiosConfig";
 
@@ -8,7 +8,7 @@ interface products {
   itemNm: string;
   price: number;
   id: number;
-  image: string;
+  itemImgURL: string;
 }
 
 export default function Product() {
@@ -37,6 +37,7 @@ export default function Product() {
             return {
               ...item,
               quantity: item.quantity + 1,
+              price: item.price + selectedItem.price,
             };
           }
           return item;
@@ -46,6 +47,7 @@ export default function Product() {
         const newCartItem: CartItem = {
           ...selectedItem,
           quantity: 1,
+          price: selectedItem.price,
         };
         const updatedCart = [...cartItems, newCartItem];
         setCartItems(updatedCart);
@@ -62,7 +64,11 @@ export default function Product() {
             className="border border-indigo-200 rounded-xl bg-white"
           >
             <div className="m-4 divide-y divide-indigo-100">
-              <img src="" alt="" className="h-40 mx-auto mb-4" />
+              <img
+                src={product.itemImgURL}
+                alt=""
+                className="h-40 mx-auto mb-4"
+              />
               <div className="flex justify-between items-center">
                 <div className="w-3/4 mt-2">
                   <p className="line-clamp-1 font-semibold">{product.itemNm}</p>

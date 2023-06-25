@@ -19,4 +19,9 @@
     border-bottom: 3px solid #a5b4fc !important;
     color: #818cf8;
   }
+
+  .addPhotoIcon:hover {
+    color: white !important;
+    fill: white !important;
+  }
 }

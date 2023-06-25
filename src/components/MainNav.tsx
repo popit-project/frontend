@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { QuantityItem } from "../recoil/cart.ts";
+import { QuantityItem } from "../recoilAtom/cart.ts";
 import { Link } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/Ai";
 

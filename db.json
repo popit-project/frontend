@@ -45,125 +45,180 @@
   ],
   "popupList": [
     {
+      "storeAddress": "서울 관악구 신림동 408-1",
+      "y": 37.4767123984012,
+      "storeName": "뉴플리1",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": "06.01",
+      "openTime": "09:00",
+      "closeTime": "20:00",
+      "closeDate": "06.30",
+      "storeType": "FLEA_MARKET",
       "id": 1,
-      "image": "",
-      "name": "PopupStore 1",
-      "address": "서울 영등포구 여의대로 108 - 1",
-      "period": "20203.06.01 ~ 2023.06.30 -1",
-      "operatingTime": "10:00 ~ 20:00",
-      "comments": 3,
+      "isLike": true,
       "likes": 3,
-      "isLike": true
+      "comments": 3
     },
     {
+      "storeAddress": "서울 관악구 신림동 408-2",
+      "y": 37.4767123984012,
+      "storeName": "뉴팝업2",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": "06.01",
+      "openTime": "09:00",
+      "closeTime": "20:00",
+      "closeDate": "06.30",
+      "storeType": "POPUP_STORE",
       "id": 2,
-      "image": "",
-      "name": "PopupStore 2",
-      "address": "서울 영등포구 여의대로 108 - 2",
-      "period": "20203.06.01 ~ 2023.06.30 -2",
-      "operatingTime": "10:00 ~ 20:00",
-      "comments": 3,
+      "isLike": false,
       "likes": 3,
-      "isLike": true
+      "comments": 3
     },
     {
+      "storeAddress": "서울 관악구 신림동 408-3",
+      "y": 37.4767123984012,
+      "storeName": "뉴플리3",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": "06.01",
+      "openTime": "09:00",
+      "closeTime": "20:00",
+      "closeDate": "06.30",
+      "storeType": "FLEA_MARKET",
       "id": 3,
-      "image": "",
-      "name": "PopupStore 3",
-      "address": "서울 영등포구 여의대로 108 - 3",
-      "period": "20203.06.01 ~ 2023.06.30 -3",
-      "operatingTime": "10:00 ~ 20:00",
-      "comments": 3,
-      "likes": 3,
-      "isLike": true
+      "isLike": true,
+      "likes": 2,
+      "comments": 3
     },
     {
+      "storeAddress": "서울 관악구 신림동 408-4",
+      "y": 37.4767123984012,
+      "storeName": "뉴플리4",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": "06.01",
+      "openTime": "09:00",
+      "closeTime": "20:00",
+      "closeDate": "06.30",
+      "storeType": "FLEA_MARKET",
       "id": 4,
-      "image": "",
-      "name": "PopupStore 4",
-      "address": "서울 영등포구 여의대로 108 - 4",
-      "period": "20203.06.01 ~ 2023.06.30 -4",
-      "operatingTime": "10:00 ~ 20:00",
-      "comments": 3,
+      "isLike": true,
       "likes": 3,
-      "isLike": true
+      "comments": 3
     },
     {
+      "storeAddress": "서울 관악구 신림동 408-5",
+      "y": 37.4767123984012,
+      "storeName": "뉴플리5",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": "06.01",
+      "openTime": "09:00",
+      "closeTime": "20:00",
+      "closeDate": "06.30",
+      "storeType": "FLEA_MARKET",
       "id": 5,
-      "image": "",
-      "name": "PopupStore 5",
-      "address": "서울 영등포구 여의대로 108 - 5",
-      "period": "20203.06.01 ~ 2023.06.30 -5",
-      "operatingTime": "10:00 ~ 20:00",
-      "comments": 3,
+      "isLike": true,
       "likes": 3,
-      "isLike": true
+      "comments": 3
     },
     {
+      "storeAddress": "서울 관악구 신림동 408-6",
+      "y": 37.4767123984012,
+      "storeName": "뉴플리6",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": "06.01",
+      "openTime": "09:00",
+      "closeTime": "20:00",
+      "closeDate": "06.30",
+      "storeType": "FLEA_MARKET",
       "id": 6,
-      "image": "",
-      "name": "PopupStore 6",
-      "address": "서울 영등포구 여의대로 108 - 6",
-      "period": "20203.06.01 ~ 2023.06.30 -6",
-      "operatingTime": "10:00 ~ 20:00",
-      "comments": 3,
+      "isLike": false,
       "likes": 3,
-      "isLike": true
+      "comments": 3
     },
     {
+      "storeAddress": "서울 관악구 신림동 408-7",
+      "y": 37.4767123984012,
+      "storeName": "뉴플리7",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": "06.01",
+      "openTime": "09:00",
+      "closeTime": "20:00",
+      "closeDate": "06.30",
+      "storeType": "FLEA_MARKET",
       "id": 7,
-      "image": "",
-      "name": "PopupStore 7",
-      "address": "서울 영등포구 여의대로 108 - 7",
-      "period": "20203.06.01 ~ 2023.06.30 -7",
-      "operatingTime": "10:00 ~ 20:00",
-      "comments": 3,
+      "isLike": false,
       "likes": 3,
-      "isLike": false
+      "comments": 3
     },
     {
+      "storeAddress": "서울 관악구 신림동 408-8",
+      "y": 37.4767123984012,
+      "storeName": "뉴플리8",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": "06.01",
+      "openTime": "09:00",
+      "closeTime": "20:00",
+      "closeDate": "06.30",
+      "storeType": "FLEA_MARKET",
       "id": 8,
-      "image": "",
-      "name": "PopupStore 8",
-      "address": "서울 영등포구 여의대로 108 - 8",
-      "period": "20203.06.01 ~ 2023.06.30 -8",
-      "operatingTime": "10:00 ~ 20:00",
-      "comments": 3,
+      "isLike": false,
       "likes": 3,
-      "isLike": false
+      "comments": 3
     },
     {
+      "storeAddress": "서울 관악구 신림동 408-9",
+      "y": 37.4767123984012,
+      "storeName": "뉴플리9",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": "06.01",
+      "openTime": "09:00",
+      "closeTime": "20:00",
+      "closeDate": "06.30",
+      "storeType": "POPUP_STORE",
       "id": 9,
-      "image": "",
-      "name": "PopupStore 9",
-      "address": "서울 영등포구 여의대로 108 - 9",
-      "period": "20203.06.01 ~ 2023.06.30 -9",
-      "operatingTime": "10:00 ~ 20:00",
-      "comments": 3,
+      "isLike": false,
       "likes": 3,
-      "isLike": false
+      "comments": 3
     },
     {
+      "storeAddress": "서울 관악구 신림동 408-10",
+      "y": 37.4767123984012,
+      "storeName": "뉴플리10",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": "06.01",
+      "openTime": "09:00",
+      "closeTime": "20:00",
+      "closeDate": "06.30",
+      "storeType": "FLEA_MARKET",
       "id": 10,
-      "image": "",
-      "name": "PopupStore 9",
-      "address": "서울 영등포구 여의대로 108 - 10",
-      "period": "20203.06.01 ~ 2023.06.30 -10",
-      "operatingTime": "10:00 ~ 20:00",
-      "comments": 3,
-      "likes": 4,
-      "isLike": false
+      "isLike": false,
+      "likes": 3,
+      "comments": 3
     },
     {
+      "storeAddress": "서울 관악구 신림동 408-11",
+      "y": 37.4767123984012,
+      "storeName": "뉴플리11",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": "06.01",
+      "openTime": "09:00",
+      "closeTime": "20:00",
+      "closeDate": "06.30",
+      "storeType": "POPUP_STORE",
       "id": 11,
-      "image": "",
-      "name": "PopupStore 11",
-      "address": "서울 영등포구 여의대로 108 - 11",
-      "period": "20203.06.01 ~ 2023.06.30 -11",
-      "operatingTime": "10:00 ~ 20:00",
-      "comments": 3,
+      "isLike": false,
       "likes": 3,
-      "isLike": false
+      "comments": 3
     }
   ],
   "productList": [
@@ -173,7 +228,8 @@
       "price": 17900,
       "itemDetail": "item1",
       "stockNumber": 1111,
-      "itemSellStatus": "Y"
+      "itemSellStatus": "Y",
+      "itemImgURL": ""
     },
     {
       "id": 2,
@@ -181,7 +237,8 @@
       "price": 23000,
       "itemDetail": "item2",
       "stockNumber": 100,
-      "itemSellStatus": "Y"
+      "itemSellStatus": "Y",
+      "itemImgURL": ""
     },
     {
       "id": 3,
@@ -189,7 +246,8 @@
       "price": 7800,
       "itemDetail": "item3",
       "stockNumber": 10,
-      "itemSellStatus": "Y"
+      "itemSellStatus": "Y",
+      "itemImgURL": ""
     },
     {
       "id": 4,
@@ -197,7 +255,8 @@
       "price": 15000,
       "itemDetail": "item4",
       "stockNumber": 1,
-      "itemSellStatus": "Y"
+      "itemSellStatus": "Y",
+      "itemImgURL": ""
     },
     {
       "id": 5,
@@ -205,7 +264,8 @@
       "price": 2500,
       "itemDetail": "item5",
       "stockNumber": 2,
-      "itemSellStatus": "Y"
+      "itemSellStatus": "Y",
+      "itemImgURL": ""
     },
     {
       "id": 6,
@@ -213,7 +273,8 @@
       "price": 13900,
       "itemDetail": "item6",
       "stockNumber": 50,
-      "itemSellStatus": "Y"
+      "itemSellStatus": "Y",
+      "itemImgURL": ""
     },
     {
       "id": 7,
@@ -221,7 +282,8 @@
       "price": 8500,
       "itemDetail": "ite78",
       "stockNumber": 9,
-      "itemSellStatus": "Y"
+      "itemSellStatus": "Y",
+      "itemImgURL": ""
     },
     {
       "id": 8,
@@ -229,37 +291,59 @@
       "price": 4800,
       "itemDetail": "item8",
       "stockNumber": 10,
-      "itemSellStatus": "Y"
+      "itemSellStatus": "Y",
+      "itemImgURL": ""
     }
   ],
   "reviews": [
     {
       "id": 1,
-      "name": "자칭 맛잘알1",
+      "email": "자칭 맛잘알1@",
       "location": "위치(논현동)",
       "date": "1년전",
-      "content": "돈까스가 너무 땡겨서 바로 주문하였습니다. 맛도 맛있고 배달도 정말 빨랐습니다. 서비스도 좋고 배송도 빨랐습니다. 맛있는 식사했습니다.👍 감사합니다~!!"
+      "comment": "돈까스가 너무 땡겨서 바로 주문하였습니다. 맛도 맛있고 배달도 정말 빨랐습니다. 서비스도 좋고 배송도 빨랐습니다. 맛있는 식사했습니다.👍 감사합니다~!!"
     },
     {
       "id": 2,
-      "name": "자칭 맛잘알2",
+      "email": "자칭 맛잘알2@",
       "location": "위치(논현동)",
       "date": "1년전",
-      "content": "돈까스가 너무 땡겨서 바로 주문하였습니다. 맛도 맛있고 배달도 정말 빨랐습니다. 서비스도 좋고 배송도 빨랐습니다. 맛있는 식사했습니다.👍 감사합니다~!!"
+      "comment": "돈까스가 너무 땡겨서 바로 주문하였습니다. 맛도 맛있고 배달도 정말 빨랐습니다. 서비스도 좋고 배송도 빨랐습니다. 맛있는 식사했습니다.👍 감사합니다~!!"
     },
     {
       "id": 3,
-      "name": "자칭 맛잘알3",
+      "email": "자칭 맛잘알3@",
       "location": "위치(논현동)",
       "date": "1년전",
-      "content": "돈까스가 너무 땡겨서 바로 주문하였습니다. 맛도 맛있고 배달도 정말 빨랐습니다. 서비스도 좋고 배송도 빨랐습니다. 맛있는 식사했습니다.👍 감사합니다~!!"
+      "comment": "돈까스가 너무 땡겨서 바로 주문하였습니다. 맛도 맛있고 배달도 정말 빨랐습니다. 서비스도 좋고 배송도 빨랐습니다. 맛있는 식사했습니다.👍 감사합니다~!!"
     },
     {
       "id": 4,
-      "name": "자칭 맛잘알1",
+      "email": "자칭 맛잘알1@",
       "location": "위치(논현동)",
       "date": "1년전",
-      "content": "돈까스가 너무 땡겨서 바로 주문하였습니다. 맛도 맛있고 배달도 정말 빨랐습니다. 서비스도 좋고 배송도 빨랐습니다. 맛있는 식사했습니다.👍 감사합니다~!!"
+      "comment": "돈까스가 너무 땡겨서 바로 주문하였습니다. 맛도 맛있고 배달도 정말 빨랐습니다. 서비스도 좋고 배송도 빨랐습니다. 맛있는 식사했습니다.👍 감사합니다~!!"
+    },
+    {
+      "email": "새로운 사용자@",
+      "location": "위치",
+      "date": "2023. 6. 23. 오후 8:30:38",
+      "comment": "",
+      "id": 5
+    },
+    {
+      "email": "새로운 사용자",
+      "location": "위치",
+      "date": "2023. 6. 24. 오후 7:50:22",
+      "comment": "ㅁㄴㅇㄹㅁㅇㄹ",
+      "id": 6
+    },
+    {
+      "email": "새로운 사용자",
+      "location": "위치",
+      "date": "2023. 6. 24. 오후 7:54:26",
+      "comment": "",
+      "id": 7
     }
   ],
   "news": [
