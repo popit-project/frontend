@@ -2,9 +2,24 @@ import { ChangeEvent, useState,useRef } from "react";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 
+//userId를 localstorage에서 받아와서 userId랑 이미지url , 팝업스토어 이름, 주소, 운영시간 보내기. POST
+
+
 export default function SellerRegis() {
     const selectFile = useRef<HTMLInputElement>(null);
     const [image, setImage] = useState<string | null>(null);
+    const sellerId = localStorage.getItem("userId");
+    const [storeData, setStoreData] = useState({
+        img: "",
+        storeName: "",
+        sotreAddress: "",
+        openTime: "",
+        closedTime: "",
+        openDate: "",
+        closedDate: "",
+        storeType: "",
+        businessNumber:""
+    })
 
   
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +44,7 @@ export default function SellerRegis() {
         <div>
             <Nav />
             <div className="w-screen flex justify-center mt-[2rem]">
-                <div className="border-2 border-violet-500 rounded-lg h-[13rem] w-[20rem] flex justify-center items-center">
+                <div className="border-[1px] border-violet-500 rounded-lg h-[13rem] w-[20rem] flex justify-center items-center">
                     {image ? (
                         <img
                             className="h-[12rem] w-[19rem]"
@@ -89,7 +104,75 @@ export default function SellerRegis() {
                             </label>
                             <input
                                 type="text"
-                                placeholder="운영 시간"
+                                placeholder="h"
+                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] mr-[1rem] border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                            />
+                            <input
+                                type="text"
+                                placeholder="m"
+                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] mr-[1rem] border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                            />
+                            <span className="text-xl mr-[1rem]">~</span>
+                            <input
+                                type="text"
+                                placeholder="h"
+                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] mr-[1rem] border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                            />
+                            <input
+                                type="text"
+                                placeholder="m"
+                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                            />
+                        </div>
+                    </div>
+                    <div className="flex justify-center w-screen">
+                        <div>
+                            <label className="block text-2xl text-center mt-[2rem]">
+                                운영 기간
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="m"
+                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] mr-[1rem] border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                            />
+                            <input
+                                type="text"
+                                placeholder="d"
+                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] mr-[1rem] border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                            />
+                            <span className="text-xl mr-[1rem]">~</span>
+                            <input
+                                type="text"
+                                placeholder="m"
+                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] mr-[1rem] border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                            />
+                            <input
+                                type="text"
+                                placeholder="d"
+                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                            />
+                        </div>
+                    </div>
+                    <div className="flex justify-center w-screen">
+                        <div>
+                            <label className="block text-2xl text-center mt-[2rem]">
+                                스토어 구분
+                            </label>
+                            <select className="select select-primary w-screen max-w-xs mt-[2rem]">
+                                <option disabled selected></option>
+                                <option>팝업 스토어</option>
+                                <option>플리 마켓</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="flex justify-center w-screen">
+                        <div>
+                            <label className="block text-2xl text-center mt-[2rem]">
+                                사업자등록번호
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="사업자등록번호"
                                 className="input input-bordered input-accent w-screen max-w-xs mt-[1rem] mb-[1rem] border-violet-500 hover:border-violet-500 focus:outline-violet-500"
                             />
                         </div>
@@ -100,6 +183,12 @@ export default function SellerRegis() {
                             className="btn bg-violet-400 hover:bg-violet-300 m-[2rem] "
                         >
                             등록하기
+                        </button>
+                        <button
+                            type="button"
+                            className="btn bg-violet-400 hover:bg-violet-300 m-[2rem] "
+                        >
+                            수정하기
                         </button>
                     </div>
                 </form>

@@ -1,23 +1,35 @@
 import Nav from "../components/Nav";
-import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 
-//스웨거에 있는 api참조해서 로그인 회원가입 쪽 기능 구현 다 해보기.
-//정리 : api/user/register 일단 완료. login도 완료.
-//닉네임란 만들기(회원가입 정보데이터에)
+//현재 register login info find-id 전부다 동작
 
 export default function SignUp() {
     // const navigate = useNavigate();
-    const [userInfo, setUserInfo] = useState({ userId: "", password: "", passwordCheck: "", email: "", phone: "" });
+    const [userInfo, setUserInfo] = useState({
+        email: "",
+        nickname: "",
+        password: "",
+        passwordCheck: "",
+        phone: "",
+        userId: "",
+    });
 
     useEffect(() => {
         console.log(userInfo)
     },[userInfo])
 
-    function handleClick() {
-        
-
+    async function handleClick() {    
+        try {
+            const response = await axiosInstance.post(
+                "http://3.34.149.107:8082/api/user/register",userInfo
+                
+            );
+            window.location.href = "/login";
+          
+        } catch (error) {
+            alert(`${error}`)
+        }
         //navigate(메인페이지 주소);
     }
 
@@ -54,7 +66,7 @@ export default function SignUp() {
                             </span>
                         </label>
                         <input
-                            type="text"
+                            type="password"
                             placeholder="비밀번호"
                             className="input input-bordered w-full max-w-xs"
                             name="password"
@@ -86,6 +98,20 @@ export default function SignUp() {
                             placeholder="이메일"
                             className="input input-bordered w-full max-w-xs"
                             name="email"
+                            onChange={changeInfo}
+                        />
+                    </div>
+                    <div className="form-control w-full max-w-xs mx-auto mt-[3rem]">
+                        <label className="label">
+                            <span className="label-text text-2xl mb-[1rem]">
+                                닉네임
+                            </span>
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="닉네임"
+                            className="input input-bordered w-full max-w-xs"
+                            name="nickname"
                             onChange={changeInfo}
                         />
                     </div>
