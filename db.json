@@ -284,5 +284,33 @@
       "date": "1년전",
       "description": "학동역 돈까스 맛집, 부엉이돈까스(배달/포장됩니다.) 대한민국 1등 치즈돈까스 맛집, 부엉이돈까스 학동역점입니다. 우동/냉소바/돈까스.카레 메뉴 하나하나 손수 만들어 정성으로 판매합니다. 💗"
     }
+  ],
+  "map": [
+    {
+      "storeAddress": "서울 관악구 신림동 408-10",
+      "y": 37.4767123984012,
+      "storeName": "뉴플리",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": null,
+      "openTime": null,
+      "closeTime": null,
+      "closeDate": null,
+      "storeType": "FLEA_MARKET",
+      "id": 3
+    },
+    {
+      "storeAddress": "경기 광명시 디지털로 63",
+      "y": 37.4746749593818,
+      "storeName": "플리마켓",
+      "x": 126.871609303422,
+      "storePhone": null,
+      "openDate": null,
+      "openTime": null,
+      "closeTime": null,
+      "closeDate": null,
+      "storeType": "FLEA_MARKET",
+      "id": 4
+    }
   ]
 }

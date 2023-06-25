@@ -50,11 +50,11 @@ const MainPage = () => {
           <div>
             <div className="flex flex-col w-full">
               <Link to="/profile">
-              <div className="btn grid h-20 card bg-base-300 rounded-box place-items-center">셀러 등록하러 가기</div> 
+              <div className="btn grid h-20 card bg-base-300 rounded-box place-items-center">플리마켓 보러가기</div> 
               </Link>
               <div className="divider"></div> 
               <Link to="/cart">
-              <div className="btn grid h-20 card bg-base-300 rounded-box place-items-center">장바구니 가기</div>
+              <div className="btn grid h-20 card bg-base-300 rounded-box place-items-center">팝업스토어 보러가기</div>
               </Link>
             </div>
           </div>

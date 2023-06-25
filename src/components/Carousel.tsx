@@ -52,7 +52,7 @@ function CarouselComponent() {
 
   return (
     <div className="card lg:card-side bg-base-100 shadow-xl">
-      <div className="w-full sm:w-96 md:w-120 lg:w-1/2">
+      <div className="w-full sm:w-96 md:w-3/5 md:m-auto lg:w-1/2">
         <Carousel showArrows={false} showStatus={false} showThumbs={false} autoPlay infiniteLoop>
           <div>
             <img src="../../src/assets/images/KakaoTalk_Photo_2023-06-23-22-43-57 002.jpeg" />

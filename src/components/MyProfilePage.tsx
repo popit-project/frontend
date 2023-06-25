@@ -12,14 +12,14 @@ const MyProfilePage = () => {
   return (
     <div className="w-4/5 my-0 mx-auto">
       <NavBar />
-      <div className="w-4/5 my-0 mx-auto pt-12 pb-20">
+      <div className="w-4/5 my-0 mx-auto pt-12 pb-10">
         <div className="pt-5">
           <p className="font-bold text-2xl py-2">내정보</p>
         </div>
         <div>
-          <div className="py-3 pt-10 relative">
+          <div className="py-3 pt-10 relative border-b pb-10">
             <div>
-              <p className="inline-block w-20">닉네임{" "}</p>
+              <p className="inline-block w-20 mb-2">닉네임{" "}</p>
               <input
                 type="text"
                 placeholder="Type here"
@@ -29,12 +29,15 @@ const MyProfilePage = () => {
                 disabled={!isEditing}
               />
             </div>
-            <p className="btn absolute right-0 top-10 p-2 bg-indigo-500 border-indigo-500 text-white hover:bg-indigo-300 hover:border-indigo-300" onClick={handleEditClick}>
+            <p 
+            className="btn absolute right-0 top-10 p-2 bg-indigo-500 border-indigo-500 text-white hover:bg-indigo-300 hover:border-indigo-300" 
+            onClick={handleEditClick}
+            >
             {isEditing ? "저장하기" : "수정하기"}
             </p>
           </div>
-          <div className="py-3">
-          <p className="inline-block w-20">아이디{" "}</p>
+          <div className="py-3 pt-10">
+          <p className="inline-block w-20 mb-2">아이디{" "}</p>
             <input
               type="text"
               placeholder="Type here"
@@ -42,7 +45,7 @@ const MyProfilePage = () => {
             />
           </div>
           <div className="py-3">
-          <p className="inline-block w-20">이메일{" "}</p>
+          <p className="inline-block w-20 mb-2">이메일{" "}</p>
             <input
               type="text"
               placeholder="Type here"
@@ -50,7 +53,7 @@ const MyProfilePage = () => {
             />
           </div>
           <div className="py-3 pb-10">
-          <p className="inline-block w-20">전화번호{" "}</p>
+          <p className="inline-block w-20 mb-2">전화번호{" "}</p>
             <input
               type="text"
               placeholder="Type here"
