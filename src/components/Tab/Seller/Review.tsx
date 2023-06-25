@@ -25,9 +25,9 @@ const reviews = [
 export default function Review() {
   return (
     <div className="m-10 bg-slate-100 rounded-lg text-left p-5">
-      {/* <div className="text-center text-xl font-semibold leading-8">
-        <p>아직 가게 후기가 없어요! 🥲 (판매자용 / 유저용)</p>
-      </div> */}
+      <div className="text-center text-xl font-semibold leading-8">
+        <p>아직 가게 후기가 없어요! 🥲 </p>
+      </div>
       <div className="mb-16">
         <form className="flex flex-col items-center sm:flex-row">
           <input

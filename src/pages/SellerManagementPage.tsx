@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import Home from "../components/Tab/User/Home";
-import News from "../components/Tab/User/News";
-import Product from "../components/Tab/User/Product";
-import Review from "../components/Tab/User/Review";
+import Home from "../components/Tab/Seller/Home";
+import News from "../components/Tab/Seller/News";
+import Product from "../components/Tab/Seller/Product";
+import Review from "../components/Tab/Seller/Review";
 import { useParams } from "react-router-dom";
-import NavBar from "../components/MainNav";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 import MainNav from "../components/MainNav";
 

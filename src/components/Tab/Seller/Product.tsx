@@ -1,4 +1,3 @@
-import React from "react";
 import { CartIcon } from "../../../assets/icons/Icons";
 
 const products = [
@@ -17,15 +16,12 @@ const products = [
 export default function Product() {
   return (
     <div className="m-10 bg-slate-100 rounded-lg text-left p-5">
-      {/* <div className="text-center text-xl font-semibold leading-8">
+      <div className="text-center text-xl font-semibold leading-8">
         <div className="mb-5">
           <p>판매중인 상품이 없어요! 🥲 (판매자용)</p>
           <p>판매할 상품을 등록해 보시겠어요?</p>
         </div>
-        <button className="btn btn-outline focus:outline-none">
-          상품 등록하기
-        </button>
-      </div> */}
+      </div>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
         {products.map((product, index) => (
           <div

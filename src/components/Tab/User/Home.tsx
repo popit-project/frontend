@@ -1,4 +1,3 @@
-import React from "react";
 import {
   CalendarICon,
   LocationICon,
@@ -48,10 +47,6 @@ export default function Home({ popup }: HomeProps) {
           {popup?.openDate} ~ {popup?.closeDate}
         </span>
       </div>
-      {/* 셀러전용 */}
-      <button className="btn btn-outline w-full mt-10 focus:outline-none sm:w-auto border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400">
-        정보수정하기
-      </button>
     </div>
   );
 }
