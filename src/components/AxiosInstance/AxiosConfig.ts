@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const axiosInstance = axios.create({
   baseURL: "http://localhost:3000/", // JSON Server의 주소에 맞게 변경
-  timeout: 1000,
+  timeout: 5000,
   headers: {
     "Content-Type": "application/json",
   },
