@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-import Review from "./pages/Review";
 import MainPage from "./pages/MainPage";
 import SellerRegis from "./pages/SellerRegis";
 import ProductRegis from "./pages/ProductRegis";
@@ -10,14 +9,10 @@ import { RecoilRoot } from "recoil";
 import MapPage from "./pages/MapPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import FindId from "./pages/FindId";
-import PopupDetail from "./pages/PopupDetail";
 import FindPassword from "./pages/FindPassword";
-import PopupListPage from "./pages/PopupListPage";
-import MyProfilePage from "./components/MyProfilePage";
-import Cart from "./pages/Cart";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
     <RecoilRoot>
       <BrowserRouter>
@@ -42,9 +37,11 @@ function App() {
             </>
           )}
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter>      
     </RecoilRoot>
   );
 }
 
 export default App;
+
+
