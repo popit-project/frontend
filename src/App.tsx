@@ -10,21 +10,39 @@ import { RecoilRoot } from "recoil";
 import MapPage from "./pages/MapPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import FindId from "./pages/FindId";
+import PopupDetail from "./pages/PopupDetail";
 import FindPassword from "./pages/FindPassword";
+import PopupListPage from "./pages/PopupListPage";
+import MyProfilePage from "./components/MyProfilePage";
+import Cart from "./pages/Cart";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <RecoilRoot>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<SellerRegis />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/findId" element={<FindId />} />
-          <Route path="/findId" element={<FindId />} />
-          <Route path="/findPassword" element={<FindPassword />} />
+          {isLoggedIn ? (
+            <>
+              <Route path="/" element={<MainPage />} />
+              <Route path="/map" element={<MapPage />} />
+              <Route path="/popuplist" element={<PopupListPage />} />
+              <Route path="/popuplist/:id" element={<PopupDetail />} />
+              <Route path="/seller" element={<PopupDetail />} />
+              <Route path="/profile" element={<MyProfilePage />} />
+              <Route path="/cart" element={<Cart />} />
+            </>
+            ) : (
+            <>
+              <Route path="/" element={<SellerRegis />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/findId" element={<FindId />} />
+              <Route path="/findId" element={<FindId />} />
+              <Route path="/findPassword" element={<FindPassword />} />
+            </>
+          )}
         </Routes>
-      </BrowserRouter>      
+      </BrowserRouter>
     </RecoilRoot>
   );
 }
