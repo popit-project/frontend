@@ -4,7 +4,7 @@ export interface CartItem {
   id: number;
   itemNm: string;
   price: number;
-  image: string;
+  itemImgURL: string;
   quantity: number;
 }
 
@@ -29,10 +29,7 @@ export const TotalPrice = selector({
   key: "TotalPrice",
   get: ({ get }) => {
     const cartItems = get(cartListAtom);
-    const totalPrice = cartItems.reduce(
-      (total, item) => total + item.price * item.quantity,
-      0
-    );
+    const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
     return totalPrice;
   },
 });

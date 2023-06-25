@@ -1,4 +1,4 @@
-import Nav from "../components/Nav";
+import Nav from "../components/LoginNav";
 import { useRef, useState, useEffect } from "react";
 import Product from "../components/Product";
 import {

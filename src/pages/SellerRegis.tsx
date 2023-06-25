@@ -1,5 +1,5 @@
 import { ChangeEvent, useState,useRef } from "react";
-import Nav from "../components/Nav";
+import Nav from "../components/LoginNav";
 import Footer from "../components/Footer";
 
 //userId를 localstorage에서 받아와서 userId랑 이미지url , 팝업스토어 이름, 주소, 운영시간 보내기. POST

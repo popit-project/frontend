@@ -13,6 +13,7 @@ import FindId from "./pages/FindId";
 import FindPassword from "./pages/FindPassword";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
     <RecoilRoot>
       <BrowserRouter>

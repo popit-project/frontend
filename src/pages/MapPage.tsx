@@ -6,7 +6,7 @@ import MapScriptLoader from "../components/Map/MapScriptLoader"
 import SearchLocation from "../components/Map/SearchLocation"
 import { PlaceType } from "../components/Map/mapTypes"
 import MapMarkUpController from "../components/Map/MapMarkUpController"
-import Footer from "../components/Footer"
+// import Footer from "../components/Footer"
 // import MainPage from "./components/MainPage"
 // import MyProfilePage from "./components/MyProfilePage"
 

@@ -18,29 +18,383 @@
   },
   "review": [
     {
-      "text" : "기가 막힙니다.",
+      "text": "기가 막힙니다.",
       "name": "exam",
       "id": 1
     },
     {
-        "text": "맛이 기가 막힙니다.",
-        "name": "버거킹",
-        "id": 2
+      "text": "맛이 기가 막힙니다.",
+      "name": "버거킹",
+      "id": 2
     },
     {
-        "text": "가격이 저렴합니다.",
-        "name": "맥도날드",
-        "id": 3
+      "text": "가격이 저렴합니다.",
+      "name": "맥도날드",
+      "id": 3
     },
     {
-        "text": "가게가 깨끗합니다.",
-        "name": "집밥백선생",
-        "id": 4
+      "text": "가게가 깨끗합니다.",
+      "name": "집밥백선생",
+      "id": 4
     },
     {
-        "text": "배달이 빠릅니다.",
-        "name": "최고당돈가스",
-        "id": 5
+      "text": "배달이 빠릅니다.",
+      "name": "최고당돈가스",
+      "id": 5
+    }
+  ],
+  "popupList": [
+    {
+      "storeAddress": "서울 관악구 신림동 408-1",
+      "y": 37.4767123984012,
+      "storeName": "뉴플리1",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": "06.01",
+      "openTime": "09:00",
+      "closeTime": "20:00",
+      "closeDate": "06.30",
+      "storeType": "FLEA_MARKET",
+      "id": 1,
+      "isLike": true,
+      "likes": 3,
+      "comments": 3
+    },
+    {
+      "storeAddress": "서울 관악구 신림동 408-2",
+      "y": 37.4767123984012,
+      "storeName": "뉴팝업2",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": "06.01",
+      "openTime": "09:00",
+      "closeTime": "20:00",
+      "closeDate": "06.30",
+      "storeType": "POPUP_STORE",
+      "id": 2,
+      "isLike": false,
+      "likes": 3,
+      "comments": 3
+    },
+    {
+      "storeAddress": "서울 관악구 신림동 408-3",
+      "y": 37.4767123984012,
+      "storeName": "뉴플리3",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": "06.01",
+      "openTime": "09:00",
+      "closeTime": "20:00",
+      "closeDate": "06.30",
+      "storeType": "FLEA_MARKET",
+      "id": 3,
+      "isLike": true,
+      "likes": 2,
+      "comments": 3
+    },
+    {
+      "storeAddress": "서울 관악구 신림동 408-4",
+      "y": 37.4767123984012,
+      "storeName": "뉴플리4",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": "06.01",
+      "openTime": "09:00",
+      "closeTime": "20:00",
+      "closeDate": "06.30",
+      "storeType": "FLEA_MARKET",
+      "id": 4,
+      "isLike": true,
+      "likes": 3,
+      "comments": 3
+    },
+    {
+      "storeAddress": "서울 관악구 신림동 408-5",
+      "y": 37.4767123984012,
+      "storeName": "뉴플리5",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": "06.01",
+      "openTime": "09:00",
+      "closeTime": "20:00",
+      "closeDate": "06.30",
+      "storeType": "FLEA_MARKET",
+      "id": 5,
+      "isLike": true,
+      "likes": 3,
+      "comments": 3
+    },
+    {
+      "storeAddress": "서울 관악구 신림동 408-6",
+      "y": 37.4767123984012,
+      "storeName": "뉴플리6",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": "06.01",
+      "openTime": "09:00",
+      "closeTime": "20:00",
+      "closeDate": "06.30",
+      "storeType": "FLEA_MARKET",
+      "id": 6,
+      "isLike": false,
+      "likes": 3,
+      "comments": 3
+    },
+    {
+      "storeAddress": "서울 관악구 신림동 408-7",
+      "y": 37.4767123984012,
+      "storeName": "뉴플리7",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": "06.01",
+      "openTime": "09:00",
+      "closeTime": "20:00",
+      "closeDate": "06.30",
+      "storeType": "FLEA_MARKET",
+      "id": 7,
+      "isLike": false,
+      "likes": 3,
+      "comments": 3
+    },
+    {
+      "storeAddress": "서울 관악구 신림동 408-8",
+      "y": 37.4767123984012,
+      "storeName": "뉴플리8",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": "06.01",
+      "openTime": "09:00",
+      "closeTime": "20:00",
+      "closeDate": "06.30",
+      "storeType": "FLEA_MARKET",
+      "id": 8,
+      "isLike": false,
+      "likes": 3,
+      "comments": 3
+    },
+    {
+      "storeAddress": "서울 관악구 신림동 408-9",
+      "y": 37.4767123984012,
+      "storeName": "뉴플리9",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": "06.01",
+      "openTime": "09:00",
+      "closeTime": "20:00",
+      "closeDate": "06.30",
+      "storeType": "POPUP_STORE",
+      "id": 9,
+      "isLike": false,
+      "likes": 3,
+      "comments": 3
+    },
+    {
+      "storeAddress": "서울 관악구 신림동 408-10",
+      "y": 37.4767123984012,
+      "storeName": "뉴플리10",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": "06.01",
+      "openTime": "09:00",
+      "closeTime": "20:00",
+      "closeDate": "06.30",
+      "storeType": "FLEA_MARKET",
+      "id": 10,
+      "isLike": false,
+      "likes": 3,
+      "comments": 3
+    },
+    {
+      "storeAddress": "서울 관악구 신림동 408-11",
+      "y": 37.4767123984012,
+      "storeName": "뉴플리11",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": "06.01",
+      "openTime": "09:00",
+      "closeTime": "20:00",
+      "closeDate": "06.30",
+      "storeType": "POPUP_STORE",
+      "id": 11,
+      "isLike": false,
+      "likes": 3,
+      "comments": 3
+    }
+  ],
+  "productList": [
+    {
+      "id": 1,
+      "itemNm": "피자대형",
+      "price": 17900,
+      "itemDetail": "item1",
+      "stockNumber": 1111,
+      "itemSellStatus": "Y",
+      "itemImgURL": ""
+    },
+    {
+      "id": 2,
+      "itemNm": "치킨",
+      "price": 23000,
+      "itemDetail": "item2",
+      "stockNumber": 100,
+      "itemSellStatus": "Y",
+      "itemImgURL": ""
+    },
+    {
+      "id": 3,
+      "itemNm": "짜장면",
+      "price": 7800,
+      "itemDetail": "item3",
+      "stockNumber": 10,
+      "itemSellStatus": "Y",
+      "itemImgURL": ""
+    },
+    {
+      "id": 4,
+      "itemNm": "연어초밥",
+      "price": 15000,
+      "itemDetail": "item4",
+      "stockNumber": 1,
+      "itemSellStatus": "Y",
+      "itemImgURL": ""
+    },
+    {
+      "id": 5,
+      "itemNm": "아이스아메리카노",
+      "price": 2500,
+      "itemDetail": "item5",
+      "stockNumber": 2,
+      "itemSellStatus": "Y",
+      "itemImgURL": ""
+    },
+    {
+      "id": 6,
+      "itemNm": "돈까스",
+      "price": 13900,
+      "itemDetail": "item6",
+      "stockNumber": 50,
+      "itemSellStatus": "Y",
+      "itemImgURL": ""
+    },
+    {
+      "id": 7,
+      "itemNm": "제육덮밥",
+      "price": 8500,
+      "itemDetail": "ite78",
+      "stockNumber": 9,
+      "itemSellStatus": "Y",
+      "itemImgURL": ""
+    },
+    {
+      "id": 8,
+      "itemNm": "샌드위치",
+      "price": 4800,
+      "itemDetail": "item8",
+      "stockNumber": 10,
+      "itemSellStatus": "Y",
+      "itemImgURL": ""
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "email": "자칭 맛잘알1@",
+      "location": "위치(논현동)",
+      "date": "1년전",
+      "comment": "돈까스가 너무 땡겨서 바로 주문하였습니다. 맛도 맛있고 배달도 정말 빨랐습니다. 서비스도 좋고 배송도 빨랐습니다. 맛있는 식사했습니다.👍 감사합니다~!!"
+    },
+    {
+      "id": 2,
+      "email": "자칭 맛잘알2@",
+      "location": "위치(논현동)",
+      "date": "1년전",
+      "comment": "돈까스가 너무 땡겨서 바로 주문하였습니다. 맛도 맛있고 배달도 정말 빨랐습니다. 서비스도 좋고 배송도 빨랐습니다. 맛있는 식사했습니다.👍 감사합니다~!!"
+    },
+    {
+      "id": 3,
+      "email": "자칭 맛잘알3@",
+      "location": "위치(논현동)",
+      "date": "1년전",
+      "comment": "돈까스가 너무 땡겨서 바로 주문하였습니다. 맛도 맛있고 배달도 정말 빨랐습니다. 서비스도 좋고 배송도 빨랐습니다. 맛있는 식사했습니다.👍 감사합니다~!!"
+    },
+    {
+      "id": 4,
+      "email": "자칭 맛잘알1@",
+      "location": "위치(논현동)",
+      "date": "1년전",
+      "comment": "돈까스가 너무 땡겨서 바로 주문하였습니다. 맛도 맛있고 배달도 정말 빨랐습니다. 서비스도 좋고 배송도 빨랐습니다. 맛있는 식사했습니다.👍 감사합니다~!!"
+    },
+    {
+      "email": "새로운 사용자@",
+      "location": "위치",
+      "date": "2023. 6. 23. 오후 8:30:38",
+      "comment": "",
+      "id": 5
+    },
+    {
+      "email": "새로운 사용자",
+      "location": "위치",
+      "date": "2023. 6. 24. 오후 7:50:22",
+      "comment": "ㅁㄴㅇㄹㅁㅇㄹ",
+      "id": 6
+    },
+    {
+      "email": "새로운 사용자",
+      "location": "위치",
+      "date": "2023. 6. 24. 오후 7:54:26",
+      "comment": "",
+      "id": 7
+    }
+  ],
+  "news": [
+    {
+      "id": 1,
+      "name": "부엉이돈까스학동역점",
+      "location": "위치(논현동)",
+      "date": "1년전",
+      "description": "학동역 돈까스 맛집, 부엉이돈까스(배달/포장됩니다.) 대한민국 1등 치즈돈까스 맛집, 부엉이돈까스 학동역점입니다. 우동/냉소바/돈까스.카레 메뉴 하나하나 손수 만들어 정성으로 판매합니다. 💗"
+    },
+    {
+      "id": 2,
+      "name": "부엉이돈까스학동역점",
+      "location": "위치(논현동)",
+      "date": "1년전",
+      "description": "학동역 돈까스 맛집, 부엉이돈까스(배달/포장됩니다.) 대한민국 1등 치즈돈까스 맛집, 부엉이돈까스 학동역점입니다. 우동/냉소바/돈까스.카레 메뉴 하나하나 손수 만들어 정성으로 판매합니다. 💗"
+    },
+    {
+      "id": 3,
+      "name": "부엉이돈까스학동역점",
+      "location": "위치(논현동)",
+      "date": "1년전",
+      "description": "학동역 돈까스 맛집, 부엉이돈까스(배달/포장됩니다.) 대한민국 1등 치즈돈까스 맛집, 부엉이돈까스 학동역점입니다. 우동/냉소바/돈까스.카레 메뉴 하나하나 손수 만들어 정성으로 판매합니다. 💗"
+    }
+  ],
+  "map": [
+    {
+      "storeAddress": "서울 관악구 신림동 408-10",
+      "y": 37.4767123984012,
+      "storeName": "뉴플리",
+      "x": 126.935674694601,
+      "storePhone": null,
+      "openDate": null,
+      "openTime": null,
+      "closeTime": null,
+      "closeDate": null,
+      "storeType": "FLEA_MARKET",
+      "id": 3
+    },
+    {
+      "storeAddress": "경기 광명시 디지털로 63",
+      "y": 37.4746749593818,
+      "storeName": "플리마켓",
+      "x": 126.871609303422,
+      "storePhone": null,
+      "openDate": null,
+      "openTime": null,
+      "closeTime": null,
+      "closeDate": null,
+      "storeType": "FLEA_MARKET",
+      "id": 4
     }
   ]
 }
