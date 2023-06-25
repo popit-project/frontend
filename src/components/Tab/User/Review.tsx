@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { axiosInstance } from "../../AxiosInstance/AxiosConfig";
 
 interface review {
+  id: number;
   email: string;
   location: string;
   date: string;
@@ -30,7 +31,7 @@ export default function Review() {
 
     const newReviewItem = {
       // 사용자의 email을 어떻게 받을 수 있는가
-      email: "새로운 사용자", 
+      email: "새로운 사용자",
       location: "위치",
       date: formattedDate,
       comment: newReview,
@@ -78,12 +79,13 @@ export default function Review() {
         </div>
       ) : (
         <div className="tab-list first:pt-0">
-          {reviewList.map((review, index) => (
+          {reviewList.map((review) => (
             <div
-              key={index}
+              key={review.id}
               className="py-8 border-b border-indigo-200 first:pt-0 last:border-none"
             >
               <div className="flex items-center mb-2">
+              
                 <div className="text-left">
                   <p className="font-bold text-base">{review.email}</p>
                   <div className="text-slate-500">
