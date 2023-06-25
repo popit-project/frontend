@@ -1,7 +1,7 @@
 import logo from "../icon/buy.256x238.png";
 import menu from "../icon/menu.256x158.png";
 
-export default function Nav() {
+export default function LoginNav() {
     return (
         <>
             <div>

@@ -5,7 +5,7 @@ import { useState } from "react";
 import PaymentModal from "../components/Cart/PaymentModal";
 import CartList from "../components/Cart/CartList";
 
-export default function Cart() {
+export default function CartPage() {
   const cartList = useRecoilValue(cartListAtom);
   const totalPrice = useRecoilValue(TotalPrice);
   const [cartListState, setCartListState] = useRecoilState(cartListAtom);

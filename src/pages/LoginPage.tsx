@@ -3,6 +3,7 @@ import Nav from "../components/LoginNav";
 import google from "../icon/google.256x256.png";
 import naver from "../icon/naver-line.256x233.png";
 import kakao from "../icon/kakaotalk.256x236.png";
+import { Link } from "react-router-dom";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 import { useState } from "react";
 import NavBar from "../components/MainNav";
@@ -10,7 +11,7 @@ import NavBar from "../components/MainNav";
 //구글로그인은 -> 버튼클릭하면 api/google호출해서 응답받은걸로(url) navigate를 하면은 그 url로 이동하기 !
 //로그아웃 버튼이 있어야하고. 로그아웃을 하면 localStorage에서 로그인 아이디 및 인증토큰들을 다 지워야함.
 
-export default function Login() {
+export default function LoginPage() {
   const [loginData, setLoginData] = useState({ userId: "", password: "" });
   const loginRequest = async () => { 
 
@@ -49,8 +50,7 @@ export default function Login() {
   };
 
     return (
-        <>
-            <Nav />
+        <div className="max-w-7xl my-0 mx-auto mb-[10rem]">
             <div className="loginForm w-screen">
                 <form onSubmit={loginRequest}>
                     <input
@@ -58,19 +58,19 @@ export default function Login() {
                         placeholder="아이디"
                         name="userId"
                         onChange={changeData}
-                        className="input input-bordered input-success w-full max-w-xs block mb-[3rem] mt-[8rem] mx-auto border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                        className="input input-bordered input-success w-full max-w-xs block mb-[3rem] mt-[8rem] mx-auto border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500"
                     />
                     <input
                         type="password"
                         placeholder="비밀번호"
                         name="password"
                         onChange={changeData}
-                        className="input input-bordered input-success w-full max-w-xs block mb-[3rem] mx-auto border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                        className="input input-bordered input-success w-full max-w-xs block mb-[3rem] mx-auto border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500"
                     />
                     <div className="w-screen flex justify-center">
                         <button
                             type="button"
-                            className="btn bg-violet-400 hover:bg-violet-300 max-w-xs w-full mb-[3rem]"
+                            className="btn bg-indigo-400 hover:bg-indigo-300 max-w-xs w-full mb-[3rem]"
                             onClick={loginRequest}
                         >
                             로그인
@@ -87,16 +87,20 @@ export default function Login() {
                 <img className="w-8 h-8 mx-auto" src={kakao}></img>
             </div>
             <div className="w-screen flex justify-center">
-                <button className="btn bg-violet-400 hover:bg-violet-300 mr-[1rem]">
-                    회원가입
-                </button>
-                <button className="btn bg-violet-400 hover:bg-violet-300 mr-[1rem]">
+                <Link to={"/signUp"}>
+                    <button className="btn bg-indigo-400 hover:bg-indigo-300 mr-[1rem]">
+                        회원가입
+                    </button>
+                </Link>
+                <button className="btn bg-indigo-400 hover:bg-indigo-300 mr-[1rem]">
                     아이디 찾기
                 </button>
-                <button className="btn bg-violet-400 hover:bg-violet-300">
-                    비밀번호 찾기
-                </button>
+                <Link to={"/findPassword"}>
+                    <button className="btn bg-indigo-400 hover:bg-indigo-300">
+                        비밀번호 찾기
+                    </button>
+                </Link>
             </div>
-        </>
+        </div>
     );
 }

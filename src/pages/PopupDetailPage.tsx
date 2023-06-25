@@ -26,7 +26,7 @@ interface Popup {
   comments: number;
 }
 
-export default function Detail_management() {
+export default function PopupDetailPage() {
   const { id } = useParams<{ id: string }>();
   const [activeTab, setActiveTab] = useState<string>("tab1");
   const [popup, setPopup] = useState<Popup | null>(null);

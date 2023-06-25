@@ -3,10 +3,10 @@ import { QuantityItem } from "../recoilAtom/cart.ts";
 import { Link } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/Ai";
 
-export default function NavBar() {
+export default function MainNav() {
   const totalQuantityValue = useRecoilValue(QuantityItem);
   return (
-    <div>
+    <div className="w-screen">
       <div className="navbar bg-base-100 border-b">
         <div className="navbar-start">
           <Link to="/">

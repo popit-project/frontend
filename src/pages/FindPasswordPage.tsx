@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 import { useState } from "react";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 
-export default function FindPassword() {
+export default function FindPasswordPage() {
     // 정상동작. POST한 이메일주소로 새로운 비밀번호 날아감.
     
     const [emailInfo, setEmailInfo] = useState({ email: "" });

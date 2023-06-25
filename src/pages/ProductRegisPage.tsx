@@ -1,6 +1,6 @@
-import Nav from "../components/LoginNav";
+import MainNav from "../components/MainNav";
 import { useRef, useState, useEffect } from "react";
-import Product from "../components/Product";
+import ProductComp from "../components/ProductComp";
 import {
     atom,
     useRecoilCallback,
@@ -10,8 +10,9 @@ import {
 import { productListAtom } from "../recoilAtom/ProductListAtom";
 import { productDataAtom } from "../recoilAtom/ProductDataAtom";
 import Footer from "../components/Footer";
+import LoginNav from "../components/LoginNav";
 
-export default function ProductRegis() {
+export default function ProductRegisPage() {
 
     // 가게이름
     const [list, setList] = useRecoilState(productListAtom);
@@ -37,7 +38,7 @@ export default function ProductRegis() {
 
     return (
         <div>
-            <Nav />
+            <LoginNav />
             <div className="flex justify-center items-center mt-[3rem] w-screen">
                 <div className="text-2xl mr-[5rem]">상품 등록 및 리스트</div>
                 <button
@@ -50,11 +51,11 @@ export default function ProductRegis() {
             <div>
                 {list.map((data) => (
                     <div className="w-screen flex justify-center items-center mt-[3rem]">
-                        <Product
+                        <ProductComp
                             key={data.id}
                             id={data.id}
                             onDelete={deleteProduct}
-                        ></Product>
+                        ></ProductComp>
                     </div>
                 ))}
             </div>

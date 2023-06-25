@@ -15,7 +15,7 @@ interface ProductProps {
 
 //질문내용 : 중간 데이터 삭제시 뒤에 데이터들 적혀있던게 사라짐!
 
-export default function Product({ id, onDelete }: ProductProps) {
+export default function ProductComp({ id, onDelete }: ProductProps) {
     const selectFile = useRef<HTMLInputElement>(null);   
     const [list, setList] = useRecoilState(productListAtom);
     const [productDataList, setProductDataList] = useRecoilState(productDataAtom);

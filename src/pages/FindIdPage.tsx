@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 import { useState } from "react";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 
-export default function FindId() {
+export default function FindIdPage() {
     const [emailInfo, setEmailInfo] = useState({ email: "" });
 
     const changeInfo = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -4,7 +4,7 @@ import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 
 //현재 register login info find-id 전부다 동작
 
-export default function SignUp() {
+export default function SignUpPage() {
     // const navigate = useNavigate();
     const [userInfo, setUserInfo] = useState({
         email: "",
@@ -80,7 +80,7 @@ export default function SignUp() {
                             </span>
                         </label>
                         <input
-                            type="text"
+                            type="paswword"
                             placeholder="비밀번호 확인"
                             className="input input-bordered w-full max-w-xs"
                             name="passwordCheck"

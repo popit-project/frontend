@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 //userId를 localstorage에서 받아와서 userId랑 이미지url , 팝업스토어 이름, 주소, 운영시간 보내기. POST
 
 
-export default function SellerRegis() {
+export default function SellerRegisPage() {
     const selectFile = useRef<HTMLInputElement>(null);
     const [image, setImage] = useState<string | null>(null);
     const sellerId = localStorage.getItem("userId");

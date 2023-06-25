@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Footer from "./Footer";
-import NavBar from "./MainNav";
+import Footer from "../components/Footer";
+import NavBar from "../components/MainNav";
 
 const MyProfilePage = () => {
   const [isEditing, setIsEditing] = useState(false);

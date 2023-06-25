@@ -1,46 +1,84 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
+import PopupListPage from "./pages/PopupListPage";
+import PopupDetailPage from "./pages/PopupDetailPage";
+import LoginPage from "./pages/LoginPage";
+import CartPage from "./pages/CartPage";
+import MyProfilePage from "./pages/MyProfilePage";
 import MainPage from "./pages/MainPage";
-import SellerRegis from "./pages/SellerRegis";
-import ProductRegis from "./pages/ProductRegis";
+import SellerRegisPage from "./pages/SellerRegisPage";
+import ProductRegisPage from "./pages/ProductRegisPage";
 import { RecoilRoot } from "recoil";
 import MapPage from "./pages/MapPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import FindId from "./pages/FindId";
-import FindPassword from "./pages/FindPassword";
+import FindIdPage from "./pages/FindIdPage";
+import FindPasswordPage from "./pages/FindPasswordPage";
+import SignUpPage from "./pages/SignUpPage";
+import MainNav from "./components/MainNav";
+import LoginNav from "./components/LoginNav";
+import Footer from "./components/Footer";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  // useEffect(() => {
+  //   if (localStorage.getItem("userId")){
+  //     setIsLoggedIn(true);
+  //   }
+  // }, [])
+  
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
-    <RecoilRoot>
-      <BrowserRouter>
-        <Routes>
-          {isLoggedIn ? (
-            <>
-              <Route path="/" element={<MainPage />} />
-              <Route path="/map" element={<MapPage />} />
-              <Route path="/popuplist" element={<PopupListPage />} />
-              <Route path="/popuplist/:id" element={<PopupDetail />} />
-              <Route path="/seller" element={<PopupDetail />} />
-              <Route path="/profile" element={<MyProfilePage />} />
-              <Route path="/cart" element={<Cart />} />
-            </>
-          ) : (
-            <>
-              <Route path="/" element={<SellerRegis />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/findId" element={<FindId />} />
-              <Route path="/findId" element={<FindId />} />
-              <Route path="/findPassword" element={<FindPassword />} />
-            </>
-          )}
-        </Routes>
-      </BrowserRouter>      
-    </RecoilRoot>
+      <RecoilRoot>
+          <BrowserRouter>
+              {isLoggedIn ? (
+                  <>
+                      <MainNav />
+                      <Routes>
+                          <Route path="/" element={<MainPage />} />
+                          <Route path="/map" element={<MapPage />} />
+                          <Route
+                              path="/popuplist"
+                              element={<PopupListPage />}
+                          />
+                          <Route
+                              path="/popuplist/:id"
+                              element={<PopupDetailPage />}
+                          />
+                          <Route path="/seller" element={<PopupDetailPage />} />
+                          <Route path="/profile" element={<MyProfilePage />} />
+                          <Route path="/cart" element={<CartPage />} />
+                          <Route
+                              path="/sellerRegisPage"
+                              element={<SellerRegisPage />}
+                          />
+                          <Route
+                              path="/productRegis"
+                              element={<ProductRegisPage />}
+                          />
+                      </Routes>
+                      <Footer />
+                  </>
+              ) : (
+                  <>
+                      <LoginNav />
+                      <Routes>
+                          <Route path="/" element={<LoginPage />} />
+                          <Route path="/login" element={<LoginPage />} />
+                          <Route path="/findId" element={<FindIdPage />} />
+                          <Route
+                              path="/findPassword"
+                              element={<FindPasswordPage />}
+                          />
+                          <Route path="/signUp" element={<SignUpPage />} />
+                      </Routes>
+                      <Footer />
+                  </>
+              )}
+          </BrowserRouter>
+      </RecoilRoot>
   );
 }
+
 
 export default App;
 
