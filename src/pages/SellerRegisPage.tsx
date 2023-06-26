@@ -42,9 +42,8 @@ export default function SellerRegisPage() {
 
     return (
         <div>
-            <Nav />
             <div className="w-screen flex justify-center mt-[2rem]">
-                <div className="border-[1px] border-violet-500 rounded-lg h-[13rem] w-[20rem] flex justify-center items-center">
+                <div className="border-[1px] border-indigo-500 rounded-lg h-[13rem] w-[20rem] flex justify-center items-center">
                     {image ? (
                         <img
                             className="h-[12rem] w-[19rem]"
@@ -65,7 +64,7 @@ export default function SellerRegisPage() {
             ></input>
             <div className="w-screen flex justify-center">
                 <button
-                    className="btn bg-violet-400 hover:bg-violet-300 mt-[1rem]"
+                    className="btn bg-indigo-400 hover:bg-indigo-300 mt-[1rem]"
                     onClick={handleFileClick}
                 >
                     사진 등록
@@ -81,7 +80,7 @@ export default function SellerRegisPage() {
                             <input
                                 type="text"
                                 placeholder="팝업스토어 이름"
-                                className="input input-bordered input-accent w-screen max-w-xs mt-[1rem] mb-[1rem] border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                                className="input input-bordered input-accent w-screen max-w-xs mt-[1rem] mb-[1rem] border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500"
                             />
                         </div>
                     </div>
@@ -93,7 +92,7 @@ export default function SellerRegisPage() {
                             <input
                                 type="text"
                                 placeholder="주소"
-                                className="input input-bordered input-accent w-screen max-w-xs mt-[1rem] mb-[1rem] border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                                className="input input-bordered input-accent w-screen max-w-xs mt-[1rem] mb-[1rem] border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500"
                             />
                         </div>
                     </div>
@@ -105,23 +104,23 @@ export default function SellerRegisPage() {
                             <input
                                 type="text"
                                 placeholder="h"
-                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] mr-[1rem] border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] mr-[1rem] border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500"
                             />
                             <input
                                 type="text"
                                 placeholder="m"
-                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] mr-[1rem] border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] mr-[1rem] border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500"
                             />
                             <span className="text-xl mr-[1rem]">~</span>
                             <input
                                 type="text"
                                 placeholder="h"
-                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] mr-[1rem] border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] mr-[1rem] border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500"
                             />
                             <input
                                 type="text"
                                 placeholder="m"
-                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500"
                             />
                         </div>
                     </div>
@@ -133,23 +132,23 @@ export default function SellerRegisPage() {
                             <input
                                 type="text"
                                 placeholder="m"
-                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] mr-[1rem] border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] mr-[1rem] border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500"
                             />
                             <input
                                 type="text"
                                 placeholder="d"
-                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] mr-[1rem] border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] mr-[1rem] border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500"
                             />
                             <span className="text-xl mr-[1rem]">~</span>
                             <input
                                 type="text"
                                 placeholder="m"
-                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] mr-[1rem] border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] mr-[1rem] border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500"
                             />
                             <input
                                 type="text"
                                 placeholder="d"
-                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                                className="input input-bordered input-accent max-w-[3.5rem] mt-[1rem] mb-[1rem] border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500"
                             />
                         </div>
                     </div>
@@ -158,7 +157,7 @@ export default function SellerRegisPage() {
                             <label className="block text-2xl text-center mt-[2rem]">
                                 스토어 구분
                             </label>
-                            <select className="select select-primary w-screen max-w-xs mt-[2rem]">
+                            <select className="border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500 select select-primary w-screen max-w-xs mt-[2rem]">
                                 <option disabled selected></option>
                                 <option>팝업 스토어</option>
                                 <option>플리 마켓</option>
@@ -173,27 +172,26 @@ export default function SellerRegisPage() {
                             <input
                                 type="text"
                                 placeholder="사업자등록번호"
-                                className="input input-bordered input-accent w-screen max-w-xs mt-[1rem] mb-[1rem] border-violet-500 hover:border-violet-500 focus:outline-violet-500"
+                                className="input input-bordered input-accent w-screen max-w-xs mt-[1rem] mb-[1rem] border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500"
                             />
                         </div>
                     </div>
                     <div className="w-screen flex justify-center">
                         <button
                             type="button"
-                            className="btn bg-violet-400 hover:bg-violet-300 m-[2rem] "
+                            className="btn bg-indigo-400 hover:bg-indigo-300 m-[2rem] "
                         >
                             등록하기
                         </button>
                         <button
                             type="button"
-                            className="btn bg-violet-400 hover:bg-violet-300 m-[2rem] "
+                            className="btn bg-indigo-400 hover:bg-indigo-300 m-[2rem] "
                         >
                             수정하기
                         </button>
                     </div>
                 </form>
             </div>
-            <Footer />
         </div>
     );
 }

@@ -37,12 +37,11 @@ export default function ProductRegisPage() {
     },[list])
 
     return (
-        <div>
-            <LoginNav />
+        <div className="max-w-7xl my-0 mx-auto mb-[25rem]">
             <div className="flex justify-center items-center mt-[3rem] w-screen">
                 <div className="text-2xl mr-[5rem]">상품 등록 및 리스트</div>
                 <button
-                    className="btn bg-violet-400 hover:bg-violet-300"
+                    className="btn bg-indigo-400 hover:bg-indigo-300"
                     onClick={addProduct}
                 >
                     항목 추가
@@ -59,7 +58,6 @@ export default function ProductRegisPage() {
                     </div>
                 ))}
             </div>
-            <Footer />
         </div>
     );
 }

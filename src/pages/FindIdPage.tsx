@@ -29,8 +29,7 @@ export default function FindIdPage() {
     };
 
     return (
-        <>
-            <Nav />
+        <div className="max-w-7xl my-0 mx-auto mb-[10rem]">
             <div className="w-screen flex justify-center mx-auto mt-[3rem] mb-[3rem]">
                 <div>
                     <label className="label">
@@ -48,12 +47,13 @@ export default function FindIdPage() {
                 </div>
             </div>
             <div className="w-screen flex justify-center">
-                <button className="btn bg-violet-400 hover:bg-violet-300 mr-[1rem] mb-[20rem]"
-                onClick={sendRequest}>
+                <button
+                    className="btn bg-indigo-400 hover:bg-indigo-300 mr-[1rem] mb-[20rem] mt-[3rem]"
+                    onClick={sendRequest}
+                >
                     아이디 찾기
-                </button>                
+                </button>
             </div>
-            <Footer />
-        </>
+        </div>
     );
 }

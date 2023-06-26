@@ -12,7 +12,7 @@ export default function LoginNav() {
 
                 <div className="navbar bg-base-100 justify-center w-screen">
                     <div className="navbar-center text-center">
-                        <div className="normal-case text-xl">Pop-it!
+                        <div className="normal-case text-3xl">Pop-it!
                         </div>
                     </div>
                 </div>

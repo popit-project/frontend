@@ -41,8 +41,7 @@ export default function SignUpPage() {
     }
 
     return (
-        <>
-            <Nav />
+        <div className="max-w-7xl my-0 mx-auto mb-[10rem]">
             <div className="signUpForm">
                 <form className="w-screen">
                     <div className="form-control w-full max-w-xs mx-auto mt-[3rem]">
@@ -132,13 +131,13 @@ export default function SignUpPage() {
                 </form>
                 <div className="form-control w-screen">
                     <button
-                        className="btn bg-violet-400 hover:bg-violet-300 max-w-xs mb-[3rem] mt-[3rem] w-screen mx-auto"
+                        className="btn bg-indigo-400 hover:bg-indigo-300 max-w-xs mb-[3rem] mt-[8rem] w-screen mx-auto"
                         onClick={handleClick}
                     >
                         회원가입 완료
                     </button>
                 </div>
             </div>
-        </>
+        </div>
     );
 }

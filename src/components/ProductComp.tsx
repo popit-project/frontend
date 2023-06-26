@@ -69,9 +69,9 @@ export default function ProductComp({ id, onDelete }: ProductProps) {
     }, [productDataList]);
 
     return (
-        <div className="flex border-2 border-violet-500 p-2 rounded-md mb-[2rem]">
+        <div className="flex border-2 border-indigo-500 p-2 rounded-md mb-[2rem]">
             <div className="mr-[2rem]">
-                <div className="border-2 border-violet-500 rounded-lg h-[11rem] w-[11rem] flex justify-center items-center">
+                <div className="border-2 border-indigo-500 rounded-lg h-[11rem] w-[11rem] flex justify-center items-center">
                     {image ? (
                         <img
                             className="h-[10rem] w-[10rem]"
@@ -91,7 +91,7 @@ export default function ProductComp({ id, onDelete }: ProductProps) {
                 ></input>
                 <div className="flex justify-end">
                     <button
-                        className="btn bg-violet-400 hover:bg-violet-300 mt-[1rem]"
+                        className="btn bg-indigo-400 hover:bg-indigo-300 mt-[1rem]"
                         onClick={handleFileClick}
                     >
                         사진 등록
@@ -102,27 +102,27 @@ export default function ProductComp({ id, onDelete }: ProductProps) {
                 <input
                     type="text"
                     placeholder="상품 이름"
-                    className="input input-bordered input-accent w-full max-w-xs block mb-[1rem] border-2 border-violet-500 focus:outline-violet-500"
+                    className="input input-bordered input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
                     name="name"
                     onChange={handleInputChange}
                 />
                 <input
                     type="text"
                     placeholder="상품 가격"
-                    className="input input-bordered input-accent w-full max-w-xs block mb-[1rem] border-2 border-violet-500 focus:outline-violet-500"
+                    className="input input-bordered input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
                     name="price"
                     onChange={handleInputChange}
                 />
                 <input
                     type="text"
                     placeholder="재고 수량 입력"
-                    className="input input-bordered input-accent w-full max-w-xs block mb-[1rem] border-2 border-violet-500 focus:outline-violet-500"
+                    className="input input-bordered input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
                     name="quantity"
                     onChange={handleInputChange}
                 />
                 <div className="flex justify-end">
                     <button
-                        className="btn bg-violet-400 hover:bg-violet-300"
+                        className="btn bg-indigo-400 hover:bg-indigo-300"
                         onClick={deleteProduct}
                     >
                         항목 삭제
