@@ -51,7 +51,7 @@ export default function LoginPage() {
   };
 
     return (
-        <div className="max-w-7xl my-0 mx-auto mb-[10rem]">
+        <div className="my-0 mx-auto mb-[10rem]">
             <div className="loginForm w-screen">
                 <form onSubmit={loginRequest}>
                     <input
