@@ -43,7 +43,7 @@ const MapMarker = (props:MapMarkerProps) => {
 
     kakao.maps.event.addListener(marker, 'click', function() {
       map.setCenter(props.place.position)
-      map.setLevel(4, {
+      map.setLevel(6, {
         animate: true
       })
       infowindow.setMap(map)

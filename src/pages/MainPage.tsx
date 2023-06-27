@@ -19,7 +19,6 @@ const MainPage = () => {
     <>
       <div className="max-w-screen-lg my-0 mx-auto">
         <div className="my-0 mx-auto">
-          <Navbar />
           <div className="flex justify-center mt-5 mb-1">
             <div className="items-center justify-center flex m-2" onClick={handleSearch}>
               <FiSearch size="28" color="#a5b4fc" />
@@ -60,7 +59,6 @@ const MainPage = () => {
           </div>
           <RecomList />
         </div>
-        <Footer />
       </div>
     </>
   );

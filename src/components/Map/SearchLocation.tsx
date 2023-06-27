@@ -19,34 +19,6 @@ interface Popup {
   y: number;
 }
 
-// const sampleObjects = [{
-//   storeAddress: "서울 관악구 신림동 408-10",
-//   y: 37.4767123984012,
-//   storeName: "뉴플리",
-//   x: 126.935674694601,
-//   storePhone: null,
-//   openDate: null,
-//   openTime: null,
-//   closeTime: null,
-//   closeDate: null,
-//   storeType: "FLEA_MARKET",
-//   id: 3,
-// },
-// {
-//   storeAddress: "경기 광명시 디지털로 63",
-//   y: 37.4746749593818,
-//   storeName: "플리마켓",
-//   x: 126.871609303422,
-//   storePhone: null,
-//   openDate: null,
-//   openTime: null,
-//   closeTime: null,
-//   closeDate: null,
-//   storeType: "FLEA_MARKET",
-//   id: 4
-// }
-// ];
-
 const SearchLocation = (props:SearchLocationProps) => {
   const map = useMap()
   const [keyword, setKeyword] = useState('')
@@ -137,16 +109,17 @@ const SearchLocation = (props:SearchLocationProps) => {
 
   const handleItemClick = (place:PlaceType) => {
     map.setCenter(place.position)
-    map.setLevel(4)
+    map.setLevel(6)
     props.onSelect(place.id)
   }
 
   const handleFindMyLocation = () => {
     props.onFindMyLocation()
+    map?.setLevel(7)
   }
 
   return (
-    <div className="absolute z-10 bg-white opacity-80 overflow-y-auto h-[200px] md:h-[550px] top-[415px] md:top-[65px] w-full md:w-[310px]">
+    <div className="absolute z-10 bg-white opacity-80 overflow-y-auto h-[200px] md:h-[680px] top-[545px] md:top-[65px] w-full md:w-[310px]">
       <form className="flex sticky top-0" onSubmit={handleSubmit}>
       <div className="form-control w-screen md:w-full">
         <div className="input-group w-full">

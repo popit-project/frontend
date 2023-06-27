@@ -10,8 +10,7 @@ const MyProfilePage = () => {
   };
 
   return (
-    <div className="w-4/5 my-0 mx-auto">
-      <NavBar />
+    <div className="max-w-screen-lg my-0 mx-auto">
       <div className="w-4/5 my-0 mx-auto pt-12 pb-10">
         <div className="pt-5">
           <p className="font-bold text-2xl py-2">내정보</p>
@@ -30,7 +29,7 @@ const MyProfilePage = () => {
               />
             </div>
             <p 
-            className="btn absolute right-0 top-10 p-2 bg-indigo-500 border-indigo-500 text-white hover:bg-indigo-300 hover:border-indigo-300" 
+            className="btn absolute right-0 top-10 p-2 bg-indigo-400 border-indigo-400 text-white hover:bg-indigo-300 hover:border-indigo-300" 
             onClick={handleEditClick}
             >
             {isEditing ? "저장하기" : "수정하기"}
@@ -69,8 +68,10 @@ const MyProfilePage = () => {
           {/* <div className="btn mb-5">셀러 등록하기</div> */}
           <p className="btn btn-outline mb-5 border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400" >셀러 등록하기</p>
         </div>
+        <div className="flex justify-center mt-20">
+          <p className="btn btn-outline w-4/5 mb-5 border-indigo-400 text-white bg-indigo-400 hover:bg-indigo-500 hover:border-indigo-500" >로그아웃</p>
+        </div>
       </div>
-      <Footer />
     </div>
   );
 };

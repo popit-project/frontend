@@ -23,11 +23,8 @@ const MapMarkUpController = (props: MapMarkUpControllerProps) => {
     });
 
     map.setBounds(bounds);
+    map.setLevel(6)
   }, [props.places, map]);
-
-  // const handleFindMyLocation = () => {
-  //   props.onFindMyLocation();
-  // };
 
   return (
     <>
@@ -39,9 +36,6 @@ const MapMarkUpController = (props: MapMarkUpControllerProps) => {
           showInfo={props.selectedPlaceId === place.id}
         />
       ))}
-      {/* <button type="button" onClick={handleFindMyLocation}>
-        내 위치 찾기
-      </button> */}
     </>
   );
 };
