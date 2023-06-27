@@ -10,7 +10,7 @@ export default function LoginNav() {
                     <img className="w-16 h-16 mx-auto" src={logo}></img>
                 </div> */}
 
-                <div className="navbar bg-base-100 justify-center w-screen">
+                <div className="navbar bg-base-100 justify-center w-full">
                     <div className="navbar-center text-center">
                         <div className="normal-case text-3xl">Pop-it!
                         </div>

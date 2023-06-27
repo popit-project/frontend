@@ -21,7 +21,8 @@ import { LoginTokenAtom } from "./recoilAtom/LoginTokenAtom";
 
 function App() {
 
-    const isLoggedIn = useRecoilValue(LoginTokenAtom);   
+    const loginState = useRecoilValue(LoginTokenAtom);
+    const isLoggedIn = localStorage.getItem("loginState") === "true" ? true : false;
 
     return (
         <>
