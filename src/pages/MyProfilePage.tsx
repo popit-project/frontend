@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Footer from "../components/Footer";
 import NavBar from "../components/MainNav";
+import { Link } from "react-router-dom";
 
 const MyProfilePage = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -64,10 +65,12 @@ const MyProfilePage = () => {
           {/* <div className="btn mb-5">카트로 가기</div> */}
           <p className="btn btn-outline mb-5 border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400" >카트로 가기</p>
         </div>
+        <Link to="sellerRegisPage">
         <div>
           {/* <div className="btn mb-5">셀러 등록하기</div> */}
           <p className="btn btn-outline mb-5 border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400" >셀러 등록하기</p>
         </div>
+        </Link>
         <div className="flex justify-center mt-20">
           <p className="btn btn-outline w-4/5 mb-5 border-indigo-400 text-white bg-indigo-400 hover:bg-indigo-500 hover:border-indigo-500" >로그아웃</p>
         </div>
