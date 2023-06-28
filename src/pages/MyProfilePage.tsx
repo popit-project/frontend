@@ -2,13 +2,25 @@ import { useState } from "react";
 import Footer from "../components/Footer";
 import NavBar from "../components/MainNav";
 import { Link } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { LoginTokenAtom } from "../recoilAtom/LoginTokenAtom";
 
 const MyProfilePage = () => {
   const [isEditing, setIsEditing] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(LoginTokenAtom);
 
   const handleEditClick = () => {
     setIsEditing(!isEditing);
   };
+
+  const logOut = () => {
+    setIsLoggedIn(false);
+    localStorage.removeItem("loginState");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("expiresIn");
+    localStorage.removeItem("token");
+    window.location.href = "/"
+  }
 
   return (
     <div className="max-w-screen-lg my-0 mx-auto">
@@ -65,14 +77,14 @@ const MyProfilePage = () => {
           {/* <div className="btn mb-5">카트로 가기</div> */}
           <p className="btn btn-outline mb-5 border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400" >카트로 가기</p>
         </div>
-        <Link to="sellerRegisPage">
-        <div>
-          {/* <div className="btn mb-5">셀러 등록하기</div> */}
-          <p className="btn btn-outline mb-5 border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400" >셀러 등록하기</p>
-        </div>
+        <Link to="/sellerRegisPage">
+          <div>
+            {/* <div className="btn mb-5">셀러 등록하기</div> */}
+            <p className="btn btn-outline mb-5 border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400" >셀러 등록하기</p>
+          </div>
         </Link>
         <div className="flex justify-center mt-20">
-          <p className="btn btn-outline w-4/5 mb-5 border-indigo-400 text-white bg-indigo-400 hover:bg-indigo-500 hover:border-indigo-500" >로그아웃</p>
+          <p className="btn btn-outline w-4/5 mb-5 border-indigo-400 text-white bg-indigo-400 hover:bg-indigo-500 hover:border-indigo-500"  onClick={logOut}>로그아웃</p>
         </div>
       </div>
     </div>
