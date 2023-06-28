@@ -7,21 +7,46 @@ import {
 } from "recoil";
 import { productListAtom } from "../recoilAtom/ProductListAtom";
 import { productDataAtom } from "../recoilAtom/ProductDataAtom";
+import { axiosInstance } from "./AxiosInstance/AxiosConfig";
 
-interface ProductProps {
-    id: number;
-    onDelete: (id: number) => void;
-}
+
 
 //질문내용 : 중간 데이터 삭제시 뒤에 데이터들 적혀있던게 사라짐!
 
-export default function ProductComp({ id, onDelete }: ProductProps) {
-    const selectFile = useRef<HTMLInputElement>(null);   
-    const [list, setList] = useRecoilState(productListAtom);
-    const [productDataList, setProductDataList] = useRecoilState(productDataAtom);
-    const [image, setImage] = useState<string | null>(null);
 
 
+export default function ProductComp() {
+    const selectFile = useRef<HTMLInputElement>(null);
+    const [image, setImage] = useState<string | null>(null);   
+    const [ps, setPs] = useState({itemNm:"" , price: "", stockNumber:""});
+     const formDataRef = useRef<FormData>(new FormData());
+    
+    useEffect(() => {        
+        console.log(ps);
+    }, [ps]);
+  
+
+    const onRegis = () => {
+        const formData = formDataRef.current
+        formData.append("itemNm", ps.itemNm);
+        formData.append("price", ps.price);
+        formData.append("stockNumber", ps.stockNumber);
+        
+        for (const key of formData.keys()) {
+            console.log(key);
+        }
+
+        /* value 확인하기 */
+        for (const value of formData.values()) {
+            console.log(value);
+        }
+
+
+        axiosInstance.post("http://3.34.149.107:8082/api/seller/profile/item/add", { formData }, {
+            headers: {
+            Authorization : localStorage.getItem("token")
+        }});
+    }
     const handleFileClick = () => {
         if (selectFile.current !== null && selectFile.current !== undefined) {
             selectFile.current.click();
@@ -29,7 +54,9 @@ export default function ProductComp({ id, onDelete }: ProductProps) {
     };
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
+        const file = event.target.files?.[0];        
+        
+        console.log(file);
         if (file) {
             const reader = new FileReader();
             reader.onload = () => {
@@ -37,36 +64,22 @@ export default function ProductComp({ id, onDelete }: ProductProps) {
                 setImage(uploadedImage);
             };
             reader.readAsDataURL(file);
+            formDataRef.current.append("file", file);
+            
         }
+        console.log(formDataRef.current.get("file"));
     };
     
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const name = event.target.name;
         const value = event.target.value;
-        setProductDataList((prevList) => {
-            if (prevList.length === 0) {
-                return [{ name, price: "", quantity: "", [name]: value }];
-            } else {
-                const updatedList = [...prevList];
-                const index = id - 1;
-                updatedList[index] = { ...updatedList[index], [name]: value };
-                return updatedList;
-            }
-        });
-    };
 
-    const deleteProduct = () => {
-        setProductDataList((prevList) => {
-            const updatedList = prevList.filter((data, index) => index !== id - 1);            
-            return updatedList;
+        setPs((prev) => {
+            return { ...prev, [name] : value};
         })
-        onDelete(id);
-       
+        
     };
-
-    useEffect(() => {
-        console.log(productDataList);
-    }, [productDataList]);
+  
 
     return (
         <div className="flex border-2 border-indigo-500 p-2 rounded-md mb-[2rem]">
@@ -102,32 +115,32 @@ export default function ProductComp({ id, onDelete }: ProductProps) {
                 <input
                     type="text"
                     placeholder="상품 이름"
-                    className="input input-bordered input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
-                    name="name"
+                    className="input input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
+                    name="itemNm"
                     onChange={handleInputChange}
                 />
                 <input
                     type="text"
                     placeholder="상품 가격"
-                    className="input input-bordered input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
+                    className="input input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
                     name="price"
                     onChange={handleInputChange}
                 />
                 <input
                     type="text"
                     placeholder="재고 수량 입력"
-                    className="input input-bordered input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
-                    name="quantity"
+                    className="input input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
+                    name="stockNumber"
                     onChange={handleInputChange}
                 />
                 <div className="flex justify-end">
                     <button
                         className="btn bg-indigo-400 hover:bg-indigo-300"
-                        onClick={deleteProduct}
+                        onClick={onRegis}
                     >
-                        항목 삭제
+                        상품 등록
                     </button>
-                </div>
+                </div>                
             </div>
         </div>
     );
