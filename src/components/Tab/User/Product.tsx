@@ -3,12 +3,14 @@ import { useRecoilState } from "recoil";
 import { CartItem, cartListAtom } from "../../../recoilAtom/cart";
 import { useEffect, useState } from "react";
 import { axiosInstance } from "../../AxiosInstance/AxiosConfig";
+import axios from "axios";
 
 interface products {
   itemNm: string;
   price: number;
   id: number;
   itemImgURL: string;
+  itemSellStatus: string;
 }
 
 export default function Product() {
@@ -16,8 +18,8 @@ export default function Product() {
   const [products, setProducts] = useState<products[]>([]);
 
   useEffect(() => {
-    axiosInstance
-      .get("/productList")
+    axios
+      .get("http://3.34.149.107:8082/api/seller/item/test1")
       .then((response) => {
         const data = response.data;
         setProducts(data);
@@ -56,34 +58,43 @@ export default function Product() {
   };
 
   return (
-    <div className="m-10 bg-indigo-50 rounded-lg text-left p-5">
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
-        {products.map((product, index) => (
-          <div
-            key={index}
-            className="border border-indigo-200 rounded-xl bg-white"
-          >
-            <div className="m-4 divide-y divide-indigo-100">
-              <img
-                src={product.itemImgURL}
-                alt=""
-                className="h-40 mx-auto mb-4"
-              />
-              <div className="flex justify-between items-center">
-                <div className="w-3/4 mt-2">
-                  <p className="line-clamp-1 font-semibold">{product.itemNm}</p>
-                  <p className="text-slate-500">{product.price}원</p>
+    <div className="max-w-7xl mx-auto">
+      <div className="my-10 bg-indigo-50 rounded-lg text-left p-5">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
+          {products.map((product, index) => (
+            <div
+              key={index}
+              className="border border-indigo-200 rounded-xl bg-white relative"
+            >
+              <div className="m-4 divide-y divide-indigo-100">
+                <img
+                  src={product.itemImgURL}
+                  alt=""
+                  className="h-40 mx-auto mb-4"
+                />
+                <div className="flex justify-between items-center">
+                  <div className="w-3/4 mt-2">
+                    <p className="line-clamp-1 font-semibold">
+                      {product.itemNm}
+                    </p>
+                    <p className="text-slate-500">{product.price}원</p>
+                  </div>
+                  <button
+                    className="btn btn-ghost btn-circle cursor-pointer focus:outline-none hover:bg-indigo-100"
+                    onClick={() => addToCart(product.id)}
+                  >
+                    <CartIcon width={30} height={30} fill="black" />
+                  </button>
                 </div>
-                <button
-                  className="btn btn-ghost btn-circle cursor-pointer focus:outline-none hover:bg-indigo-100"
-                  onClick={() => addToCart(product.id)}
-                >
-                  <CartIcon width={30} height={30} fill="black" />
-                </button>
               </div>
+              {product.itemSellStatus == "SOLD_OUT" && (
+                <div className="absolute font-semibold text-lg top-0 left-0 w-full h-full opacity-95 bg-gray-400 border-gray-400 text-white rounded-md flex items-center justify-center cursor-not-allowed">
+                  SOLD OUT
+                </div>
+              )}
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

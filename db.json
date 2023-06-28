@@ -136,7 +136,7 @@
       "closeDate": "06.30",
       "storeType": "FLEA_MARKET",
       "id": 6,
-      "isLike": false,
+      "isLike": true,
       "likes": 3,
       "comments": 3
     },
@@ -228,7 +228,7 @@
       "price": 17900,
       "itemDetail": "item1",
       "stockNumber": 1111,
-      "itemSellStatus": "Y",
+      "itemSellStatus": "SOLD_OUT",
       "itemImgURL": ""
     },
     {
@@ -246,7 +246,7 @@
       "price": 7800,
       "itemDetail": "item3",
       "stockNumber": 10,
-      "itemSellStatus": "Y",
+      "itemSellStatus": "SOLD_OUT",
       "itemImgURL": ""
     },
     {
@@ -255,7 +255,7 @@
       "price": 15000,
       "itemDetail": "item4",
       "stockNumber": 1,
-      "itemSellStatus": "Y",
+      "itemSellStatus": "SOLD_OUT",
       "itemImgURL": ""
     },
     {
@@ -282,7 +282,7 @@
       "price": 8500,
       "itemDetail": "ite78",
       "stockNumber": 9,
-      "itemSellStatus": "Y",
+      "itemSellStatus": "SOLD_OUT",
       "itemImgURL": ""
     },
     {
@@ -351,31 +351,35 @@
       "date": "2023. 6. 25. 오후 4:16:19",
       "comment": "ㅁㄴㅇㅁㄴ",
       "id": 8
+    },
+    {
+      "email": "새로운 사용자",
+      "location": "위치",
+      "date": "2023. 6. 26. 오전 11:55:16",
+      "comment": "ㅁㅇㅁㄴㅇ",
+      "id": 9
     }
   ],
   "news": [
     {
-      "id": 1,
-      "name": "부엉이돈까스학동역점",
-      "location": "위치(논현동)",
-      "date": "1년전",
-      "description": "학동역 돈까스 맛집, 부엉이돈까스(배달/포장됩니다.) 대한민국 1등 치즈돈까스 맛집, 부엉이돈까스 학동역점입니다. 우동/냉소바/돈까스.카레 메뉴 하나하나 손수 만들어 정성으로 판매합니다. 💗",
+      "storeName": "플리마켓",
+      "storeCity": "연희동",
+      "time": "2023-05-08 17:00",
+      "title": "새로운 소식1",
       "image": ""
     },
     {
-      "id": 2,
-      "name": "부엉이돈까스학동역점",
-      "location": "위치(논현동)",
-      "date": "1년전",
-      "description": "학동역 돈까스 맛집, 부엉이돈까스(배달/포장됩니다.) 대한민국 1등 치즈돈까스 맛집, 부엉이돈까스 학동역점입니다. 우동/냉소바/돈까스.카레 메뉴 하나하나 손수 만들어 정성으로 판매합니다. 💗",
+      "storeName": "플리마켓2",
+      "storeCity": "연희동",
+      "time": "2023-05-08 18:00",
+      "title": "새로운 소식2",
       "image": ""
     },
     {
-      "id": 3,
-      "name": "부엉이돈까스학동역점",
-      "location": "위치(논현동)",
-      "date": "1년전",
-      "description": "학동역 돈까스 맛집, 부엉이돈까스(배달/포장됩니다.) 대한민국 1등 치즈돈까스 맛집, 부엉이돈까스 학동역점입니다. 우동/냉소바/돈까스.카레 메뉴 하나하나 손수 만들어 정성으로 판매합니다. 💗",
+      "storeName": "플리마켓3",
+      "storeCity": "연희동",
+      "time": "2023-05-08 10:00",
+      "title": "새로운 소식3",
       "image": ""
     }
   ],
@@ -405,6 +409,60 @@
       "closeDate": null,
       "storeType": "FLEA_MARKET",
       "id": 4
+    }
+  ],
+  "payment": [
+    [
+      {
+        "itemName": "testimg",
+        "stockNumber": 3
+      }
+    ]
+  ],
+  "comment": [
+    {
+      "storeId": 1,
+      "comment": 5
+    },
+    {
+      "storeId": 2,
+      "comment": 4
+    },
+    {
+      "storeId": 3,
+      "comment": 5
+    },
+    {
+      "storeId": 4,
+      "comment": 5
+    },
+    {
+      "storeId": 5,
+      "comment": 7
+    },
+    {
+      "storeId": 6,
+      "comment": 5
+    },
+    {
+      "storeId": 7,
+      "comment": 1
+    },
+    {
+      "storeId": 8,
+      "comment": 5
+    },
+    {
+      "storeId": 9,
+      "comment": 9
+    },
+    {
+      "storeId": 10,
+      "comment": 5
+    },
+    {
+      "storeId": 11,
+      "comment": 10
     }
   ]
 }

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Home from "./Tab/Home";
-import News from "./Tab/News";
-import Product from "./Tab/Product";
-import Review from "./Tab/Review";
+// import Home from "./Tab/Home";
+// import News from "./Tab/News";
+// import Product from "./Tab/Product";
+// import Review from "./Tab/Review";
 
 export default function Detail_management() {
   const [activeTab, setActiveTab] = useState<string>("tab1");
@@ -67,10 +67,10 @@ export default function Detail_management() {
           </ul>
         </div>
         <div>
-          {activeTab === "tab1" && <Home />}
+          {/* {activeTab === "tab1" && <Home />}
           {activeTab === "tab2" && <News />}
           {activeTab === "tab3" && <Product />}
-          {activeTab === "tab4" && <Review />}
+          {activeTab === "tab4" && <Review />} */}
         </div>
       </div>
     </div>
