@@ -1,6 +1,5 @@
 import { CommentIcon, FillLikeIcon, LikeIcon } from "../assets/icons/Icons";
 import { useEffect, useState } from "react";
-import Navbar from "../components/MainNav";
 import { Link } from "react-router-dom";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 
@@ -15,8 +14,7 @@ interface Popup {
   closeTime: string;
   closeDate: string;
   storeType: string;
-  id: 1;
-  // 이 아래는 각각 api 알아봐야함. 즉, 없어지거나 수정예정
+  id: number;
   likes: number;
   isLike: boolean;
   comments: number;
@@ -27,7 +25,7 @@ export default function PopupListPage() {
 
   useEffect(() => {
     axiosInstance
-      .get("/popupList")
+      .get("http://3.34.149.107:8082/api/store/searchAll")
       .then((response) => {
         const data = response.data;
         setPopupList(data);
@@ -38,27 +36,25 @@ export default function PopupListPage() {
   }, []);
 
   const handleLiked = (id: number) => {
-    axiosInstance
-      .patch(`/popupList/${id}`, { isLike: true })
-      .then(() => {
-        setPopupList((prevPopupList) => {
-          return prevPopupList.map((popup) => {
-            if (popup.id === id) {
-              const updatedLikes = popup.isLike
-                ? popup.likes - 1
-                : popup.likes + 1;
-              return { ...popup, isLike: !popup.isLike, likes: updatedLikes };
-            }
-            return popup;
-          });
-        });
-      })
-      .catch((error) => console.error(error));
+    const popup = popupList.find((popup) => popup.id === id);
+    if (popup) {
+      const isLike = !popup.isLike;
+      const updatedLikes = isLike ? popup.likes + 1 : popup.likes - 1;
+      axiosInstance
+        .patch(`/popupList/${id}`, { isLike })
+        .then(() => {
+          setPopupList((prevPopupList) =>
+            prevPopupList.map((item) =>
+              item.id === id ? { ...item, isLike, likes: updatedLikes } : item
+            )
+          );
+        })
+        .catch((error) => console.error(error));
+    }
   };
 
   return (
     <>
-      <Navbar />
       <div className="grid grid-cols-1 gap-2 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
         {popupList.map((popup) => (
           <div key={popup.id}>

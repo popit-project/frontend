@@ -4,9 +4,7 @@ import News from "../components/Tab/User/News";
 import Product from "../components/Tab/User/Product";
 import Review from "../components/Tab/User/Review";
 import { useParams } from "react-router-dom";
-import NavBar from "../components/MainNav";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
-import MainNav from "../components/MainNav";
 
 interface Popup {
   storeAddress: string;
@@ -38,7 +36,9 @@ export default function PopupDetailPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosInstance.get("/popupList");
+        const response = await axiosInstance.get(
+          "http://3.34.149.107:8082/api/store/searchAll"
+        );
         const popupList: Popup[] = response.data;
         const selectPopup = popupList.find(
           (popup: Popup) => popup.id === Number(id)
@@ -55,17 +55,18 @@ export default function PopupDetailPage() {
   }, [id]);
 
   return (
-    <div>
-      <MainNav />
+    <div className="mb-[10rem]">
       <div>
         <figure className="h-60 bg-gray-400">
           <img src="" alt="" />
           <span>팝업이미지</span>
         </figure>
-        <div className="flex items-center h-24 m-6">
-          <div className="ml-8 text-left">
-            <p className="font-bold text-xl mb-2">{popup?.storeName}</p>
-            <span>{popup?.storeAddress}</span>
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center h-24 my-6">
+            <div className="text-left">
+              <p className="font-bold text-xl mb-2">{popup?.storeName}</p>
+              <span>{popup?.storeAddress}</span>
+            </div>
           </div>
         </div>
       </div>

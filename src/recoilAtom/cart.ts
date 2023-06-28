@@ -1,4 +1,7 @@
 import { atom, selector } from "recoil";
+import { recoilPersist } from "recoil-persist";
+
+const { persistAtom } = recoilPersist();
 
 export interface CartItem {
   id: number;
@@ -11,6 +14,7 @@ export interface CartItem {
 export const cartListAtom = atom<CartItem[]>({
   key: "cartListAtom",
   default: [],
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const QuantityItem = selector({

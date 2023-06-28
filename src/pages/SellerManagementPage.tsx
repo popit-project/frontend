@@ -25,7 +25,7 @@ interface Popup {
   comments: number;
 }
 
-export default function Detail_management() {
+export default function SellerManagementPage() {
   const { id } = useParams<{ id: string }>();
   const [activeTab, setActiveTab] = useState<string>("tab1");
   const [popup, setPopup] = useState<Popup | null>(null);
@@ -55,7 +55,6 @@ export default function Detail_management() {
 
   return (
     <div>
-      <MainNav />
       <div>
         <figure className="h-60 bg-gray-400">
           <img src="" alt="" />
