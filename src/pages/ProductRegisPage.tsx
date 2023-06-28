@@ -19,6 +19,8 @@ export default function ProductRegisPage() {
     const [productDataList, setProductDataList] =
         useRecoilState(productDataAtom);        
     
+    
+    
     const addProduct = () => {
         setList([...list, { id: list.length + 1 }]);
         console.log(list);

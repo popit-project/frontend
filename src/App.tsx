@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import PopupListPage from "./pages/PopupListPage";
 import PopupDetailPage from "./pages/PopupDetailPage";
-import LoginPage from "./pages/LoginPage";
+import { MemoizedLoginPage } from "./pages/LoginPage";
 import CartPage from "./pages/CartPage";
 import MyProfilePage from "./pages/MyProfilePage";
 import MainPage from "./pages/MainPage";
@@ -60,8 +60,8 @@ function App() {
                     <>                  
                         <LoginNav />
                             <Routes>                        
-                            <Route path="/" element={<LoginPage />} />
-                            <Route path="/login" element={<LoginPage />} />
+                            <Route path="/" element={<MemoizedLoginPage />} />
+                            <Route path="/login" element={<MemoizedLoginPage />} />
                             <Route path="/findId" element={<FindIdPage />} />
                             <Route
                                 path="/findPassword"

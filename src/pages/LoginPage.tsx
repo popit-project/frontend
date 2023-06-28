@@ -1,9 +1,10 @@
+import React from "react";
 import google from "../icon/google.256x256.png";
 import naver from "../icon/naver-line.256x233.png";
 import kakao from "../icon/kakaotalk.256x236.png";
 import { Link } from "react-router-dom";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useRecoilState } from "recoil";
 import { LoginTokenAtom } from "../recoilAtom/LoginTokenAtom";
 import Loading from "../components/Loading";
@@ -31,6 +32,8 @@ export default function LoginPage() {
         localStorage.setItem("expiresIn", response.data.expiresIn);
         localStorage.setItem("token", response.data.token);        
 
+        window.location.href = "/";
+
         const expiration = localStorage.getItem("expiresIn");
            
         //자동 로그아웃 구현 expiresIn 파싱해서 하는 방법 다시 생각해보기.
@@ -38,7 +41,8 @@ export default function LoginPage() {
 
         setLoading(false);
 
-        const thirtyMinutes = 30*60*1000;
+        const thirtyMinutes = 30 * 60 * 1000;
+        
         setTimeout(() => {            
             setIsLoggedIn(false);
             localStorage.removeItem("loginState")
@@ -52,12 +56,12 @@ export default function LoginPage() {
     }
   };
 
-  const changeData = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-      setLoginData((prevData) => ({ ...prevData, [name]: value }));
-      console.log(loginData);
+    const changeData = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setLoginData((prevData) => ({ ...prevData, [name]: value }));
+        console.log(loginData);
       
-  };
+    },[loginData]);
 
 return (
     <>
@@ -129,3 +133,4 @@ return (
 
 }
 
+export const MemoizedLoginPage = React.memo(LoginPage);
