@@ -3,6 +3,8 @@ import axios from "axios";
 import { CommentIcon, FillLikeIcon, LikeIcon } from "../assets/icons/Icons";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 import { AiOutlineRight } from 'react-icons/Ai';
+import { useRecoilValue } from 'recoil';
+import { latState, lngState } from '../recoilAtom/mapAtom';
 
 interface Popup {
   storeAddress: string;
@@ -23,10 +25,12 @@ interface Popup {
 
 const RecomList = () => {
   const [popupList, setPopupList] = useState<Popup[]>([]);
+  const lat = useRecoilValue(latState);
+  const lng = useRecoilValue(lngState);
 
   const fetchPopups = async () => {
     try {
-      const { data } = await axios.get("http://localhost:3000/mylocation");
+      const { data } = await axios.get(`http://3.34.149.107:8082/api/store/searchAll/5km?userLat=${lat}&userLon=${lng}`);
       setPopupList(data);
     } catch (error) {
       console.error("Error fetching popups:", error);
@@ -34,20 +38,10 @@ const RecomList = () => {
   };
 
   useEffect(() => {
-    fetchPopups();
-  }, []);
-
-  useEffect(() => {
-    axiosInstance
-      .get("/mylocation")
-      .then((response) => {
-        const data = response.data;
-        setPopupList(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+    if (lat !== null && lng !== null) {
+      fetchPopups();
+    }
+  }, [lat, lng]);
 
   const handleLiked = (id: number) => {
     axiosInstance
@@ -63,7 +57,7 @@ const RecomList = () => {
           });
         });
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.error('주변 스토어 찾기 전'));
   };
 
   if (popupList.length === 0) {

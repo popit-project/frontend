@@ -7,10 +7,25 @@ import SearchLocation from "../components/Map/SearchLocation"
 import { PlaceType } from "../components/Map/mapTypes"
 import MapMarkUpController from "../components/Map/MapMarkUpController"
 import axios from "axios"
+import { useRecoilState } from 'recoil';
+import { latState, lngState } from '../recoilAtom/mapAtom';
+
+interface Store {
+  id: number;
+  x: number;
+  y: number;
+  storeName: string;
+  storeAddress: string;
+}
+
 
 function MapPage() {
   const [places, setPlaces] = useState<PlaceType[]>([])
   const [selectedPlaceId, setSelectedPlaceId] = useState('')
+  // const [lat, setLat] = useState<number | null>(null);
+  // const [lng, setLng] = useState<number | null>(null);
+  const [recoilLat, setRecoilLat] = useRecoilState(latState);
+  const [recoilLng, setRecoilLng] = useRecoilState(lngState);
 
   const findMyLocation = async () => {
     if (navigator.geolocation) {
@@ -19,13 +34,15 @@ function MapPage() {
           const lat = position.coords.latitude;
           const lng = position.coords.longitude;
           console.log('내 위치:', lat, lng);
+          setRecoilLat(lat);
+          setRecoilLng(lng);
           
           try {
-            const response = await axios.get("http://localhost:3000/mylocation");
+            const response = await axios.get(`http://3.34.149.107:8082/api/store/searchAll/5km?userLat=${lat}&userLon=${lng}`);
             const storesWithin5km = response.data;
   
             if (storesWithin5km.length > 0) {
-              const updatedPlaces = storesWithin5km.map((store) => ({
+              const updatedPlaces = storesWithin5km.map((store:Store) => ({
                 id: store.id,
                 position: new kakao.maps.LatLng(store.y, store.x),
                 title: store.storeName,
