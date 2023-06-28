@@ -4,6 +4,8 @@ import Footer from "../components/Footer";
 
 //userId를 localstorage에서 받아와서 userId랑 이미지url , 팝업스토어 이름, 주소, 운영시간 보내기. POST
 
+//수정하기는 PUT보내서 수정하는 방식으로 하면됌.
+
 
 export default function SellerRegisPage() {
     const selectFile = useRef<HTMLInputElement>(null);
