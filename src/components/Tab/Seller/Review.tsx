@@ -9,6 +9,7 @@ interface review {
   comment: string;
 }
 
+//api변수 storeid
 export default function Review() {
   const [reviewList, setReviewList] = useState<review[]>([]);
 
@@ -26,9 +27,9 @@ export default function Review() {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="my-10 bg-indigo-50 rounded-lg text-left p-5">
+      <div className="my-10 bg-indigo-50 rounded-lg text-left p-5 m-5">
         {reviewList.length === 0 ? (
-          <div className="text-center text-xl font-semibold leading-8 mb-10">
+          <div className="text-center text-xl font-semibold leading-8">
             <p>아직 가게 후기가 없어요! 🥲</p>
           </div>
         ) : (

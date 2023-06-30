@@ -1,7 +1,7 @@
-import React, { useState, useEffect, ChangeEvent } from 'react';
-import { FiSearch } from 'react-icons/fi';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { axiosInstance } from './AxiosInstance/AxiosConfig';
+import React, { useState, useEffect, ChangeEvent } from "react";
+import { FiSearch } from "react-icons/fi";
+import { useLocation, useNavigate } from "react-router-dom";
+import { axiosInstance } from "./AxiosInstance/AxiosConfig";
 
 interface PopupItem {
   id: number;
@@ -13,7 +13,7 @@ const SearchBar = () => {
   const { document } = window;
   const location = useLocation();
   const navigate = useNavigate();
-  const searchKeyword = new URLSearchParams(location.search).get('q');
+  const searchKeyword = new URLSearchParams(location.search).get("q");
   const [searchResults, setSearchResults] = useState<PopupItem[]>([]);
   const [popupList, setPopupList] = useState<PopupItem[]>([]);
 
@@ -31,21 +31,23 @@ const SearchBar = () => {
 
   useEffect(() => {
     const results = popupList.filter((popup) =>
-      popup.storeName.includes(searchKeyword ?? '')
+      popup.storeName.includes(searchKeyword ?? "")
     );
     setSearchResults(results);
   }, [searchKeyword, popupList]);
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const searchInput = document.querySelector<HTMLInputElement>('input[name="searchInput"]');
+    const searchInput = document.querySelector<HTMLInputElement>(
+      'input[name="searchInput"]'
+    );
     const searchKeyword = searchInput?.value;
     navigate(`/popuplist?q=${searchKeyword}`);
   };
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newSearchKeyword = event.target.value;
-    if (newSearchKeyword === '') {
+    if (newSearchKeyword === "") {
       setSearchResults([]);
     } else {
       const results = popupList.filter((popup) =>
@@ -65,7 +67,7 @@ const SearchBar = () => {
           type="text"
           name="searchInput"
           placeholder="스토어나 동네를 검색하세요"
-          defaultValue={searchKeyword !== null ? searchKeyword : ''}
+          defaultValue={searchKeyword !== null ? searchKeyword : ""}
           className="px-4 py-2 w-64 md:w-80 lg:w-96 rounded-full border border-gray-300 focus:rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-300"
           onChange={handleInputChange}
         />

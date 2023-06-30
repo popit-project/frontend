@@ -1,30 +1,28 @@
 import { useEffect, useState } from "react";
 import { axiosInstance } from "../../AxiosInstance/AxiosConfig";
-import { AddPhotoIcon } from "../../../assets/icons/Icons";
 import axios from "axios";
 
 interface NewsItem {
-  // id: number;
-  // name: string;
-  // location: string;
-  // date: string;
-  // description: string;
-  // image: string;
   storeName: string;
   storeCity: string;
   time: string;
   title: string;
   image: string;
+  id: number;
 }
 
+//여기는 api변수 storeName
 export default function News() {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [showImageSection, setShowImageSection] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [selectedImage, setSelectedImage] = useState<string>("");
-  const [nextId, setNextId] = useState(3);
 
   useEffect(() => {
+    fetchNewsList();
+  });
+
+  const fetchNewsList = () => {
     axiosInstance
       .get("/news")
       .then((response) => {
@@ -34,7 +32,7 @@ export default function News() {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  };
 
   const handleAddPhoto = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -49,21 +47,23 @@ export default function News() {
   };
 
   const handleSubmit = () => {
-    const newNewsItem: NewsItem = {
-      storeName: "사장님",
-      storeCity: "논현동",
-      time: "1분전",
-      title: inputValue,
-      image: selectedImage,
-    };
+    const NewFormData = new FormData();
+    NewFormData.append("content", inputValue);
+    NewFormData.append("image", selectedImage);
 
-    axiosInstance
-      .post("/news", newNewsItem)
+    for (const key of NewFormData.keys()) {
+      console.log(key);
+    }
+
+    for (const value of NewFormData.values()) {
+      console.log(value);
+    }
+
+    axios
+      .post("http://3.34.149.107:8082/api/seller/news", NewFormData)
       .then(() => {
-        setNews([...news, newNewsItem]);
         setInputValue("");
         setSelectedImage("");
-        setNextId(nextId + 1);
       })
       .catch((error) => {
         console.error(error);
@@ -72,20 +72,20 @@ export default function News() {
     setShowImageSection(false);
   };
 
-  // const handleDeleteNews = (id: number) => {
-  //   axiosInstance
-  //     .delete(`/news/${id}`)
-  //     .then(() => {
-  //       setNews((prevNews) => prevNews.filter((item) => item.id !== id));
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // };
+  const handleDeleteNews = (id: number) => {
+    axiosInstance
+      .delete(`/news/${id}`)
+      .then(() => {
+        fetchNewsList();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="my-10 bg-indigo-50 rounded-lg text-left p-5">
+      <div className="my-10 bg-indigo-50 rounded-lg text-left p-5 m-5">
         <div className="mb-16">
           <form className="flex flex-col items-center sm:flex-row">
             <input
@@ -133,7 +133,7 @@ export default function News() {
           )}
         </div>
         {news.length === 0 ? (
-          <div className="text-center text-xl font-semibold">
+          <div className="text-center text-xl font-semibold mb-10">
             아직 소식이 없어요! 🥲
           </div>
         ) : (
@@ -160,10 +160,10 @@ export default function News() {
                 <button
                   type="submit"
                   className="flex ml-auto btn btn-outline w-full mt-5 focus:outline-none sm:w-auto border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400"
-                  // onClick={(e) => {
-                  //   e.preventDefault();
-                  //   handleDeleteNews(item.id);
-                  // }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleDeleteNews(item.id);
+                  }}
                 >
                   소식삭제
                 </button>

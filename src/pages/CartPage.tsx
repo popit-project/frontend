@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import PaymentModal from "../components/Cart/PaymentModal";
 import CartList from "../components/Cart/CartList";
-import axios from "axios";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 
 export default function CartPage() {
@@ -21,23 +20,33 @@ export default function CartPage() {
   //리스폰스 엔디티값이 오기전 테스트
   const handleConfirmPayment = () => {
     const purchasedItems = cartListState.map((item) => ({
-      itemName: item.itemNm,
-      stockNumber: item.quantity,
+      itemNm: item.itemNm,
+      quantity: item.quantity,
+      price: item.price,
     }));
 
+    const requestData = {
+      orderItems: purchasedItems,
+    };
+
     axiosInstance
-      .post("/payment", purchasedItems)
+      .post("http://3.34.149.107:8082/orders/order", requestData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then(() => {
         console.log("Payment confirmed");
         setShowModal(false);
-        setShowErrorAlert(true);
-        // setCartListState([]);
+        // setShowErrorAlert(true);
+        setCartListState([]);
       })
       .catch((error) => {
         console.error("payment error:", error);
       });
   };
- //정확한 리스폰스 엔디티값이 오면 이걸로 진행
+
+  //정확한 리스폰스 엔디티값이 오면 이걸로 진행
   // const handleConfirmPayment = () => {
   //   const purchasedItems = cartListState.map((item) => ({
   //     itemName: item.itemNm,
@@ -53,7 +62,8 @@ export default function CartPage() {
   //         setShowErrorAlert(true);
   //         setCartListState([]);
   //         // setShowErrorAlert(true);
-  //       } else if (response.status === 500) {
+  //       } else if (response.status === 400) {
+  //          setShowErrorAlert(true);
   //         console.log("요청이 실패했습니다");
   //       } else {
   //         throw new Error("Payment request failed");
@@ -83,18 +93,22 @@ export default function CartPage() {
   }, [showErrorAlert]);
 
   return (
-    <div className="max-w-7xl mx-auto mb-[10rem] mt-16">
+    <div className="max-w-7xl mx-auto minHeight">
       {cartListState.length === 0 ? (
-        <div className="bg-indigo-100 p-5 rounded-md mt-14 flex direction flex-col items-center">
-          <p className="mb-5 font-semibold text-2xl">장바구니가 비었어요!</p>
-          <Link to="/popuplist">
-            <button className="btn btn-outline border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400 focus:outline-none">
-              가게 둘러보기
-            </button>
-          </Link>
+        <div className="minHeight bg-indigo-100 flex items-center justify-center">
+          <div className="bg-indigo-100 p-5 rounded-md flex direction flex-col items-center justify-center">
+            <p className="h-full mb-5 font-semibold text-2xl">
+              장바구니가 비었어요!
+            </p>
+            <Link to="/popuplist">
+              <button className="btn btn-outline border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400 focus:outline-none">
+                가게 둘러보기
+              </button>
+            </Link>
+          </div>
         </div>
       ) : (
-        <>
+        <div className="mt-14">
           {cartList.map((item) => (
             <CartList key={item.id} data={item} />
           ))}
@@ -103,7 +117,7 @@ export default function CartPage() {
             <p className="text-2xl">{totalPrice} 원</p>
           </div>
           <button
-            className="flex ml-auto text-xl py-2.5 px-7 text-white font-semibold rounded-xl bg-indigo-400 mt-3"
+            className="flex text-xl py-2.5 px-7 text-white font-semibold rounded-xl bg-indigo-400 mt-3 ml-auto mr-3"
             onClick={handlerPayment}
           >
             결제하기
@@ -134,7 +148,7 @@ export default function CartPage() {
               </div>
             </div>
           )}
-        </>
+        </div>
       )}
     </div>
   );
