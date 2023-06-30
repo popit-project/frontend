@@ -1,6 +1,4 @@
 import { useState } from "react";
-import Footer from "../components/Footer";
-import NavBar from "../components/MainNav";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { LoginTokenAtom } from "../recoilAtom/LoginTokenAtom";
@@ -73,13 +71,13 @@ const MyProfilePage = () => {
             />
           </div>
         </div>
+        <Link to="/cart">
         <div>
-          {/* <div className="btn mb-5">카트로 가기</div> */}
           <p className="btn btn-outline mb-5 border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400" >카트로 가기</p>
         </div>
+        </Link>
         <Link to="/sellerRegisPage">
           <div>
-            {/* <div className="btn mb-5">셀러 등록하기</div> */}
             <p className="btn btn-outline mb-5 border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400" >셀러 등록하기</p>
           </div>
         </Link>

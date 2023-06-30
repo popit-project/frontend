@@ -29,7 +29,7 @@ const SearchLocation = (props:SearchLocationProps) => {
 
   const fetchPopups = async () => {
     try {
-      const { data } = await axios.get("http://localhost:3000/map");
+      const { data } = await axios.get("http://3.34.149.107:8082/api/store/searchAll");
       setMapData(data);
     } catch (error) {
       console.error("Error fetching popups:", error);
@@ -42,7 +42,7 @@ const SearchLocation = (props:SearchLocationProps) => {
 
   useEffect(() => {
     axiosInstance
-      .get("/map")
+      .get("http://3.34.149.107:8082/api/store/searchAll")
       .then((response) => {
         const data = response.data;
         setMapData(data);
@@ -74,10 +74,10 @@ const SearchLocation = (props:SearchLocationProps) => {
 
     placeService.current.keywordSearch(keyword, (data, status) => {
       if (status === kakao.maps.services.Status.OK) {
-        const placeInfos = mapData.map(data => {
-          if (data.storeName.includes(keyword)) {
+        const placeInfos: PlaceType[] = mapData.map(data => {
+          if (data.storeName.includes(keyword) || data.storeAddress.includes(keyword))  {
             return {
-              id: data.id,
+              id: data.id.toString(),
               position: new kakao.maps.LatLng(Number(data.y), Number(data.x)),
               title: data.storeName,
               address: data.storeAddress
@@ -85,7 +85,7 @@ const SearchLocation = (props:SearchLocationProps) => {
           }else {
             return null; // Return null if storeName doesn't match the keyword
           }
-        }).filter(Boolean); // Filter out null values
+        }).filter(Boolean) as PlaceType[]; // Filter out null values
   
         if (placeInfos.length === 0) {
           alert('검색 결과가 존재하지 않습니다.');

@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom';
 import { useEffect, useLayoutEffect, useMemo, useRef } from "react"
 import { PlaceType } from "./mapTypes"
 import { useMap } from "../hooks/useMap"
+import { Link } from "react-router-dom";
 
 interface MapMarkerProps {
   place: PlaceType
@@ -83,14 +84,17 @@ const MapMarker = (props:MapMarkerProps) => {
             infowindow.setMap(null);
           }}
         >
-          <p
-            className='text-s w-full mb-2 p-2 bg-indigo-200 rounded-t-2xl hover:bg-indigo-500 flex justify-center text-slate-50'
+          <Link to={`/popuplist/${props.place.id}`}>
+          <div
+            className='text-s w-[200px] mb-2 p-2 bg-indigo-400 rounded-t-2xl flex justify-center text-slate-50'
             onClick={(e) => {
               e.stopPropagation();
             }}
           >
             스토어 바로가기 &gt;
-          </p>
+          </div>
+          </Link>
+
 
           <div className='w-28 h-28 bg-slate-400'>
             이미지 박스

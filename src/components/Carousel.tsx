@@ -9,7 +9,7 @@ function CarouselComponent() {
   const [isTyping, setIsTyping] = useState(true);
 
   useEffect(() => {
-    const message = "반갑습니다:)\nPOPIT!에서 다양한 팝업스토어를 둘러보세요.";
+    const message = "반갑습니다:)\nPOPIT에서 다양한 팝업스토어를 둘러보세요!";
     let currentIndex = 0;
     let timeout: string | number | NodeJS.Timeout | undefined;
 

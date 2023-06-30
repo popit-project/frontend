@@ -1,12 +1,10 @@
-// import './App.css'
-// import MainPage from './components/MainPage'
-import { useState } from "react"
-import DynamicMap from "../components/Map/DynamicMap"
-import MapScriptLoader from "../components/Map/MapScriptLoader"
-import SearchLocation from "../components/Map/SearchLocation"
-import { PlaceType } from "../components/Map/mapTypes"
-import MapMarkUpController from "../components/Map/MapMarkUpController"
-import axios from "axios"
+import { useState, useEffect } from "react";
+import DynamicMap from "../components/Map/DynamicMap";
+import MapScriptLoader from "../components/Map/MapScriptLoader";
+import SearchLocation from "../components/Map/SearchLocation";
+import { PlaceType } from "../components/Map/mapTypes";
+import MapMarkUpController from "../components/Map/MapMarkUpController";
+import axios from "axios";
 import { useRecoilState } from 'recoil';
 import { latState, lngState } from '../recoilAtom/mapAtom';
 
@@ -18,14 +16,21 @@ interface Store {
   storeAddress: string;
 }
 
-
 function MapPage() {
-  const [places, setPlaces] = useState<PlaceType[]>([])
-  const [selectedPlaceId, setSelectedPlaceId] = useState('')
-  // const [lat, setLat] = useState<number | null>(null);
-  // const [lng, setLng] = useState<number | null>(null);
+  const [places, setPlaces] = useState<PlaceType[]>([]);
+  const [selectedPlaceId, setSelectedPlaceId] = useState('');
   const [recoilLat, setRecoilLat] = useRecoilState(latState);
   const [recoilLng, setRecoilLng] = useRecoilState(lngState);
+
+  useEffect(() => {
+    const storedLat = localStorage.getItem("lat");
+    const storedLng = localStorage.getItem("lng");
+
+    if (storedLat && storedLng) {
+      setRecoilLat(parseFloat(storedLat));
+      setRecoilLng(parseFloat(storedLng));
+    }
+  }, [setRecoilLat, setRecoilLng]);
 
   const findMyLocation = async () => {
     if (navigator.geolocation) {
@@ -36,9 +41,11 @@ function MapPage() {
           console.log('내 위치:', lat, lng);
           setRecoilLat(lat);
           setRecoilLng(lng);
+          localStorage.setItem("lat", lat.toString());
+          localStorage.setItem("lng", lng.toString());
           
           try {
-            const response = await axios.get(`http://3.34.149.107:8082/api/store/searchAll/5km?userLat=${lat}&userLon=${lng}`);
+            const response = await axios.get(`http://3.34.149.107:8082/api/store/searchAll/5km?userLat=${lng}&userLon=${lat}`);
             const storesWithin5km = response.data;
   
             if (storesWithin5km.length > 0) {
@@ -50,7 +57,6 @@ function MapPage() {
               }));
     
               setPlaces(updatedPlaces);
-              setSelectedPlaceId(storesWithin5km[0].id);
             } else {
               // 데이터가 없을 때 알림창 표시
               alert("아직 내 주변 팝업스토어가 없어요🥲");
@@ -73,7 +79,7 @@ function MapPage() {
     <>
       <MapScriptLoader>
         <DynamicMap>
-        <MapMarkUpController
+          <MapMarkUpController
             places={places}
             selectedPlaceId={selectedPlaceId}
             onFindMyLocation={findMyLocation}
@@ -89,4 +95,4 @@ function MapPage() {
   )
 }
 
-export default MapPage
+export default MapPage;
