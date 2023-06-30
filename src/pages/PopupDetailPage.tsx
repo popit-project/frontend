@@ -17,6 +17,7 @@ interface Popup {
   closeTime: string;
   closeDate: string;
   storeType: string;
+  storeImage: string;
   id: 1;
   // 이 아래는 각각 api 알아봐야함. 즉, 없어지거나 수정예정
   likes: number;
@@ -58,11 +59,11 @@ export default function PopupDetailPage() {
     <div className="mb-[10rem]">
       <div>
         <figure className="h-60 bg-gray-400">
-          <img src="" alt="" />
+          <img src={popup?.storeImage} alt="" />
           <span>팝업이미지</span>
         </figure>
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center h-24 my-6">
+          <div className="pl-5 flex items-center h-24 my-6">
             <div className="text-left">
               <p className="font-bold text-xl mb-2">{popup?.storeName}</p>
               <span>{popup?.storeAddress}</span>
@@ -109,7 +110,9 @@ export default function PopupDetailPage() {
         </div>
         <div>
           {activeTab === "tab1" && <Home popup={popup} />}
-          {activeTab === "tab2" && <News />}
+          {activeTab === "tab2" && popup?.storeName && (
+            <News storeName={popup.storeName} />
+          )}
           {activeTab === "tab3" && <Product />}
           {activeTab === "tab4" && <Review />}
         </div>

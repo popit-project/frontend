@@ -39,7 +39,7 @@ export default function CartList({ data }: { data: CartItem }) {
 
   return (
     <div>
-      <div className="flex flex-col my-4 sm:flex-row sm:items-center">
+      <div className="flex flex-col m-4 sm:flex-row sm:items-center">
         <div className="flex order-last sm:order-none sm:items-center sm:grow">
           <figure className="w-20 flex-shrink-0 rounded-2xl overflow-hidden px-2 py-2 bg-white border mr-2">
             <img
@@ -49,7 +49,7 @@ export default function CartList({ data }: { data: CartItem }) {
             />
           </figure>
           <div className="flex flex-col sm:flex-row sm:items-center sm:grow">
-            <p className="text-left line-clamp-1 min-w-0 font-semibold sm:grow sm:w-96">
+            <p className="text-left line-clamp-1 min-w-0 font-semibold sm:grow sm:w-64">
               {data.itemNm}
             </p>
             <div className="join join-horizontal order-last flex-grow-0 sm:ml-10 sm:order-none ">

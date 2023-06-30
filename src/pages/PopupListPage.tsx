@@ -27,6 +27,10 @@ export default function PopupListPage() {
   const [searchResults, setSearchResults] = useState<Popup[]>([]);
 
   useEffect(() => {
+    fetchPopupList();
+  }, []);
+
+  const fetchPopupList = () => {
     axiosInstance
       .get("http://3.34.149.107:8082/api/store/searchAll")
       .then((response) => {
@@ -36,25 +40,49 @@ export default function PopupListPage() {
       .catch((error) => {
         console.error(error);
       });
+  };
+
+  useEffect(() => {
+    const storedLikedStoreIds = localStorage.getItem("likedStoreIds");
+    if (storedLikedStoreIds) {
+      setLikedStoreIds(JSON.parse(storedLikedStoreIds));
+    }
   }, []);
 
-  // const handleLiked = (id: number) => {
-  //   const popup = popupList.find((popup) => popup.id === id);
-  //   if (popup) {
-  //     const isLike = !popup.isLike;
-  //     const updatedLikes = isLike ? popup.likes + 1 : popup.likes - 1;
-  //     axiosInstance
-  //       .patch(`/popupList/${id}`, { isLike })
-  //       .then(() => {
-  //         setPopupList((prevPopupList) =>
-  //           prevPopupList.map((item) =>
-  //             item.id === id ? { ...item, isLike, likes: updatedLikes } : item
-  //           )
-  //         );
-  //       })
-  //       .catch((error) => console.error(error));
-  //   }
-  // };
+  const handleLiked = (id: number) => {
+    axiosInstance
+      .post(`http://3.34.149.107:8082/api/store/${id}/toggle-like`, null, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then(() => {
+        const updatedLikedStoreIds = likedStoreIds.includes(id)
+          ? likedStoreIds.filter((storeId) => storeId !== id)
+          : [...likedStoreIds, id];
+        localStorage.setItem(
+          "likedStoreIds",
+          JSON.stringify(updatedLikedStoreIds)
+        );
+        setLikedStoreIds(updatedLikedStoreIds);
+        setPopupList((prevPopupList) => {
+          return prevPopupList.map((popup) => {
+            if (popup.id === id) {
+              return {
+                ...popup,
+                likeCount: likedStoreIds.includes(id)
+                  ? popup.likeCount - 1
+                  : popup.likeCount + 1,
+              };
+            }
+            return popup;
+          });
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   const location = useLocation();
   const searchKeyword = new URLSearchParams(location.search).get("q");
@@ -84,12 +112,12 @@ export default function PopupListPage() {
     <>
       <Search />
       <div className="max-w-7xl flex justify-end my-0 mx-auto">
-      <button
-        onClick={handleShowAllPopup}
-        className="mt-4 bg-gray-200 p-2 px-3 rounded"
-      >
-        모든 스토어 보기
-      </button>
+        <button
+          onClick={handleShowAllPopup}
+          className="mt-4 bg-gray-200 p-2 px-3 rounded"
+        >
+          모든 스토어 보기
+        </button>
       </div>
 
       {searchResults.length === 0 ? (
@@ -120,15 +148,15 @@ export default function PopupListPage() {
                     {popup.reviewCount}
                   </div>
                   <div className="flex items-center ml-2">
-                  {likedStoreIds.includes(popup.id) ? (
-                    <span onClick={() => handleLiked(popup.id)}>
-                      <FillLikeIcon width={30} height={30} fill="#A5B4FC" />
-                    </span>
-                  ) : (
-                    <span onClick={() => handleLiked(popup.id)}>
-                      <LikeIcon width={30} height={30} fill="#A5B4FC" />
-                    </span>
-                  )}
+                    {likedStoreIds.includes(popup.id) ? (
+                      <span onClick={() => handleLiked(popup.id)}>
+                        <FillLikeIcon width={30} height={30} fill="#a5b4fc" />
+                      </span>
+                    ) : (
+                      <span onClick={() => handleLiked(popup.id)}>
+                        <LikeIcon width={30} height={30} fill="#a5b4fc" />
+                      </span>
+                    )}
                     {popup.likeCount}
                   </div>
                 </div>

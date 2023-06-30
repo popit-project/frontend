@@ -5,8 +5,6 @@ import { useParams } from "react-router-dom";
 interface review {
   id: number;
   email: string;
-  location: string;
-  date: string;
   comment: string;
 }
 
@@ -15,8 +13,13 @@ export default function Review() {
   const [newReview, setNewReview] = useState("");
   const { id } = useParams<{ id: string }>();
   const storeId = Number(id);
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
+    fetchReviewList();
+  });
+
+  const fetchReviewList = () => {
     axiosInstance
       .get(`http://3.34.149.107:8082/api/review/read/${storeId}/comment`)
       .then((response) => {
@@ -27,36 +30,50 @@ export default function Review() {
         console.log(`${storeId}`);
         console.error(error);
       });
-  }, [storeId]);
+  };
 
   const handleReviewSubmit = () => {
-    const currentDate = new Date();
-    const formattedDate = currentDate.toLocaleString();
-
     const newReviewItem = {
-      // 사용자의 email을 어떻게 받을 수 있는가
-      email: "새로운 사용자",
-      location: "위치",
-      date: formattedDate,
       comment: newReview,
     };
 
     axiosInstance
-      .post(`/api/review/write/${storeId}`, newReviewItem)
-      .then((response) => {
-        console.log("Review submitted:", response.data);
-        const updatedReviews = [response.data, ...reviewList];
+      .post(
+        `http://3.34.149.107:8082/api/review/write/${storeId}`,
+        newReviewItem,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
+      .then(() => {
         setNewReview("");
-        setReviewList(updatedReviews);
+        fetchReviewList();
       })
       .catch((error) => {
         console.error("Failed to submit review:", error);
       });
   };
 
+  const deleteReview = (reviewId: number) => {
+    axiosInstance
+      .delete(`http://3.34.149.107:8082/api/review/delete/${reviewId}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then(() => {
+        fetchReviewList();
+      })
+      .catch((error) => {
+        console.error("Failed to delete review:", error);
+      });
+  };
+
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="my-10 bg-indigo-50 rounded-lg text-left p-5">
+      <div className="my-10 bg-indigo-50 rounded-lg text-left p-5 m-5">
         <div className="mb-16">
           <form className="flex flex-col items-center sm:flex-row">
             <input
@@ -84,22 +101,25 @@ export default function Review() {
           </div>
         ) : (
           <div className="tab-list first:pt-0">
-            {reviewList.map((review) => (
+            {[...reviewList].reverse().map((review, index) => (
               <div
-                key={review.id}
-                className="py-8 border-b border-indigo-200 first:pt-0 last:border-none"
+                key={index}
+                className="flex justify-between py-8 border-b border-indigo-200 first:pt-0 last:border-none"
               >
-                <div className="flex items-center mb-2">
-                  <div className="text-left">
+                <div className="">
+                  <div className="text-left mb-2">
                     <p className="font-bold text-base">{review.email}</p>
-                    <div className="text-slate-500">
-                      <span>{review.location}</span>
-                      <span className="ml-1">•</span>
-                      <span className="ml-1">{review.date}</span>
-                    </div>
                   </div>
+                  <div>{review.comment}</div>
                 </div>
-                <div>{review.comment}</div>
+                {userId === review.email && (
+                  <div
+                    className="text-indigo-400 cursor-pointer rounded-full"
+                    onClick={() => deleteReview(review.id)}
+                  >
+                    X
+                  </div>
+                )}
               </div>
             ))}
           </div>
