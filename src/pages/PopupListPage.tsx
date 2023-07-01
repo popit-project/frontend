@@ -46,6 +46,41 @@ const PopupListPage: React.FC = () => {
       });
   }, []);
 
+  const handleLiked = (id: number) => {
+    axiosInstance
+      .post(`http://3.34.149.107:8082/api/store/${id}/toggle-like`, null, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then(() => {
+        const updatedLikedStoreIds = likedStoreIds.includes(id)
+          ? likedStoreIds.filter((storeId) => storeId !== id)
+          : [...likedStoreIds, id];
+        localStorage.setItem(
+          "likedStoreIds",
+          JSON.stringify(updatedLikedStoreIds)
+        );
+        setLikedStoreIds(updatedLikedStoreIds);
+        setPopupList((prevPopupList) => {
+          return prevPopupList.map((popup) => {
+            if (popup.id === id) {
+              return {
+                ...popup,
+                likeCount: likedStoreIds.includes(id)
+                  ? popup.likeCount - 1
+                  : popup.likeCount + 1,
+              };
+            }
+            return popup;
+          });
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   const searchKeyword = new URLSearchParams(location.search).get("q");
 
   const getSearchResults = (searchKeyword: string) => {

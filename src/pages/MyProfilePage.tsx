@@ -29,6 +29,9 @@ const MyProfilePage = () => {
     localStorage.removeItem("userId");
     localStorage.removeItem("expiresIn");
     localStorage.removeItem("token");
+    localStorage.removeItem("recoil-persist");
+    localStorage.removeItem("likedStoreIds");
+
     window.location.href = "/"
   }
 
@@ -151,3 +154,4 @@ const MyProfilePage = () => {
 };
 
 export default MyProfilePage;
+
