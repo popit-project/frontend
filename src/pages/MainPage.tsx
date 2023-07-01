@@ -28,7 +28,7 @@ const MainPage = () => {
           </div>
           <div>
             <div className="flex flex-col w-full">
-              <Link to="/profile">
+              <Link to="/popuplist?type=FLEA_MARKET">
                 <div className="btn grid h-20 card bg-indigo-900 rounded-box place-items-center text-white hover:bg-indigo-900">
                   <div className="flex items-center justify-center transition-transform hover:scale-105">
                     <p>플리마켓 보러가기</p>
@@ -37,7 +37,7 @@ const MainPage = () => {
                 </div>
               </Link>
               <div className="divider"></div>
-              <Link to="/cart">
+              <Link to="/popuplist?type=POPUP_STORE">
                 <div className="btn grid h-20 card bg-indigo-900 rounded-box place-items-center text-white hover:bg-indigo-900">
                   <div className="flex items-center justify-center transition-transform hover:scale-105">
                     <p>팝업스토어 보러가기</p>

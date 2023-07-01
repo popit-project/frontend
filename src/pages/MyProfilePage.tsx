@@ -1,11 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { LoginTokenAtom } from "../recoilAtom/LoginTokenAtom";
+import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
+
+interface UserInfo {
+  email: string,
+  nickname: string
+  phone: string
+  userId: string
+}
 
 const MyProfilePage = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(LoginTokenAtom);
+  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
+  const [newNickname, setNewNickname] = useState("");
+
+  const currentUserId = localStorage.getItem("userId");
 
   const handleEditClick = () => {
     setIsEditing(!isEditing);
@@ -20,6 +32,57 @@ const MyProfilePage = () => {
     window.location.href = "/"
   }
 
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await axiosInstance.get("http://3.34.149.107:8082/api/user/info", {
+          params: {
+            userId: currentUserId,
+          },
+        });
+        const data = response.data;
+        setUserInfo(data);
+        console.log(userInfo)
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
+
+  const saveNickname = async () => {
+    try {
+      const response = await axiosInstance.post(
+        "http://3.34.149.107:8082/api/user/changeUserInfo",
+        {
+          email: userInfo?.email,
+          newNickname: newNickname
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.status === 200) {
+        setIsEditing(false);
+        setUserInfo((prevUserInfo: UserInfo | null) => {
+          if (prevUserInfo) {
+            return {
+              ...prevUserInfo,
+              nickname: newNickname,
+            };
+          }
+          return null;
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+
   return (
     <div className="max-w-screen-lg my-0 mx-auto">
       <div className="w-4/5 my-0 mx-auto pt-12 pb-10">
@@ -28,60 +91,58 @@ const MyProfilePage = () => {
         </div>
         <div>
           <div className="py-3 pt-10 relative border-b pb-10">
-            <div>
-              <p className="inline-block w-20 mb-2">닉네임{" "}</p>
+              {isEditing ?
+              <div className="flex items-center">
+              <p className="inline-block w-20">닉네임</p>
               <input
                 type="text"
-                placeholder="Type here"
-                className={`input w-full max-w-xs ${
-                  isEditing ? "" : "input-disabled"
-                }`}
+                placeholder={userInfo?.nickname}
+                className={`w-72 h-12 bg-indigo-50 flex items-center pl-5 pb-1 rounded-lg`}
                 disabled={!isEditing}
+                value={newNickname}
+                onChange={(e) => setNewNickname(e.target.value)}
               />
-            </div>
+              </div>
+              : 
+              <div className="flex">
+              <p className="inline-block w-20 flex items-center">닉네임</p>
+              <div className="w-72 h-12 bg-indigo-50 flex items-center pl-5 pb-1 rounded-lg">
+                {userInfo?.nickname}
+              </div>
+              </div> }
             <p 
             className="btn absolute right-0 top-10 p-2 bg-indigo-400 border-indigo-400 text-white hover:bg-indigo-300 hover:border-indigo-300" 
-            onClick={handleEditClick}
+            onClick={isEditing ? saveNickname : handleEditClick}
             >
             {isEditing ? "저장하기" : "수정하기"}
             </p>
           </div>
-          <div className="py-3 pt-10">
-          <p className="inline-block w-20 mb-2">아이디{" "}</p>
-            <input
-              type="text"
-              placeholder="Type here"
-              className="input w-full max-w-xs input-disabled"
-            />
-          </div>
-          <div className="py-3">
-          <p className="inline-block w-20 mb-2">이메일{" "}</p>
-            <input
-              type="text"
-              placeholder="Type here"
-              className="input w-full max-w-xs input-disabled"
-            />
-          </div>
-          <div className="py-3 pb-10">
-          <p className="inline-block w-20 mb-2">전화번호{" "}</p>
-            <input
-              type="text"
-              placeholder="Type here"
-              className="input w-full max-w-xs input-disabled"
-            />
-          </div>
+
+          <div className="py-3 pt-10 flex">
+            <p className="inline-block w-20 flex items-center">아이디</p>
+            <div className="w-72 h-12 bg-indigo-50 flex items-center pl-5 pb-1 rounded-lg">
+              {userInfo?.userId}
+            </div>
+            </div>
+            <div className="py-3 pt-10 flex">
+              <p className="inline-block w-20 flex items-center">이메일</p>
+              <div className="w-72 h-12 bg-indigo-50 flex items-center pl-5 pb-1 rounded-lg">
+                {userInfo?.email}
+              </div>
+            </div>
+            <div className="py-3 pt-10 flex pb-16">
+              <p className="inline-block w-20 flex items-center">전화번호</p>
+              <div className="w-72 h-12 bg-indigo-50 flex items-center pl-5 pb-1 rounded-lg">
+                {userInfo?.phone}
+              </div>
+            </div>
         </div>
-        <Link to="/cart">
-        <div>
-          <p className="btn btn-outline mb-5 border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400" >카트로 가기</p>
-        </div>
-        </Link>
         <Link to="/sellerRegisPage">
           <div>
             <p className="btn btn-outline mb-5 border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400" >셀러 등록하기</p>
           </div>
         </Link>
-        <div className="flex justify-center mt-20">
+        <div className="flex justify-center mt-16">
           <p className="btn btn-outline w-4/5 mb-5 border-indigo-400 text-white bg-indigo-400 hover:bg-indigo-500 hover:border-indigo-500"  onClick={logOut}>로그아웃</p>
         </div>
       </div>

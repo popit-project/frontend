@@ -6,29 +6,10 @@ import { AiOutlineRight } from 'react-icons/Ai';
 import { Link } from "react-router-dom";
 import { Popup } from "../pages/PopupListPage";
 
-// interface Popup {
-//   storeAddress: string;
-//   y: number;
-//   storeName: string;
-//   x: number;
-//   storePhone: string;
-//   openDate: string;
-//   openTime: string;
-//   closeTime: string;
-//   closeDate: string;
-//   storeType: string;
-//   id: 1;
-//   likes: number;
-//   isLike: boolean;
-//   comments: number;
-// }
-
 const RecomList = () => {
   const [popupList, setPopupList] = useState<Popup[]>([]);
   const storedLat = localStorage.getItem("lat");
   const storedLng = localStorage.getItem("lng");
-
-
 
   const fetchPopups = async (lat: number, lng: number) => {
     try {
@@ -40,8 +21,6 @@ const RecomList = () => {
   };
 
   useEffect(() => {
-    
-
     if (storedLat && storedLng) {
       const lat = parseFloat(storedLat);
       const lng = parseFloat(storedLng);
