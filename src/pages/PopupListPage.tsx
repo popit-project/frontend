@@ -31,7 +31,7 @@ const PopupListPage: React.FC = () => {
     null
   );
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 2;
+  const itemsPerPage = 8;
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);

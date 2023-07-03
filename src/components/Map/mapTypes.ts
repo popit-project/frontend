@@ -3,4 +3,5 @@ export interface PlaceType {
   position: kakao.maps.LatLng
   title: string
   address: string
+  storeImage?: string
 }

@@ -92,7 +92,7 @@ export default function LoginPage() {
                 placeholder="아이디"
                 name="userId"
                 onChange={changeData}
-                className="input input-success w-full max-w-xs block mb-[3rem] mt-[8rem] mx-auto border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500"
+                className="input input-success w-full max-w-xs block mb-[3rem] mt-[1rem] mx-auto border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500"
               />
               <input
                 type="password"
@@ -123,7 +123,7 @@ export default function LoginPage() {
                 onClick={googleLogin}
               ></img>
               <img
-                className="w-12 h-12 mr-[6rem] ml-[6rem] bg-indigo-200  hover:bg-indigo-300 rounded-lg hover:cursor-pointer"
+                className="w-12 h-12 mr-[3rem] ml-[3rem] bg-indigo-200  hover:bg-indigo-300 rounded-lg hover:cursor-pointer"
                 src={naver}
               ></img>
               <img

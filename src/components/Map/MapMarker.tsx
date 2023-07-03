@@ -86,7 +86,7 @@ const MapMarker = (props:MapMarkerProps) => {
         >
           <Link to={`/popuplist/${props.place.id}`}>
           <div
-            className='text-s w-[200px] mb-2 p-2 bg-indigo-400 rounded-t-2xl flex justify-center text-slate-50'
+            className='text-s w-[220px] mb-2 p-2 bg-indigo-400 rounded-t-2xl flex justify-center text-slate-50'
             onClick={(e) => {
               e.stopPropagation();
             }}
@@ -94,11 +94,11 @@ const MapMarker = (props:MapMarkerProps) => {
             스토어 바로가기 &gt;
           </div>
           </Link>
-
-
-          <div className='w-28 h-28 bg-slate-400'>
-            이미지 박스
-          </div>
+          <img
+            src={props.place.storeImage}
+            alt=""
+            className="w-28 h-28"
+          />
           <label className='font-bold py-1.5 px-2'>{props.place.title}</label>
           <span className='text-xs pt-0 px-1.5 pb-1.5'>{props.place.address}</span>
         </div>

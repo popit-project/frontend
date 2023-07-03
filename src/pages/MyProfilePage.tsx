@@ -17,6 +17,7 @@ const MyProfilePage = () => {
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(LoginTokenAtom);
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
   const [newNickname, setNewNickname] = useState("");
+  const [tmp, setTmp] = useState();
 
   const currentUserId = localStorage.getItem("userId");
 
@@ -46,7 +47,7 @@ const MyProfilePage = () => {
         });
         const data = response.data;
         setUserInfo(data);
-        console.log(userInfo)
+        // console.log(userInfo)
       } catch (error) {
         console.error(error);
       }
@@ -54,6 +55,80 @@ const MyProfilePage = () => {
 
     fetchUserInfo();
   }, []);
+  
+
+  // const storeInfo = async () => {
+  //   const storeInfoData = await axiosInstance.get(
+  //       `http://3.34.149.107:8082/api/seller/${localStorage.getItem(
+  //           "userId"
+  //       )}/storeHome`,
+  //       {
+  //           headers: {
+  //               Authorization: `Bearer ${localStorage.getItem(
+  //                   "token"
+  //               )}`,
+  //           },
+  //       }
+  //   );
+
+  //   const Ctmp = storeInfoData.data;
+
+  //   console.log(Ctmp);
+  //   setTmp(storeInfoData.data)
+
+  //   }
+  //   console.log(tmp)
+  //   storeInfo()
+
+    useEffect(() => {
+      const fetchData = async () => {
+        const userId = localStorage.getItem("userId");
+        try {
+          const response = await axiosInstance.get(
+            `http://3.34.149.107:8082/api/seller/${userId}/storeHome`,
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            }
+          );
+          console.log(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+  
+      fetchData();
+    }, []);
+
+  // fetchSellerId()
+
+  // const fetchSellerInfo = async () => {
+  //   try {
+  //     const response = await axiosInstance.post(
+  //       "http://3.34.149.107:8082/api/sellerEnter",
+  //       {
+  //         userId: currentUserId,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
+  //     const sellerInfo = response.data;
+
+  //     console.log(sellerInfo);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+  
+  // useEffect(() => {
+  //   fetchSellerInfo();
+  // }, []);
+  
 
   const saveNickname = async () => {
     try {
@@ -89,11 +164,19 @@ const MyProfilePage = () => {
   const renderSellerButton = () => {
     if (userInfo?.sellerModeButton === "BUTTON_DISPLAY_ON") {
       return (
-        <Link to="/sellerRegisPage">
-          <div>
-            <p className="btn btn-outline mb-5 border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400" >MY 스토어 관리</p>
-          </div>
-        </Link>
+        <>
+          <Link to="/sellerRegisPage">
+            <div>
+              <p className="btn btn-outline mb-5 border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400" >스토어 정보 수정</p>
+            </div>
+          </Link>
+          {/* <Link to={`/popuplist/${tmp}`}> */}
+          <Link to={"/seller"}>
+            <div>
+              <p className="btn btn-outline mb-5 border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400" >My 스토어 가기</p>
+            </div>
+          </Link>
+        </>
       )
     } else {
       return (

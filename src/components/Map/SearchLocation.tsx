@@ -12,6 +12,7 @@ interface SearchLocationProps {
 }
 
 interface Popup {
+  storeImage?: string;
   id: number;
   storeName: string;
   storeAddress: string;
@@ -75,17 +76,18 @@ const SearchLocation = (props:SearchLocationProps) => {
     placeService.current.keywordSearch(keyword, (data, status) => {
       if (status === kakao.maps.services.Status.OK) {
         const placeInfos: PlaceType[] = mapData.map(data => {
-          if (data.storeName.includes(keyword) || data.storeAddress.includes(keyword))  {
+          if (data.storeName.includes(keyword) || data.storeAddress.includes(keyword)) {
             return {
               id: data.id.toString(),
               position: new kakao.maps.LatLng(Number(data.y), Number(data.x)),
               title: data.storeName,
-              address: data.storeAddress
+              address: data.storeAddress,
+              storeImage: data?.storeImage,
             };
-          }else {
+          } else {
             return null; // Return null if storeName doesn't match the keyword
           }
-        }).filter(Boolean) as PlaceType[]; // Filter out null values
+        }).filter(Boolean) as unknown as PlaceType[]; // Filter out null values
   
         if (placeInfos.length === 0) {
           alert('검색 결과가 존재하지 않습니다.');

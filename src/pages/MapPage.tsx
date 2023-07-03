@@ -14,6 +14,7 @@ interface Store {
   y: number;
   storeName: string;
   storeAddress: string;
+  storeImage: string;
 }
 
 function MapPage() {
@@ -54,6 +55,7 @@ function MapPage() {
                 position: new kakao.maps.LatLng(store.y, store.x),
                 title: store.storeName,
                 address: store.storeAddress,
+                storeImage: store.storeImage
               }));
     
               setPlaces(updatedPlaces);
