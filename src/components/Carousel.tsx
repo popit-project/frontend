@@ -50,7 +50,7 @@ function CarouselComponent() {
   );
 
   return (
-    <div className="card lg:card-side bg-base-100 shadow-xl">
+    <div className="card lg:card-side bg-base-100 shadow-xl -z-1">
       <div className="w-full sm:w-96 md:w-3/5 md:m-auto lg:w-1/2">
         <Carousel
           showArrows={false}

@@ -1,33 +1,38 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { axiosInstance } from "../../AxiosInstance/AxiosConfig";
-import axios from "axios";
 
 interface NewsItem {
   storeName: string;
-  storeCity: string;
-  time: string;
-  title: string;
-  image: string;
+  city: string;
+  timeAgo: string;
+  content: string;
+  newsImgURL: string;
   id: number;
 }
 
-//여기는 api변수 storeName
-export default function News() {
+interface NewsProps {
+  storeName: string | null;
+}
+
+export default function News({ storeName }: NewsProps) {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [showImageSection, setShowImageSection] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [selectedImage, setSelectedImage] = useState<string>("");
+  const formDataRef = useRef<FormData>(new FormData());
 
   useEffect(() => {
-    fetchNewsList();
-  });
+    fetchNewsList(storeName);
+  }, [storeName]);
 
-  const fetchNewsList = () => {
+  const fetchNewsList = (storeName: string | null) => {
     axiosInstance
-      .get("/news")
+      .get(`http://3.34.149.107:8082/api/${storeName}/news`)
       .then((response) => {
         const data = response.data;
-        setNews(data);
+        console.log(data.data);
+        setNews(data.data);
+        console.log("됐다.");
       })
       .catch((error) => {
         console.error(error);
@@ -38,32 +43,46 @@ export default function News() {
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
-      reader.onloadend = () => {
-        setSelectedImage(reader.result as string);
+      reader.onload = () => {
+        const uploadedImage = reader.result as string;
+        setSelectedImage(uploadedImage);
       };
       reader.readAsDataURL(file);
+      formDataRef.current = new FormData();
+      formDataRef.current.append("file", file, file.name);
+      setShowImageSection(true);
     }
-    setShowImageSection(true);
   };
 
   const handleSubmit = () => {
-    const NewFormData = new FormData();
-    NewFormData.append("content", inputValue);
-    NewFormData.append("image", selectedImage);
+    const formData = formDataRef.current;
+    formData.append(
+      "dto",
+      JSON.stringify({
+        content: inputValue,
+      })
+    );
 
-    for (const key of NewFormData.keys()) {
+    for (const key of formData.keys()) {
       console.log(key);
     }
 
-    for (const value of NewFormData.values()) {
+    for (const value of formData.values()) {
       console.log(value);
     }
 
-    axios
-      .post("http://3.34.149.107:8082/api/seller/news", NewFormData)
+    axiosInstance
+      .post("http://3.34.149.107:8082/api/seller/news", formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then(() => {
+        console.log("post완료!");
         setInputValue("");
         setSelectedImage("");
+        fetchNewsList(storeName);
       })
       .catch((error) => {
         console.error(error);
@@ -74,9 +93,13 @@ export default function News() {
 
   const handleDeleteNews = (id: number) => {
     axiosInstance
-      .delete(`/news/${id}`)
+      .delete(`http://3.34.149.107:8082/api/seller/news/${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then(() => {
-        fetchNewsList();
+        setNews((prevNews) => prevNews.filter((item) => item.id !== id));
       })
       .catch((error) => {
         console.error(error);
@@ -138,25 +161,27 @@ export default function News() {
           </div>
         ) : (
           <div className="tab-list">
-            {news.map((item) => (
+            {[...news].reverse().map((item) => (
               <div
-                key={`${item.storeName}_${item.time}`}
+                key={item.id}
                 className="py-8 border-b border-slate-300 first:pt-0 last:border-none"
               >
                 <div className="flex justify-between mb-2">
                   <div className="text-left">
                     <p className="font-bold text-base">{item.storeName}</p>
                     <div className="text-slate-500">
-                      <span>{item.storeCity}</span>
+                      <span>{item.city}</span>
                       <span className="ml-1">•</span>
-                      <span className="ml-1">{item.time}</span>
+                      <span className="ml-1">{item.timeAgo}</span>
                     </div>
                   </div>
                 </div>
-                <div className="mb-5">{item.title}</div>
-                <div className="bg-slate-500 w-full h-48">
-                  <img src="" alt="" />
-                </div>
+                <div className="mb-5">{item.content}</div>
+                {item.newsImgURL && (
+                  <div className="overflow-hidden">
+                    <img src={item.newsImgURL} alt="" />
+                  </div>
+                )}
                 <button
                   type="submit"
                   className="flex ml-auto btn btn-outline w-full mt-5 focus:outline-none sm:w-auto border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400"

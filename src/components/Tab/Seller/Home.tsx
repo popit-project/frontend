@@ -6,21 +6,16 @@ import {
 } from "../../../assets/icons/Icons";
 
 interface Popup {
-  storeAddress: string;
-  y: number;
-  storeName: string;
-  x: number;
-  storePhone: string;
+  closeDate: string;
+  closeTime: string;
   openDate: string;
   openTime: string;
-  closeTime: string;
-  closeDate: string;
+  sellerId: number;
+  storeAddress: string;
+  storeId: number;
+  storeImage: string;
+  storeName: string;
   storeType: string;
-  id: 1;
-  // 이 아래는 각각 api 알아봐야함. 즉, 없어지거나 수정예정
-  likes: number;
-  isLike: boolean;
-  comments: number;
 }
 
 interface HomeProps {

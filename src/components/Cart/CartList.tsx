@@ -24,7 +24,7 @@ export default function CartList({ data }: { data: CartItem }) {
         const updatedQuantity =
           cartItem.quantity > 1 ? cartItem.quantity - 1 : 1;
         const updatedPrice =
-          cartItem.price - cartItem.price / cartItem.quantity;
+          (cartItem.price / cartItem.quantity) * updatedQuantity;
         return { ...cartItem, quantity: updatedQuantity, price: updatedPrice };
       }
       return cartItem;

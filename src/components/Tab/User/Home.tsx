@@ -15,7 +15,7 @@ interface Popup {
   closeTime: string;
   closeDate: string;
   storeType: string;
-  id: 1;
+  id: number;
   likes: number;
   isLike: boolean;
   comments: number;

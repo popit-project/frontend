@@ -3,11 +3,15 @@ import { QuantityItem } from "../recoilAtom/cart.ts";
 import { Link } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/Ai";
 import { useEffect, useState } from "react";
+import logo from "../assets/images/logo.png";
 import axios from "axios";
 
 export default function MainNav() {
   const totalQuantityValue = useRecoilValue(QuantityItem);
-  const [notificationArray, setNotificationArray] = useState<any[]>([]);
+  const [notificationArray, setNotificationArray] = useState<
+    { id: number; message: string }[]
+  >([]);
+
   const [notificationCount, setNotificationCount] = useState(0);
 
   useEffect(() => {
@@ -51,12 +55,32 @@ export default function MainNav() {
     fetchNotification();
   }, []);
 
+  const deleteNoti = (id: number) => {
+    axios
+      .delete(`http://3.34.149.107:8082/api/seller/notifications/${id}`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      .then(() => {
+        setNotificationArray((prevArray) =>
+          prevArray.filter((item) => item.id !== id)
+        );
+        setNotificationCount((prevCount) => prevCount - 1);
+      })
+      .catch((error) => {
+        console.error("Error deleting notification:", error);
+      });
+  };
+
   return (
     <div className="w-full">
       <div className="navbar bg-base-100 border-b">
         <div className="navbar-start">
           <Link to="/">
-            <div className="btn btn-ghost normal-case text-xl">POPIT</div>
+            <div className="btn btn-ghost normal-case text-xl flex items-center justify-center">
+              <img src={logo} alt="" className="w-[96px] sm:w-[130px]" />
+            </div>
           </Link>
         </div>
         <div className="navbar-end">
@@ -108,16 +132,27 @@ export default function MainNav() {
                   </span>
                 </div>
               </label>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[99999] p-2 shadow bg-base-100 rounded-box w-52 w-fit hover:z-[99999] focus:z-[99999]"
-              >
-                {notificationArray.map((item) => (
-                  <li id={item.id}>
-                    <a>{item.message}</a>
-                  </li>
-                ))}
-              </ul>
+              {notificationArray.length > 0 && (
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content mt-3 z-[99999] p-2 shadow bg-base-100 rounded-box hover:z-[99999] focus:z-[99999]"
+                >
+                  {[...notificationArray].reverse().map((item) => (
+                    <li
+                      key={item.id}
+                      className="group flex items-center justify-between flex-row active:text-white"
+                      onClick={() => deleteNoti(item.id)}
+                    >
+                      <a className="grow">
+                        {item.message}
+                        <span className="text-indigo-300 group-active:text-white">
+                          X
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </button>
           <Link

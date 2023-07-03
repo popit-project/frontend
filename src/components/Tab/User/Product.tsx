@@ -18,7 +18,7 @@ export default function Product() {
 
   useEffect(() => {
     axiosInstance
-      .get("http://3.34.149.107:8082/api/seller/item/5")
+      .get("http://3.34.149.107:8082/api/seller/item/1")
       .then((response) => {
         const data = response.data;
         setProducts(data);

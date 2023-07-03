@@ -3,62 +3,60 @@ import Home from "../components/Tab/Seller/Home";
 import News from "../components/Tab/Seller/News";
 import Product from "../components/Tab/Seller/Product";
 import Review from "../components/Tab/Seller/Review";
-import { useParams } from "react-router-dom";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
-import MainNav from "../components/MainNav";
 
 interface Popup {
-  storeAddress: string;
-  y: number;
-  storeName: string;
-  x: number;
-  storePhone: string;
+  closeDate: string;
+  closeTime: string;
   openDate: string;
   openTime: string;
-  closeTime: string;
-  closeDate: string;
+  sellerId: number;
+  storeAddress: string;
+  storeId: number;
+  storeImage: string;
+  storeName: string;
   storeType: string;
-  id: 1;
-  // 이 아래는 각각 api 알아봐야함. 즉, 없어지거나 수정예정
-  likes: number;
-  isLike: boolean;
-  comments: number;
 }
 
 export default function SellerManagementPage() {
-  const { id } = useParams<{ id: string }>();
   const [activeTab, setActiveTab] = useState<string>("tab1");
   const [popup, setPopup] = useState<Popup | null>(null);
 
   const handleTab = (tabName: string) => {
     setActiveTab(tabName);
   };
-
+  
   useEffect(() => {
     const fetchData = async () => {
+      const userId = localStorage.getItem("userId");
       try {
-        const response = await axiosInstance.get("/popupList");
-        const popupList: Popup[] = response.data;
-        const selectPopup = popupList.find(
-          (popup: Popup) => popup.id === Number(id)
+        const response = await axiosInstance.get(
+          `http://3.34.149.107:8082/api/seller/${userId}/storeHome`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
         );
-        if (selectPopup) {
-          setPopup(selectPopup);
-        }
+        console.log(response.data);
+        setPopup(response.data);
       } catch (error) {
         console.log(error);
       }
     };
 
     fetchData();
-  }, [id]);
+  }, []);
 
   return (
     <div>
       <div>
-        <figure className="h-60 bg-gray-400">
-          <img src="" alt="" />
-          <span>팝업이미지</span>
+        <figure className="h-60 bg-indigo-200 overflow-hidden relative">
+          <img
+            src={popup?.storeImage}
+            alt=""
+            className="w-full absolute top-[30%] -translate-y-[50%] opacity-70"
+          />
         </figure>
         <div className="flex items-center h-24 m-6">
           <div className="ml-8 text-left">
@@ -106,9 +104,15 @@ export default function SellerManagementPage() {
         </div>
         <div>
           {activeTab === "tab1" && <Home popup={popup} />}
-          {activeTab === "tab2" && <News />}
-          {activeTab === "tab3" && <Product />}
-          {activeTab === "tab4" && <Review />}
+          {activeTab === "tab2" && popup?.storeName && (
+            <News storeName={popup.storeName} />
+          )}
+          {activeTab === "tab3" && popup?.storeName && (
+            <Product sellerId={popup.sellerId} />
+          )}
+          {activeTab === "tab4" && popup?.storeName && (
+            <Review storeId={popup.storeId} />
+          )}
         </div>
       </div>
     </div>
