@@ -25,13 +25,13 @@ export default function SellerManagementPage() {
   const handleTab = (tabName: string) => {
     setActiveTab(tabName);
   };
-  
+
   useEffect(() => {
     const fetchData = async () => {
-      const userId = localStorage.getItem("userId");
+      const sellerId = localStorage.getItem("sellerId");
       try {
         const response = await axiosInstance.get(
-          `http://3.34.149.107:8082/api/seller/${userId}/storeHome`,
+          `http://3.34.149.107:8082/api/seller/${sellerId}/storeHome`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -108,7 +108,7 @@ export default function SellerManagementPage() {
             <News storeName={popup.storeName} />
           )}
           {activeTab === "tab3" && popup?.storeName && (
-            <Product sellerId={popup.sellerId} />
+            <Product storeId={popup.storeId} />
           )}
           {activeTab === "tab4" && popup?.storeName && (
             <Review storeId={popup.storeId} />

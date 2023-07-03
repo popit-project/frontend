@@ -5,7 +5,7 @@ import { useCallback, useState } from "react";
 import { useRecoilState } from "recoil";
 import { LoginTokenAtom } from "../recoilAtom/LoginTokenAtom";
 import Loading from "../components/Loading";
- 
+
 import google from "../assets/images/rsq-google-2.png";
 import naver from "../assets/images/rsq-naver-2.png";
 import kakao from "../assets/images/rsq-kakao-2.png";
@@ -32,6 +32,7 @@ export default function LoginPage() {
       localStorage.setItem("userId", loginData.userId);
       localStorage.setItem("expiresIn", response.data.expiresIn);
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem("sellerId", response.data.sellerId);
 
       window.location.href = "/";
 
@@ -60,16 +61,16 @@ export default function LoginPage() {
   //   const { name, value } = e.target;
   //   setLoginData((prevData) => ({ ...prevData, [name]: value }));
   //   console.log(loginData);
-      
+
   // }, [loginData]);
-    
+
   const googleLogin = async () => {
     const response = await axiosInstance.post(
       "http://3.34.149.107:8082/api/login/google"
     );
     console.log(response.data);
     window.location.href = `${response.data}`;
-  }
+  };
   const changeData = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
@@ -150,13 +151,9 @@ export default function LoginPage() {
             </Link>
           </div>
         </div>
-      )
-        
-              
-          
-      }
+      )}
     </>
   );
 }
 
-  export const MemoizedLoginPage = React.memo(LoginPage);
+export const MemoizedLoginPage = React.memo(LoginPage);
