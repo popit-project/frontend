@@ -16,17 +16,21 @@ export interface Popup {
   openTime: string;
   closeTime: string;
   closeDate: string;
+  storeImage: string;
   storeType: string;
   id: number;
   reviewCount: number;
   likeCount: number;
+  storeImage: string;
 }
 
 const PopupListPage: React.FC = () => {
   const [popupList, setPopupList] = useState<Popup[]>([]);
   const [likedStoreIds, setLikedStoreIds] = useState<number[]>([]);
   const [searchResults, setSearchResults] = useState<Popup[]>([]);
-  const [selectedStoreType, setSelectedStoreType] = useState<string | null>(null);
+  const [selectedStoreType, setSelectedStoreType] = useState<string | null>(
+    null
+  );
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 2;
 
@@ -35,6 +39,10 @@ const PopupListPage: React.FC = () => {
   const storeTypeParam = searchParams.get("type");
 
   useEffect(() => {
+    fetchPopupList();
+  }, []);
+
+  const fetchPopupList = () => {
     axiosInstance
       .get("http://3.34.149.107:8082/api/store/searchAll")
       .then((response) => {
@@ -44,6 +52,13 @@ const PopupListPage: React.FC = () => {
       .catch((error) => {
         console.error(error);
       });
+  };
+
+  useEffect(() => {
+    const storedLikedStoreIds = localStorage.getItem("likedStoreIds");
+    if (storedLikedStoreIds) {
+      setLikedStoreIds(JSON.parse(storedLikedStoreIds));
+    }
   }, []);
 
   const handleLiked = (id: number) => {
@@ -86,7 +101,8 @@ const PopupListPage: React.FC = () => {
   const getSearchResults = (searchKeyword: string) => {
     const results = popupList.filter(
       (popup) =>
-        popup.storeName.includes(searchKeyword) || popup.storeAddress.includes(searchKeyword)
+        popup.storeName.includes(searchKeyword) ||
+        popup.storeAddress.includes(searchKeyword)
     );
     setSearchResults(results);
   };
@@ -106,20 +122,24 @@ const PopupListPage: React.FC = () => {
 
   useEffect(() => {
     if (storeTypeParam) {
-      const filteredResults = popupList.filter((popup) => popup.storeType === storeTypeParam);
+      const filteredResults = popupList.filter(
+        (popup) => popup.storeType === storeTypeParam
+      );
       setSearchResults(filteredResults);
       setSelectedStoreType(storeTypeParam);
     } else {
-      setSearchResults(popupList);
+      // setSearchResults(popupList);
       setSelectedStoreType(null);
     }
   }, [storeTypeParam, popupList]);
 
   const handleShowPopupByType = (storeType: string) => {
-    const filteredResults = popupList.filter((popup) => popup.storeType === storeType);
+    const filteredResults = popupList.filter(
+      (popup) => popup.storeType === storeType
+    );
     setSearchResults(filteredResults);
     setSelectedStoreType(storeType);
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
 
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -134,7 +154,7 @@ const PopupListPage: React.FC = () => {
   return (
     <>
       <Search />
-      <div className="max-w-7xl flex justify-center my-0 mx-auto">
+      <div className="max-w-7xl flex justify-center my-0 mx-auto text-indigo-950">
         <div className="border-r-2 mt-4 border-indigo-200 h-10">
           <button
             onClick={handleShowAllPopup}
@@ -160,22 +180,44 @@ const PopupListPage: React.FC = () => {
           </button>
         </div>
       </div>
-
       {searchResults.length === 0 ? (
-        <div>해당되는 아이템이 없습니다.</div>
+        <div className="minHeight p-5 rounded-md flex items-center justify-center">
+          <p className="h-full mb-5 font-semibold text-2xl">
+          스토어가 없습니다.
+          </p>
+      </div>
       ) : (
         <>
           <div className="max-w-7xl my-0 mx-auto mb-[10rem] mt-10 grid grid-cols-1 gap-2 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
             {currentItems.map((popup) => (
               <div key={popup.id}>
                 <Link to={`/popuplist/${popup.id}`}>
-                  <figure className="bg-gray-500 h-80">
-                    <img src="" alt="" />
-                    <span className="text-slate-800">팝업스토어 사진</span>
+                  <figure className="bg-gray-500 h-80 overflow-hidden relative">
+                    <img
+                      src={popup.storeImage}
+                      alt=""
+                      className="absolute w-full h-full blur-xl"
+                    />
+                    <img
+                      src={popup.storeImage}
+                      alt=""
+                      className="absolute top-1/2 left-2/4 -translate-x-1/2 -translate-y-1/2"
+                    />
                   </figure>
                   <div className="p-3">
                     <div className="mb-3 text-left color text-slate-800">
+                    <div className="flex">
                       <h3 className="font-bold">{popup.storeName}</h3>
+                      {popup.storeType === "POPUP_STORE" ? (
+                        <div className="badge badge-info ml-2">
+                          POPUP STORE
+                        </div>
+                      ) : popup.storeType === "FLEA_MARKET" ? (
+                        <div className="badge badge-success ml-2">
+                          FLEA MARKET
+                        </div>
+                      ) : null}
+                    </div>
                       <p>{popup.storeAddress}</p>
                       <p>
                         {popup.openDate} ~ {popup.closeDate}

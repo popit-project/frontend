@@ -5,6 +5,7 @@ import Product from "../components/Tab/User/Product";
 import Review from "../components/Tab/User/Review";
 import { useParams } from "react-router-dom";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
+import loopy from "../assets/images/KakaoTalk_Photo_2023-06-23-22-43-57 004.jpeg";
 
 interface Popup {
   storeAddress: string;
@@ -18,8 +19,7 @@ interface Popup {
   closeDate: string;
   storeType: string;
   storeImage: string;
-  id: 1;
-  // 이 아래는 각각 api 알아봐야함. 즉, 없어지거나 수정예정
+  id: number;
   likes: number;
   isLike: boolean;
   comments: number;
@@ -58,9 +58,12 @@ export default function PopupDetailPage() {
   return (
     <div className="mb-[10rem]">
       <div>
-        <figure className="h-60 bg-gray-400">
-          <img src={popup?.storeImage} alt="" />
-          <span>팝업이미지</span>
+        <figure className="h-40 sm:h-60 bg-white overflow-hidden relative">
+          <img
+            src={popup?.storeImage}
+            alt={""}
+            className="w-full h-full absolute sm:top-[30%] sm:-translate-y-[50%] sm:h-auto opacity-70"
+          />
         </figure>
         <div className="max-w-7xl mx-auto">
           <div className="pl-5 flex items-center h-24 my-6">

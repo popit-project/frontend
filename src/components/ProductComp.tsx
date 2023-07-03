@@ -162,91 +162,141 @@ export default function ProductComp({price,name,imageUrl,stock,bt,productId}:inf
 
     return (
         <div>
-            <div className="flex ]justify-center mb-[3rem]">
+
+
+            <div>
+                <div className="flex ]justify-center mb-[3rem]">
+                    <div className="mr-[2rem]">
+                        <div className="border-2 border-indigo-500 rounded-lg h-[11rem] w-[11rem] flex justify-center items-center">
+                            {image ? (
+                                <img
+                                    className="h-[10rem] w-[10rem]"
+                                    src={image}
+                                    alt="product"
+                                />
+                            ) : (
+                                "No Image"
+                            )}
+                        </div>
+                        <input
+                            type="file"
+                            id="input-file"
+                            className="hidden"
+                            ref={selectFile}
+                            onChange={handleFileChange}
+                        ></input>
+                        <div className="flex justify-center">
+                            {bt === 0 ? (
+                                <button
+                                    className="btn bg-indigo-400 hover:bg-indigo-300 mt-[1rem]"
+                                    onClick={handleFileClick}
+                                >
+                                    사진 등록
+                                </button>
+                            ) : (
+                                <button
+                                    className="btn bg-indigo-400 hover:bg-indigo-300 mt-[1rem]"
+                                    onClick={handleFileClick}
+                                >
+                                    사진 수정
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="flex border-[1px] border-indigo-500 p-2 rounded-md mb-[2rem] bg-indigo-50">
                 <div className="mr-[2rem]">
-                    <div className="border-2 border-indigo-500 rounded-lg h-[11rem] w-[11rem] flex justify-center items-center">
+                    <div className="border-[1px] border-indigo-500 rounded-lg h-[11rem] w-[11rem] flex justify-center items-center bg-white">
                         {image ? (
                             <img
                                 className="h-[10rem] w-[10rem]"
                                 src={image}
-                                alt="product"
+                                alt="Product"
                             />
                         ) : (
-                            "No Image"
+                            "No image"
                         )}
                     </div>
-                    <input
-                        type="file"
-                        id="input-file"
-                        className="hidden"
-                        ref={selectFile}
-                        onChange={handleFileChange}
-                    ></input>
-                    <div className="flex justify-center">
-                        {bt === 0 ? (
-                            <button
-                                className="btn bg-indigo-400 hover:bg-indigo-300 mt-[1rem]"
-                                onClick={handleFileClick}
-                            >
-                                사진 등록
-                            </button>
-                        ) : (
-                            <button
-                                className="btn bg-indigo-400 hover:bg-indigo-300 mt-[1rem]"
-                                onClick={handleFileClick}
-                            >
-                                사진 수정
-                            </button>
-                        )}
+                    <div>
+                        <input
+                            type="text"
+                            placeholder={`${name}`}
+                            className="input input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
+                            name="itemNm"
+                            onChange={handleInputChange}
+                        />
+                        <input
+                            type="text"
+                            placeholder={`${price}`}
+                            className="input input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
+                            name="price"
+                            onChange={handleInputChange}
+                        />
+                        <input
+                            type="text"
+                            placeholder={`${stock}`}
+                            className="input input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
+                            name="stockNumber"
+                            onChange={handleInputChange}
+                        />
+                        <div className="flex justify-center">
+                            {bt === 0 ? (
+                                <button
+                                    className="btn bg-indigo-400 hover:bg-indigo-300"
+                                    onClick={onRegis}
+                                >
+                                    상품 등록
+                                </button>
+                            ) : (
+                                <div>
+                                    <button
+                                        className="btn bg-indigo-400 hover:bg-indigo-300 mr-[1rem]"
+                                        onClick={update}
+                                    >
+                                        상품 수정
+                                    </button>
+                                    <button
+                                        className="btn bg-indigo-400 hover:bg-indigo-300"
+                                        onClick={deleteItem}
+                                    >
+                                        상품 삭제
+                                    </button>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
                 <div>
                     <input
                         type="text"
-                        placeholder={`${name}`}
-                        className="input input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
+                        placeholder="상품 이름"
+                        className="input input-accent w-full max-w-xs block mb-[1rem] border-[1px] border-indigo-500 focus:outline-indigo-500"
                         name="itemNm"
                         onChange={handleInputChange}
                     />
                     <input
                         type="text"
-                        placeholder={`${price}`}
-                        className="input input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
+                        placeholder="상품 가격"
+                        className="input input-accent w-full max-w-xs block mb-[1rem] border-[1px] border-indigo-500 focus:outline-indigo-500"
                         name="price"
                         onChange={handleInputChange}
                     />
                     <input
                         type="text"
-                        placeholder={`${stock}`}
-                        className="input input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
+                        placeholder="재고 수량 입력"
+                        className="input input-accent w-full max-w-xs block mb-[1rem] border-[1px] border-indigo-500 focus:outline-indigo-500"
                         name="stockNumber"
                         onChange={handleInputChange}
                     />
-                    <div className="flex justify-center">
-                        {bt === 0 ? (
-                            <button
-                                className="btn bg-indigo-400 hover:bg-indigo-300"
-                                onClick={onRegis}
-                            >
-                                상품 등록
-                            </button>
-                        ) : (
-                            <div>
-                                <button
-                                    className="btn bg-indigo-400 hover:bg-indigo-300 mr-[1rem]"
-                                    onClick={update}
-                                >
-                                    상품 수정
-                                </button>
-                                <button
-                                    className="btn bg-indigo-400 hover:bg-indigo-300"
-                                    onClick={deleteItem}
-                                >
-                                    상품 삭제
-                                </button>
-                            </div>
-                        )}
-                    </div>
+                    <div className="flex justify-end">
+                        <button
+                            className="btn bg-indigo-400 hover:bg-indigo-300"
+                            onClick={onRegis}
+                        >
+                            상품 등록
+                        </button>
+                    </div>                
                 </div>
             </div>
         </div>
