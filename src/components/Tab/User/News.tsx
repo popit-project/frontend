@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { axiosInstance } from "../../AxiosInstance/AxiosConfig";
 
 interface NewsProps {
   storeName: string;
@@ -8,9 +8,9 @@ interface NewsProps {
 interface NewsItem {
   city: string;
   content: string;
-  createTime: string;
+  timeAgo: string;
   id: number;
-  image: string;
+  newsImgURL: string;
   storeName: string;
 }
 
@@ -18,10 +18,11 @@ export default function News({ storeName }: NewsProps) {
   const [news, setNews] = useState<NewsItem[]>([]);
 
   useEffect(() => {
-    axios
-      .get(`http://3.34.149.107:8082/api/seller/${storeName}/news`)
+    axiosInstance
+      .get(`http://3.34.149.107:8082/api/${storeName}/news`)
       .then((response) => {
         const data = response.data.data;
+        console.log(data);
         setNews(data);
       })
       .catch((error) => {
@@ -38,7 +39,7 @@ export default function News({ storeName }: NewsProps) {
           </div>
         ) : (
           <div className="tab-list">
-            {news.map((item) => (
+            {[...news].reverse().map((item) => (
               <div
                 key={item.id}
                 className="py-8 border-b border-slate-300 first:pt-0 last:border-none"
@@ -49,14 +50,16 @@ export default function News({ storeName }: NewsProps) {
                     <div className="text-slate-500">
                       <span>{item.city}</span>
                       <span className="ml-1">•</span>
-                      <span className="ml-1">{item.createTime}</span>
+                      <span className="ml-1">{item.timeAgo}</span>
                     </div>
                   </div>
                 </div>
-                <div className="mb-5">{item.content}</div>
-                <div className="bg-slate-500 w-full h-48">
-                  <img src="" alt="" />
-                </div>
+                <div>{item.content}</div>
+                {item.newsImgURL && (
+                  <div className="w-full overflow-hidden mt-5">
+                    <img src={item.newsImgURL} alt="" />
+                  </div>
+                )}
               </div>
             ))}
           </div>

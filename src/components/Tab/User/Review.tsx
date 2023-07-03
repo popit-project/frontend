@@ -11,6 +11,7 @@ interface review {
 export default function Review() {
   const [reviewList, setReviewList] = useState<review[]>([]);
   const [newReview, setNewReview] = useState("");
+  const [showErrorAlert, setShowErrorAlert] = useState(false);
   const { id } = useParams<{ id: string }>();
   const storeId = Number(id);
   const userId = localStorage.getItem("userId");
@@ -47,11 +48,15 @@ export default function Review() {
           },
         }
       )
-      .then(() => {
+      .then((response) => {
+        console.log(response);
         setNewReview("");
         fetchReviewList();
       })
       .catch((error) => {
+        if (error.response.status === 500) {
+          setShowErrorAlert(true);
+        }
         console.error("Failed to submit review:", error);
       });
   };
@@ -63,7 +68,8 @@ export default function Review() {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
-      .then(() => {
+      .then((response) => {
+        console.log(response);
         fetchReviewList();
       })
       .catch((error) => {
@@ -71,9 +77,23 @@ export default function Review() {
       });
   };
 
+  useEffect(() => {
+    let timeout: number;
+
+    if (showErrorAlert) {
+      timeout = window.setTimeout(() => {
+        setShowErrorAlert(false);
+      }, 1000);
+    }
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [showErrorAlert]);
+
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="my-10 bg-indigo-50 rounded-lg text-left p-5 m-5">
+      <div className="my-10 bg-indigo-50 rounded-lg text-left p-5 m-5 relative">
         <div className="mb-16">
           <form className="flex flex-col items-center sm:flex-row">
             <input
@@ -122,6 +142,28 @@ export default function Review() {
                 )}
               </div>
             ))}
+          </div>
+        )}
+        {showErrorAlert && (
+          <div className="bg-gray-200 bg-opacity-80 absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-lg">
+            <div className="alert alert-error w-fit">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="stroke-current shrink-0 h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span className="font-semibold">
+                이미 작성한 리뷰가 있습니다!
+              </span>
+            </div>
           </div>
         )}
       </div>

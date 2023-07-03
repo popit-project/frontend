@@ -17,12 +17,11 @@ export default function CartPage() {
     setShowModal(true);
   };
 
-  //리스폰스 엔디티값이 오기전 테스트
   const handleConfirmPayment = () => {
     const purchasedItems = cartListState.map((item) => ({
       itemNm: item.itemNm,
-      quantity: item.quantity,
       price: item.price,
+      quantity: item.quantity,
     }));
 
     const requestData = {
@@ -30,49 +29,27 @@ export default function CartPage() {
     };
 
     axiosInstance
-      .post("http://3.34.149.107:8082/orders/order", requestData, {
+      .post("http://3.34.149.107:8082/api/order", requestData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
-      .then(() => {
-        console.log("Payment confirmed");
-        setShowModal(false);
-        // setShowErrorAlert(true);
-        setCartListState([]);
+      .then((response) => {
+        if (response.status === 200) {
+          console.log("Payment confirmed");
+          setShowModal(false);
+          console.log(response);
+          setCartListState([]);
+        }
       })
       .catch((error) => {
         console.error("payment error:", error);
+        if (error.response.status === 400) {
+          setShowErrorAlert(true);
+          setShowModal(false);
+        }
       });
   };
-
-  //정확한 리스폰스 엔디티값이 오면 이걸로 진행
-  // const handleConfirmPayment = () => {
-  //   const purchasedItems = cartListState.map((item) => ({
-  //     itemName: item.itemNm,
-  //     stockNumber: item.quantity,
-  //   }));
-
-  //   axiosInstance
-  //     .post("/payment", purchasedItems)
-  //     .then((response) => {
-  //       if (response.status === 200) {
-  //         console.log("Payment confirmed");
-  //         setShowModal(false);
-  //         setShowErrorAlert(true);
-  //         setCartListState([]);
-  //         // setShowErrorAlert(true);
-  //       } else if (response.status === 400) {
-  //          setShowErrorAlert(true);
-  //         console.log("요청이 실패했습니다");
-  //       } else {
-  //         throw new Error("Payment request failed");
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error("payment error:", error);
-  //     });
-  // };
 
   const handleCancelPayment = () => {
     setShowModal(false);
@@ -130,7 +107,7 @@ export default function CartPage() {
           )}
           {showErrorAlert && (
             <div className="bg-gray-200 bg-opacity-80 absolute top-0 left-0 w-full h-full flex items-center justify-center">
-              <div className="alert alert-error w-3/12">
+              <div className="alert alert-error w-fit">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="stroke-current shrink-0 h-6 w-6"

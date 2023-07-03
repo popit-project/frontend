@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { axiosInstance } from "../../AxiosInstance/AxiosConfig";
 
-interface review {
+interface Review {
   id: number;
   email: string;
   location: string;
@@ -9,13 +9,17 @@ interface review {
   comment: string;
 }
 
+interface ReviewProps {
+  storeId: number | null;
+}
+
 //api변수 storeid
-export default function Review() {
-  const [reviewList, setReviewList] = useState<review[]>([]);
+export default function Review({ storeId }: ReviewProps) {
+  const [reviewList, setReviewList] = useState<Review[]>([]);
 
   useEffect(() => {
     axiosInstance
-      .get("/reviews?_sort=id&_order=desc")
+      .get(`http://3.34.149.107:8082/api/review/read/${storeId}/comment`)
       .then((response) => {
         const data = response.data;
         setReviewList(data);
@@ -23,7 +27,7 @@ export default function Review() {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [storeId]);
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -42,11 +46,6 @@ export default function Review() {
                 <div className="flex items-center mb-2">
                   <div className="text-left">
                     <p className="font-bold text-base">{review.email}</p>
-                    <div className="text-slate-500">
-                      <span>{review.location}</span>
-                      <span className="ml-1">•</span>
-                      <span className="ml-1">{review.date}</span>
-                    </div>
                   </div>
                 </div>
                 <div>{review.comment}</div>

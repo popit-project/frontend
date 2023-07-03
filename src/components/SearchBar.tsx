@@ -58,7 +58,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex justify-center mt-5 mb-1 relative">
+    <div className="flex justify-center mt-5 mb-1 relative -z-1">
       <form onSubmit={handleSearch} className="flex">
         <button type="submit" className="items-center justify-center flex m-2">
           <FiSearch size={28} color="#a5b4fc" />
