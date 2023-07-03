@@ -116,7 +116,7 @@ export default function PopupDetailPage() {
           {activeTab === "tab2" && popup?.storeName && (
             <News storeName={popup.storeName} />
           )}
-          {activeTab === "tab3" && <Product />}
+          {activeTab === "tab3" && popup?.id && <Product storeId={popup.id} />}
           {activeTab === "tab4" && <Review />}
         </div>
       </div>

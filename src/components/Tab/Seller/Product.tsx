@@ -3,7 +3,7 @@ import { axiosInstance } from "../../AxiosInstance/AxiosConfig";
 import { Link } from "react-router-dom";
 
 interface ProductProps {
-  sellerId: number;
+  storeId: number;
 }
 
 interface products {
@@ -16,21 +16,21 @@ interface products {
 }
 
 //api변수 sellerId
-export default function Product({ sellerId }: ProductProps) {
+export default function Product({ storeId }: ProductProps) {
   const [products, setProducts] = useState<products[]>([]);
 
   useEffect(() => {
     axiosInstance
-      .get(`http://3.34.149.107:8082/api/seller/item/${sellerId}`)
+      .get(`http://3.34.149.107:8082/api/seller/item/${storeId}`)
       .then((response) => {
-        console.log("완성")
+        console.log("완성");
         const data = response.data;
         setProducts(data);
       })
       .catch((error) => {
         console.error(error);
       });
-  }, [sellerId]);
+  }, [storeId]);
 
   return (
     <div className="max-w-7xl mx-auto">

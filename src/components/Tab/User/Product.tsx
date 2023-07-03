@@ -12,13 +12,18 @@ interface products {
   itemSellStatus: string;
 }
 
-export default function Product() {
+interface ProductProps {
+  storeId: number;
+}
+
+export default function Product({ storeId }: ProductProps) {
   const [cartItems, setCartItems] = useRecoilState<CartItem[]>(cartListAtom);
   const [products, setProducts] = useState<products[]>([]);
+  const sellerId = localStorage.getItem("sellerId");
 
   useEffect(() => {
     axiosInstance
-      .get("http://3.34.149.107:8082/api/seller/item/1")
+      .get(`http://3.34.149.107:8082/api/seller/item/${storeId}`)
       .then((response) => {
         const data = response.data;
         setProducts(data);
@@ -26,7 +31,7 @@ export default function Product() {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [sellerId]);
 
   const addToCart = (id: number) => {
     const selectedItem = products.find((product) => product.id === id);
