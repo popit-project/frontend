@@ -82,9 +82,9 @@ export default function ProductComp() {
   
 
     return (
-        <div className="flex border-2 border-indigo-500 p-2 rounded-md mb-[2rem]">
+        <div className="flex border-[1px] border-indigo-500 p-2 rounded-md mb-[2rem] bg-indigo-50">
             <div className="mr-[2rem]">
-                <div className="border-2 border-indigo-500 rounded-lg h-[11rem] w-[11rem] flex justify-center items-center">
+                <div className="border-[1px] border-indigo-500 rounded-lg h-[11rem] w-[11rem] flex justify-center items-center bg-white">
                     {image ? (
                         <img
                             className="h-[10rem] w-[10rem]"
@@ -115,21 +115,21 @@ export default function ProductComp() {
                 <input
                     type="text"
                     placeholder="상품 이름"
-                    className="input input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
+                    className="input input-accent w-full max-w-xs block mb-[1rem] border-[1px] border-indigo-500 focus:outline-indigo-500"
                     name="itemNm"
                     onChange={handleInputChange}
                 />
                 <input
                     type="text"
                     placeholder="상품 가격"
-                    className="input input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
+                    className="input input-accent w-full max-w-xs block mb-[1rem] border-[1px] border-indigo-500 focus:outline-indigo-500"
                     name="price"
                     onChange={handleInputChange}
                 />
                 <input
                     type="text"
                     placeholder="재고 수량 입력"
-                    className="input input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
+                    className="input input-accent w-full max-w-xs block mb-[1rem] border-[1px] border-indigo-500 focus:outline-indigo-500"
                     name="stockNumber"
                     onChange={handleInputChange}
                 />

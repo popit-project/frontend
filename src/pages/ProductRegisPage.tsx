@@ -46,16 +46,16 @@ export default function ProductRegisPage() {
 
     return (
         <>
-            <div className="max-w-7xl my-0 mx-auto mb-[10rem]">
-                <div className="flex justify-center items-center mt-[3rem] w-screen">
-                    <div className="text-2xl mr-[5rem]">
+            <div className="my-0 mx-auto mb-[10rem]">
+                <div className="flex justify-center items-center mt-[6rem] w-screen">
+                    <div className="text-2xl mr-[2rem]">
                         상품 등록 페이지
                     </div>
                     <button
-                        className="btn bg-indigo-400 hover:bg-indigo-300"
+                        className="btn btn-outline border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400"
                         onClick={onRegist}
                     >
-                        상품 등록
+                        + 추가하기
                     </button>
                 </div>
                 <div>

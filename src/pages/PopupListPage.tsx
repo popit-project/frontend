@@ -20,6 +20,7 @@ export interface Popup {
   id: number;
   reviewCount: number;
   likeCount: number;
+  storeImage: string;
 }
 
 const PopupListPage: React.FC = () => {
@@ -110,7 +111,7 @@ const PopupListPage: React.FC = () => {
       setSearchResults(filteredResults);
       setSelectedStoreType(storeTypeParam);
     } else {
-      setSearchResults(popupList);
+      // setSearchResults(popupList);
       setSelectedStoreType(null);
     }
   }, [storeTypeParam, popupList]);
@@ -134,7 +135,7 @@ const PopupListPage: React.FC = () => {
   return (
     <>
       <Search />
-      <div className="max-w-7xl flex justify-center my-0 mx-auto">
+      <div className="max-w-7xl flex justify-center my-0 mx-auto text-indigo-950">
         <div className="border-r-2 mt-4 border-indigo-200 h-10">
           <button
             onClick={handleShowAllPopup}
@@ -160,9 +161,12 @@ const PopupListPage: React.FC = () => {
           </button>
         </div>
       </div>
-
       {searchResults.length === 0 ? (
-        <div>해당되는 아이템이 없습니다.</div>
+        <div className="minHeight p-5 rounded-md flex items-center justify-center">
+          <p className="h-full mb-5 font-semibold text-2xl">
+          스토어가 없습니다.
+          </p>
+      </div>
       ) : (
         <>
           <div className="max-w-7xl my-0 mx-auto mb-[10rem] mt-10 grid grid-cols-1 gap-2 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
@@ -170,12 +174,23 @@ const PopupListPage: React.FC = () => {
               <div key={popup.id}>
                 <Link to={`/popuplist/${popup.id}`}>
                   <figure className="bg-gray-500 h-80">
-                    <img src="" alt="" />
+                    <img src={popup.storeImage} alt="" />
                     <span className="text-slate-800">팝업스토어 사진</span>
                   </figure>
                   <div className="p-3">
                     <div className="mb-3 text-left color text-slate-800">
+                    <div className="flex">
                       <h3 className="font-bold">{popup.storeName}</h3>
+                      {popup.storeType === "POPUP_STORE" ? (
+                        <div className="badge badge-info ml-2">
+                          POPUP STORE
+                        </div>
+                      ) : popup.storeType === "FLEA_MARKET" ? (
+                        <div className="badge badge-success ml-2">
+                          FLEA MARKET
+                        </div>
+                      ) : null}
+                    </div>
                       <p>{popup.storeAddress}</p>
                       <p>
                         {popup.openDate} ~ {popup.closeDate}
