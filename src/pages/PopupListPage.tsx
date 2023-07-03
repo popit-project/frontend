@@ -16,7 +16,6 @@ export interface Popup {
   openTime: string;
   closeTime: string;
   closeDate: string;
-  storeImage: string;
   storeType: string;
   id: number;
   reviewCount: number;

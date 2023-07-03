@@ -10,6 +10,7 @@ const RecomList = () => {
   const [popupList, setPopupList] = useState<Popup[]>([]);
   const storedLat = localStorage.getItem("lat");
   const storedLng = localStorage.getItem("lng");
+  const [likedStoreIds, setLikedStoreIds] = useState<number[]>([]);
 
   const fetchPopups = async (lat: number, lng: number) => {
     try {
@@ -30,19 +31,37 @@ const RecomList = () => {
 
   const handleLiked = (id: number) => {
     axiosInstance
-      .patch(`/popupList/${id}`, { isLike: true })
+      .post(`http://3.34.149.107:8082/api/store/${id}/toggle-like`, null, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then(() => {
+        const updatedLikedStoreIds = likedStoreIds.includes(id)
+          ? likedStoreIds.filter((storeId) => storeId !== id)
+          : [...likedStoreIds, id];
+        localStorage.setItem(
+          "likedStoreIds",
+          JSON.stringify(updatedLikedStoreIds)
+        );
+        setLikedStoreIds(updatedLikedStoreIds);
         setPopupList((prevPopupList) => {
           return prevPopupList.map((popup) => {
             if (popup.id === id) {
-              const updatedLikes = popup.isLike ? popup.likes - 1 : popup.likes + 1;
-              return { ...popup, isLike: !popup.isLike, likes: updatedLikes };
+              return {
+                ...popup,
+                likeCount: likedStoreIds.includes(id)
+                  ? popup.likeCount - 1
+                  : popup.likeCount + 1,
+              };
             }
             return popup;
           });
         });
       })
-      .catch((error) => console.error('주변 스토어 찾기 전'));
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   if (popupList.length === 0) {
@@ -77,16 +96,16 @@ const RecomList = () => {
                 <span className="ml-1 text-sm">{popup.reviewCount}</span>
               </div>
               <div className="flex items-center text-indigo-500">
-                {popup.isLike ? (
-                  <span onClick={() => handleLiked(popup.id)}>
-                    <FillLikeIcon width={24} height={24} fill="#a5b4fc" />
-                  </span>
-                ) : (
-                  <span onClick={() => handleLiked(popup.id)}>
-                    <LikeIcon width={24} height={24} fill="#a5b4fc" />
-                  </span>
-                )}
-                <span className="ml-1 text-sm">{popup.likeCount}</span>
+              {likedStoreIds.includes(popup.id) ? (
+                        <span onClick={() => handleLiked(popup.id)}>
+                          <FillLikeIcon width={30} height={30} fill="#A5B4FC" />
+                        </span>
+                      ) : (
+                        <span onClick={() => handleLiked(popup.id)}>
+                          <LikeIcon width={30} height={30} fill="#A5B4FC" />
+                        </span>
+                      )}
+                      {popup.likeCount}
               </div>
             </div>
           </div>
