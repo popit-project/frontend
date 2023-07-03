@@ -8,6 +8,7 @@ import { useCallback, useState } from "react";
 import { useRecoilState } from "recoil";
 import { LoginTokenAtom } from "../recoilAtom/LoginTokenAtom";
 import Loading from "../components/Loading";
+ 
 
 //구글로그인은 -> 버튼클릭하면 api/google호출해서 응답받은걸로(url) navigate를 하면은 그 url로 이동하기 !
 //로그아웃 버튼이 있어야하고. 로그아웃을 하면 localStorage에서 로그인 아이디 및 인증토큰들을 다 지워야함.
@@ -61,14 +62,22 @@ export default function LoginPage() {
         setLoginData((prevData) => ({ ...prevData, [name]: value }));
         console.log(loginData);
       
-    },[loginData]);
+    }, [loginData]);
+    
+    const googleLogin = async () => {
+        const response = await axiosInstance.post(
+            "http://3.34.149.107:8082/api/login/google"            
+        );
+        console.log(response.data);
+        window.location.href = `${response.data}`;
+    }
 
 return (
     <>
         {loading === true ? (
             <Loading />
         ) : (
-            <div className="my-0 mx-auto mb-[10rem]">
+            <div className="w-full my-0 mx-auto mb-[10rem]">
                 <div className="loginForm w-full">
                     <form onSubmit={loginRequest}>
                         <input
@@ -85,7 +94,7 @@ return (
                             onChange={changeData}
                             className="input input-success w-full max-w-xs block mb-[3rem] mx-auto border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500"
                         />
-                        <div className="w-screen flex justify-center">
+                        <div className="w-full flex justify-center">
                             <button
                                 type="button"
                                 className="btn bg-indigo-400 hover:bg-indigo-300 max-w-xs w-full mb-[3rem]"
@@ -96,20 +105,27 @@ return (
                         </div>
                     </form>
                 </div>
-                <div className="w-screen flex justify-center">
+                <div className="w-full flex justify-center">
                     <div className="mb-[3rem] text-2xl">SNS 로그인</div>
                 </div>
-                <div className="w-screen flex justify-center">
+                <div className="w-full flex justify-center">
                     <div className="flex justify-center mb-[5rem] min-w-3xl">
-                        <img className="w-12 h-12" src={google}></img>
                         <img
-                            className="w-12 h-12 mr-[6rem] ml-[6rem]"
+                            className="w-12 h-12 bg-indigo-200 hover:bg-indigo-300 rounded-lg hover:cursor-pointer"
+                            src={google}
+                            onClick={googleLogin}
+                        ></img>
+                        <img
+                            className="w-12 h-12 mr-[6rem] ml-[6rem] bg-indigo-200  hover:bg-indigo-300 rounded-lg hover:cursor-pointer"
                             src={naver}
                         ></img>
-                        <img className="w-12 h-12 " src={kakao}></img>
+                        <img
+                            className="w-12 h-12 bg-indigo-200 hover:bg-indigo-300 rounded-lg hover:cursor-pointer"
+                            src={kakao}
+                        ></img>
                     </div>
                 </div>
-                <div className="w-screen flex justify-center">
+                <div className="w-full flex justify-center">
                     <Link to={"/signUp"}>
                         <button className="btn bg-indigo-400 hover:bg-indigo-300 mr-[1rem]">
                             회원가입

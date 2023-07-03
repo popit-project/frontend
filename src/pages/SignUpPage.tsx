@@ -2,11 +2,13 @@ import Nav from "../components/LoginNav";
 import React, { useEffect, useState } from "react";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 import Loading from "../components/Loading";
+import axios from "axios";
 
 //현재 register login info find-id 전부다 동작
 
 export default function SignUpPage() {
     const [loading, setLoading] = useState(false);
+    const [pwChk, setPwChk] = useState(false);
     const [userInfo, setUserInfo] = useState({
         email: "",
         nickname: "",
@@ -18,6 +20,15 @@ export default function SignUpPage() {
 
     useEffect(() => {
         console.log(userInfo)
+        
+        if (userInfo.password !== "" && userInfo.passwordCheck !== "" && userInfo.password !== userInfo.passwordCheck) {
+            setPwChk(true);
+            
+        }      
+        else {
+            setPwChk(false);
+        }
+        
     },[userInfo])
 
     async function handleClick() {
@@ -43,6 +54,23 @@ export default function SignUpPage() {
         ));
     }
 
+    const idAuth = async () => {
+        try {
+            const response = await axiosInstance.get(
+                "http://3.34.149.107:8082/api/user/info", {
+                    params: {
+                        userId:userInfo.userId,
+                    }
+                }
+            );
+            alert("사용 불가능한 아이디 입니다.");           
+        }
+        catch (error) {
+            alert("사용 가능한 아이디 입니다.")
+        }           
+        
+    }
+
     return (
         <>
             {loading === true ? (
@@ -50,12 +78,15 @@ export default function SignUpPage() {
             ) : (
                 <div className="max-w-7xl my-0 mx-auto mb-[10rem]">
                     <div className="signUpForm">
-                        <form className="w-screen">
+                        <div className="w-full">
                             <div className="form-control w-full max-w-xs mx-auto mt-[3rem]">
                                 <label className="label">
                                     <span className="label-text text-2xl mb-[1rem]">
                                         아이디
                                     </span>
+                                    <button className="btn bg-indigo-400 hover:bg-indigo-300" onClick={idAuth}>
+                                        중복확인
+                                    </button>
                                 </label>
                                 <input
                                     type="text"
@@ -84,6 +115,13 @@ export default function SignUpPage() {
                                     <span className="label-text text-2xl mb-[1rem]">
                                         비밀번호 확인
                                     </span>
+                                    {pwChk === true ? (
+                                        <span className="text-red-600 text-md font-bold">
+                                            비밀번호 불일치
+                                        </span>
+                                    ) : (
+                                        <></>
+                                    )}
                                 </label>
                                 <input
                                     type="password"
@@ -135,8 +173,8 @@ export default function SignUpPage() {
                                     onChange={changeInfo}
                                 />
                             </div>
-                        </form>
-                        <div className="form-control w-screen">
+                        </div>
+                        <div className="form-control w-full">
                             <button
                                 className="btn bg-indigo-400 hover:bg-indigo-300 max-w-xs mb-[3rem] mt-[8rem] w-screen mx-auto"
                                 onClick={handleClick}
