@@ -238,10 +238,10 @@ export default function SellerRegisPage() {
                             </label>
                             <input
                                 type="text"
-                                placeholder="주소"
-                                name="storeAddress"
+                                placeholder="팝업스토어 이름"
+                                name="storeName"
                                 onChange={handleInputChange}
-                                value={storeData.storeAddress}
+                                value={storeData.storeName}
                                 className="input input-bordered input-accent w-30 max-w-xs border-indigo-500 hover:border-indigo-500 focus:outline-none"
                             />
                         </div>
@@ -279,7 +279,7 @@ export default function SellerRegisPage() {
                                 type="text"
                                 placeholder="hh:mm"
                                 value={storeData.closeTime}
-                                name="closedTime"
+                                name="closeTime"
                                 onChange={handleInputChange}
                                 className="input input-bordered input-accent max-w-[8rem] mx-0.5 border-indigo-500 hover:border-indigo-500 focus:outline-none"
                             />
