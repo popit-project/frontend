@@ -187,7 +187,7 @@ const PopupListPage: React.FC = () => {
       </div>
       ) : (
         <>
-          <div className="max-w-7xl my-0 mx-auto mb-[10rem] mt-10 grid grid-cols-1 gap-2 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
+          <div className="max-w-7xl my-0 mx-auto mb-[5rem] mt-10 grid grid-cols-1 gap-2 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
             {currentItems.map((popup) => (
               <div key={popup.id}>
                 <Link to={`/popuplist/${popup.id}`}>

@@ -173,164 +173,173 @@ export default function SellerRegisPage() {
     },[storeData])
 
     return (
-        <div>
-            <div className="w-full flex justify-center mt-[2rem]">
-                <div className="border-[1px] border-indigo-500 rounded-lg h-[13rem] w-[20rem] flex justify-center items-center">
-                    {image ? (
-                        <img
-                            className="h-[12rem] w-[19rem]"
-                            src={image}
-                            alt="Product"
-                        />
-                    ) : (
-                        "No image"
-                    )}
+        <div className="max-w-7xl mx-auto ">
+            <div className="py-3 pt-10 relative border-b py-[2rem] mb-10 lg:border-none">
+                <div className="flex justify-center text-2xl font-bold">
+                    셀러 등록
                 </div>
             </div>
-            <input
-                type="file"
-                id="input-file"
-                className="hidden"
-                ref={selectFile}
-                onChange={handleFileChange}
-            ></input>
-            <div className="w-full flex justify-center">
-                <button
-                    className="btn bg-indigo-400 hover:bg-indigo-300 mt-[1rem]"
-                    onClick={handleFileClick}
-                >
-                    사진 등록
-                </button>
-            </div>
-            <div>
-                <form>
-                    <div className="flex justify-center w-full">
-                        <div>
-                            <label className="block text-2xl text-center mt-[2rem] ">
-                                팝업스토어 이름
-                            </label>
-                            <input
-                                type="text"
-                                name="storeName"
-                                value={storeData.storeName}
-                                placeholder="팝업스토어 이름"
-                                onChange={handleInputChange}
-                                className="input input-accent w-screen max-w-xs mt-[1rem] mb-[1rem] border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500"
-                            />
+            <div className="lg:flex lg:justify-center lg:pl-[120px]">
+                <div className="lg:pr-20 lg:flex lg:items-center lg:-mt-10 lg:border-r lg:pr-16">
+                    <div>
+                        <div className="flex justify-center">
+                            <div className="border-[1px] border-indigo-500 rounded-lg h-[13rem] w-[20rem] flex justify-center items-center">
+                                {image ? (
+                                    <img
+                                        className="h-[12rem] w-[19rem]"
+                                        src={image}
+                                        alt="Product"
+                                    />
+                                ) : (
+                                    "스토어 사진을 등록하세요."
+                                )}
+                            </div>
                         </div>
+                    <input
+                        type="file"
+                        id="input-file"
+                        className="hidden"
+                        ref={selectFile}
+                        onChange={handleFileChange}
+                    ></input>
+                <div className="w-full flex justify-center">
+                    <button
+                        className="btn bg-indigo-400 hover:bg-indigo-300 mt-[1rem] mb-3"
+                        onClick={handleFileClick}
+                    >
+                        사진 등록
+                    </button>
+                </div>
                     </div>
-                    <div className="flex justify-center w-full">
-                        <div>
-                            <label className="block text-2xl text-center mt-[2rem]">
-                                주소
-                            </label>
-                            <input
-                                type="text"
-                                name="storeAddress"
-                                value={storeData.storeAddress}
-                                placeholder="주소"
-                                onChange={handleInputChange}
-                                className="input input-accent w-screen max-w-xs mt-[1rem] mb-[1rem] border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500"
-                            />
+                </div>
+                <div>
+                    <form className="pb-8">
+                        <div className="flex justify-center mt-3">
+                            <div className="flex">
+                                <label className="block text-center w-[105px] flex justify-end items-center mr-2 md:mr-8">
+                                    팝업스토어 이름
+                                </label>
+                                <input
+                                    type="text"
+                                    name="storeName"
+                                    value={storeData.storeName}
+                                    placeholder="팝업스토어 이름"
+                                    onChange={handleInputChange}
+                                    className="input input-bordered input-accent w-30 max-w-xs border-indigo-500 hover:border-indigo-500 focus:outline-none"
+                                />
+                            </div>
                         </div>
-                    </div>
-                    <div className="flex justify-center w-full">
-                        <div>
-                            <label className="block text-2xl text-center mt-[2rem]">
-                                운영 시간
-                            </label>
-                            <input
-                                type="text"
-                                placeholder="EX) 14:00"
-                                name="openTime"
-                                value={storeData.openTime}
-                                onChange={handleInputChange}
-                                className="input input-accent max-w-[8rem] mt-[1rem] mb-[1rem] mr-[1rem] border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500 text-center"
-                            />
-
-                            <span className="text-xl mr-[1rem]">~</span>
-
-                            <input
-                                type="text"
-                                placeholder="20:00"
-                                value={storeData.closedTime}
-                                name="closedTime"
-                                onChange={handleInputChange}
-                                className="input input-accent max-w-[8rem] mt-[1rem] mb-[1rem] mr-[1rem] border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500 text-center"
-                            />
+                        <div className="flex justify-center mt-3">
+                            <div className="flex">
+                                <label className="block text-center w-[105px] flex justify-end items-center mr-2 md:mr-8">
+                                    주소
+                                </label>
+                                <input
+                                    type="text"
+                                    name="storeAddress"
+                                    value={storeData.storeAddress}
+                                    placeholder="주소"
+                                    onChange={handleInputChange}
+                                    className="input input-bordered w-30 input-accent max-w-xs border-indigo-500 hover:border-indigo-500 focus:outline-none"
+                                />
+                            </div>
                         </div>
-                    </div>
-                    <div className="flex justify-center w-full">
-                        <div>
-                            <label className="block text-2xl text-center mt-[2rem]">
-                                운영 기간
-                            </label>
-                            <input
-                                type="text"
-                                placeholder="EX) 5/1"
-                                name="openDate"
-                                value={storeData.openDate}
-                                onChange={handleInputChange}
-                                className="input input-accent max-w-[8rem] mt-[1rem] mb-[1rem] mr-[1rem] border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500 text-center"
-                            />
-                            <span className="text-xl mr-[1rem]">~</span>
-                            <input
-                                type="text"
-                                placeholder="5/7"
-                                name="closedDate"
-                                value={storeData.closedDate}
-                                onChange={handleInputChange}
-                                className="input input-accent max-w-[8rem] mt-[1rem] mb-[1rem] mr-[1rem] border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500 text-center"
-                            />
+                        <div className="flex justify-center">
+                            <div className="flex mt-3 -ml-7 lg:ml-14">
+                                <label className="block text-center w-[105px] flex justify-end items-center mr-2 md:mr-8">
+                                    운영 시간
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="hh:mm"
+                                    name="openTime"
+                                    value={storeData.openTime}
+                                    onChange={handleInputChange}
+                                    className="input input-bordered input-accent max-w-[8rem] border-indigo-500 hover:border-indigo-500 focus:outline-none"
+                                />
+                                <span className="flex justify-end items-center">~</span>
+                                <input
+                                    type="text"
+                                    placeholder="hh:mm"
+                                    value={storeData.closedTime}
+                                    name="closedTime"
+                                    onChange={handleInputChange}
+                                    className="input input-bordered input-accent max-w-[8rem] mx-0.5 border-indigo-500 hover:border-indigo-500 focus:outline-none"
+                                />
+                            </div>
                         </div>
-                    </div>
-                    <div className="flex justify-center w-full">
-                        <div>
-                            <label className="block text-2xl text-center mt-[2rem]">
-                                스토어 구분
-                            </label>
-                            <select
-                                className="border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500 select select-primary w-screen max-w-xs mt-[2rem]"
-                                onClick={select}
+                        <div className="flex justify-center">
+                            <div className="flex mt-3 -ml-7 lg:ml-14">
+                                <label className="block text-center w-[105px] flex justify-end items-center mr-2 md:mr-8">
+                                    운영 기간
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="yyyy-mm-dd"
+                                    name="openDate"
+                                    value={storeData.openDate}
+                                    onChange={handleInputChange}
+                                    className="input input-bordered input-accent max-w-[8rem] border-indigo-500 hover:border-indigo-500 focus:outline-none"
+                                />
+                                <span className="flex justify-end items-center">~</span>
+                                <input
+                                    type="text"
+                                    placeholder="yyyy-mm-dd"
+                                    name="closedDate"
+                                    value={storeData.closedDate}
+                                    onChange={handleInputChange}
+                                    className="input input-bordered input-accent max-w-[8rem] border-indigo-500 hover:border-indigo-500 focus:outline-none"
+                                />
+                            </div>
+                        </div>
+                        <div className="flex justify-center">
+                            <div className="flex mt-3">
+                                <label className="block text-center flex w-[105px] justify-end items-center mr-2 md:mr-8">
+                                    스토어 구분
+                                </label>
+                                <select
+                                    className="border-indigo-500 px-[72px] hover:border-indigo-500 focus:outline-none select select-primary"
+                                    onClick={select}
+                                >
+                                    <option disabled selected></option>
+                                    <option value="POPUP_STORE">팝업 스토어</option>
+                                    <option value="FELA_MARKET">플리 마켓</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div className="flex justify-center w-full">
+                            <div className="flex mt-3">
+                                <label className="block text-center flex w-[105px] justify-end items-center mr-2 md:mr-8">
+                                    사업자등록번호
+                                </label>
+                                <input
+                                    type="text"
+                                    name="businessNumber"
+                                    onChange={handleInputChange}
+                                    value={storeData.businessNumber}
+                                    placeholder="사업자등록번호"
+                                    className="input input-bordered input-accent w-30 max-w-xs border-indigo-500 hover:border-indigo-500 focus:outline-none"
+                                />
+                            </div>
+                        </div>
+                        <div className="flex justify-center">
+                            <button
+                                type="button"
+                                className="btn bg-indigo-400 hover:bg-indigo-300 m-[2rem] "
+                                onClick={onRegis}
                             >
-                                <option disabled selected></option>
-                                <option value="POPUP_STORE">팝업 스토어</option>
-                                <option value="FELA_MARKET">플리 마켓</option>
-                            </select>
+                                등록하기
+                            </button>
+                            <button
+                                type="button"
+                                onClick={update}
+                                className="btn bg-indigo-400 hover:bg-indigo-300 m-[2rem] "
+                            >
+                                수정하기
+                            </button>
                         </div>
-                    </div>
-                    <div className="flex justify-center w-full">
-                        <div>
-                            <label className="block text-2xl text-center mt-[2rem]">
-                                사업자등록번호
-                            </label>
-                            <input
-                                type="text"
-                                name="businessNumber"
-                                onChange={handleInputChange}
-                                value={storeData.businessNumber}
-                                placeholder="사업자등록번호"
-                                className="input input-accent w-screen max-w-xs mt-[1rem] mb-[1rem] border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500"
-                            />
-                        </div>
-                    </div>
-                    <div className="w-full flex justify-center">
-                        <button
-                            type="button"
-                            className="btn bg-indigo-400 hover:bg-indigo-300 m-[2rem] "
-                            onClick={onRegis}
-                        >
-                            등록하기
-                        </button>
-                        <button
-                            type="button"
-                            onClick={update}
-                            className="btn bg-indigo-400 hover:bg-indigo-300 m-[2rem] "
-                        >
-                            수정하기
-                        </button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     );

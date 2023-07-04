@@ -29,7 +29,7 @@ export default function FindPasswordPage() {
 
     return (
         <div className="max-w-7xl my-0 mx-auto mb-[10rem]">
-            <div className="w-screen flex justify-center mx-auto mt-[3rem] mb-[3rem]">
+            <div className="flex justify-center mx-auto mt-[3rem] mb-[3rem]">
                 <div>
                     <label className="label">
                         <span className="label-text text-2xl mb-[1rem]">
@@ -39,13 +39,13 @@ export default function FindPasswordPage() {
                     <input
                         type="text"
                         placeholder="이메일"
-                        className="input w-screen input-bordered max-w-md"
+                        className="input input-bordered max-w-md"
                         name="email"
                         onChange={changeInfo}
                     />
                 </div>
             </div>
-            <div className="w-screen flex justify-center">
+            <div className="flex justify-center">
                 <button
                     className="btn bg-indigo-400 hover:bg-indigo-300 mr-[1rem] mb-[20rem] mt-[3rem]"
                     onClick={sendRequest}

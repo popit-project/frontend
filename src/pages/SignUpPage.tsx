@@ -96,7 +96,7 @@ export default function SignUpPage() {
                                     onChange={changeInfo}
                                 />
                             </div>
-                            <div className="form-control w-full max-w-xs mx-auto mt-[3rem]">
+                            <div className="form-control w-full max-w-xs mx-auto mt-[1.5rem]">
                                 <label className="label">
                                     <span className="label-text text-2xl mb-[1rem]">
                                         비밀번호
@@ -110,7 +110,7 @@ export default function SignUpPage() {
                                     onChange={changeInfo}
                                 />
                             </div>
-                            <div className="form-control w-full max-w-xs mx-auto mt-[3rem]">
+                            <div className="form-control w-full max-w-xs mx-auto mt-[1.5rem]">
                                 <label className="label">
                                     <span className="label-text text-2xl mb-[1rem]">
                                         비밀번호 확인
@@ -131,7 +131,7 @@ export default function SignUpPage() {
                                     onChange={changeInfo}
                                 />
                             </div>
-                            <div className="form-control w-full max-w-xs mx-auto mt-[3rem]">
+                            <div className="form-control w-full max-w-xs mx-auto mt-[1.5rem]">
                                 <label className="label">
                                     <span className="label-text text-2xl mb-[1rem]">
                                         이메일
@@ -145,7 +145,7 @@ export default function SignUpPage() {
                                     onChange={changeInfo}
                                 />
                             </div>
-                            <div className="form-control w-full max-w-xs mx-auto mt-[3rem]">
+                            <div className="form-control w-full max-w-xs mx-auto mt-[1.5rem]">
                                 <label className="label">
                                     <span className="label-text text-2xl mb-[1rem]">
                                         닉네임
@@ -159,7 +159,7 @@ export default function SignUpPage() {
                                     onChange={changeInfo}
                                 />
                             </div>
-                            <div className="form-control w-full max-w-xs mx-auto mt-[3rem]">
+                            <div className="form-control w-full max-w-xs mx-auto mt-[1.5rem]">
                                 <label className="label">
                                     <span className="label-text text-2xl mb-[1rem]">
                                         핸드폰 번호

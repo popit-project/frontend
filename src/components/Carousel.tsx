@@ -73,11 +73,11 @@ function CarouselComponent() {
           </div>
         </Carousel>
       </div>
-      <div className="card-body">
+      <div className="card-body -mb-10 lg:mb-0">
         <p className="card-title">{typingText}</p>
         <div className="card-actions justify-end">
           <Link to="/popuplist">
-            <button className="btn btn-outline mb-5 border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400">
+            <button className="btn btn-outline mb-5 mt-5 lg:mt-0 border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400">
               팝업스토어 보기
             </button>
           </Link>

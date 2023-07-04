@@ -6,9 +6,7 @@ import { useRecoilState } from "recoil";
 import { LoginTokenAtom } from "../recoilAtom/LoginTokenAtom";
 import Loading from "../components/Loading";
 
-import google from "../assets/images/rsq-google-2.png";
-import naver from "../assets/images/rsq-naver-2.png";
-import kakao from "../assets/images/rsq-kakao-2.png";
+import google from "../assets/images/googleLogin.png";
 
 //구글로그인은 -> 버튼클릭하면 api/google호출해서 응답받은걸로(url) navigate를 하면은 그 url로 이동하기 !
 //로그아웃 버튼이 있어야하고. 로그아웃을 하면 localStorage에서 로그인 아이디 및 인증토큰들을 다 지워야함.
@@ -93,19 +91,19 @@ export default function LoginPage() {
                 placeholder="아이디"
                 name="userId"
                 onChange={changeData}
-                className="input input-success w-full max-w-xs block mb-[3rem] mt-[1rem] mx-auto border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500"
+                className="input input-success w-full max-w-xs block mb-[2.5rem] mt-[1rem] mx-auto border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500"
               />
               <input
                 type="password"
                 placeholder="비밀번호"
                 name="password"
                 onChange={changeData}
-                className="input input-success w-full max-w-xs block mb-[3rem] mx-auto border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500"
+                className="input input-success w-full max-w-xs block mb-[2.5rem] mx-auto border-indigo-500 hover:border-indigo-500 focus:outline-indigo-500"
               />
               <div className="w-full flex justify-center">
                 <button
                   type="button"
-                  className="btn bg-indigo-400 hover:bg-indigo-300 max-w-xs w-full mb-[3rem]"
+                  className="btn bg-indigo-400 hover:bg-indigo-300 max-w-xs w-full mb-[2.5rem]"
                   onClick={loginRequest}
                 >
                   로그인
@@ -114,22 +112,14 @@ export default function LoginPage() {
             </form>
           </div>
           <div className="w-full flex justify-center">
-            <div className="mb-[3rem] text-2xl">SNS 로그인</div>
+            <div className="mb-[2.5rem] text-2xl">SNS 로그인</div>
           </div>
           <div className="w-full flex justify-center">
-            <div className="flex justify-center mb-[5rem] min-w-3xl">
+            <div className="flex justify-center mb-[3.8rem] min-w-3xl">
               <img
-                className="w-12 h-12 bg-indigo-200 hover:bg-indigo-300 rounded-lg hover:cursor-pointer"
+                className="w-30 h-12 bg-indigo-200 hover:bg-indigo-300 rounded-lg hover:cursor-pointer"
                 src={google}
                 onClick={googleLogin}
-              ></img>
-              <img
-                className="w-12 h-12 mr-[3rem] ml-[3rem] bg-indigo-200  hover:bg-indigo-300 rounded-lg hover:cursor-pointer"
-                src={naver}
-              ></img>
-              <img
-                className="w-12 h-12 bg-indigo-200 hover:bg-indigo-300 rounded-lg hover:cursor-pointer"
-                src={kakao}
               ></img>
             </div>
           </div>

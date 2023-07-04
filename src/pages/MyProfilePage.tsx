@@ -55,6 +55,25 @@ const MyProfilePage = () => {
 
     fetchUserInfo();
   }, []);
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await axiosInstance.get("http://3.34.149.107:8082/api/seller/storeHome", {
+          params: {
+            userId: currentUserId,
+          },
+        });
+        const data = response.data;
+        // setUserInfo(data);
+        console.log(data)
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
   
 
   // const storeInfo = async () => {
@@ -100,35 +119,6 @@ const MyProfilePage = () => {
   
       fetchData();
     }, []);
-
-  // fetchSellerId()
-
-  // const fetchSellerInfo = async () => {
-  //   try {
-  //     const response = await axiosInstance.post(
-  //       "http://3.34.149.107:8082/api/sellerEnter",
-  //       {
-  //         userId: currentUserId,
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     );
-  //     const sellerInfo = response.data;
-
-  //     console.log(sellerInfo);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-  
-  // useEffect(() => {
-  //   fetchSellerInfo();
-  // }, []);
-  
 
   const saveNickname = async () => {
     try {
