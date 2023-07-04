@@ -162,8 +162,6 @@ export default function ProductComp({price,name,imageUrl,stock,bt,productId}:inf
 
     return (
         <div>
-
-
             <div>
                 <div className="flex ]justify-center mb-[3rem]">
                     <div className="mr-[2rem]">

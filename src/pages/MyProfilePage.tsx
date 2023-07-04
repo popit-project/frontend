@@ -99,9 +99,10 @@ const MyProfilePage = () => {
   //   console.log(tmp)
   //   storeInfo()
 
-    useEffect(() => {
+  useEffect(() => {    
+
       const fetchData = async () => {
-        const userId = localStorage.getItem("userId");
+        const userId = localStorage.getItem("sellerId");
         try {
           const response = await axiosInstance.get(
             `http://3.34.149.107:8082/api/seller/${userId}/storeHome`,
@@ -111,6 +112,7 @@ const MyProfilePage = () => {
               },
             }
           );
+          localStorage.setItem("sellerId", response.data.sellerId);
           console.log(response.data);
         } catch (error) {
           console.log(error);
