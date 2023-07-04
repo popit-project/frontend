@@ -22,33 +22,25 @@ interface item{
 export default function ProductRegisPage() {
 
     const [productList, setProductList] = useState([]);
-    const [sellerOn, setSellerOn] = useState(false);
-    
+    const [sellerOn, setSellerOn] = useState("");    
     const [formData, setFormData] = useState<FormData>(new FormData());
+    const [trigger, setTrigger] = useState(0);
+
+    const newTrigger = (value : number) => {
+        setTrigger((prev) => prev + value);
+    }
     
     const onRegist = () => {
-        console.log(formData);
-        
+        console.log(formData);   
         
     }
 
     useEffect(() => {
-        const userId = localStorage.getItem("userId");
-        const responseGet = async () => {
-            const response = await axiosInstance.get(
-                `http://3.34.149.107:8082/api/seller/${userId}/storeHome`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
-                }
-            );
-            console.log(response.data);
-            setSellerOn(response.data.sellerId);
-        };
-        responseGet();
+        const userId = localStorage.getItem("sellerId");
+        
+        if (userId) {
+            setSellerOn(userId);
+        }
 
         const productSearch = async () => {
             const res = await axiosInstance.get(
@@ -87,6 +79,7 @@ export default function ProductRegisPage() {
                             stock="재고수량 입력"
                             imageUrl=""
                             productId={0}
+                            trigger={newTrigger}
                         />
                     </div>
                 </div>
@@ -106,6 +99,7 @@ export default function ProductRegisPage() {
                                     stock={data.stockNumber}
                                     imageUrl={data.itemImgURL}
                                     productId={data.id}
+                                    trigger={newTrigger}
                                 />
                             </div>
                         ))}
@@ -117,15 +111,3 @@ export default function ProductRegisPage() {
 }
 
 
-  // const addProduct = () => {
-    //     setList([...list, { id: list.length + 1 }]);
-    //     console.log(list);
-    // };
-
-    // const deleteProduct = (id: number) => {
-    //     setList((prevList) => {
-    //         const updatedList = prevList.filter((item) => item.id !== id);             
-    //         return updatedList;
-    //     });     
-        
-    // };

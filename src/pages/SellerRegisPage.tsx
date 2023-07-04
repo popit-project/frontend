@@ -302,7 +302,7 @@ export default function SellerRegisPage() {
                             <input
                                 type="text"
                                 placeholder="yyyy-mm-dd"
-                                name="closedDate"
+                                name="closeDate"
                                 value={storeData.closeDate}
                                 onChange={handleInputChange}
                                 className="input input-bordered input-accent max-w-[8rem] border-indigo-500 hover:border-indigo-500 focus:outline-none"

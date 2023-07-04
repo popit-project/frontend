@@ -21,54 +21,47 @@ interface info{
     stock: string | number;
     bt: number;
     productId: number;
+    trigger: (value:number) => void;
 }
 
-export default function ProductComp({price,name,imageUrl,stock,bt,productId}:info) {
+export default function ProductComp({price,name,imageUrl,stock,bt,productId,trigger}:info) {
     const selectFile = useRef<HTMLInputElement>(null);
     const [image, setImage] = useState<string | null>(null);   
-    const [ps, setPs] = useState({itemNm:"" , price:"", stockNumber:""});
+    const [ps, setPs] = useState({itemNm:name , price:price, stockNumber:stock});
     const formDataRef = useRef<FormData>(new FormData());
+    
+    
     
     useEffect(() => {
         setImage(imageUrl);
-    },[])
+    }, [])
+    
     useEffect(() => {
         console.log(ps);
-        const userId = localStorage.getItem("userId");
-        const responseGet = async () => {
-            const response = await axiosInstance.get(
-                `http://3.34.149.107:8082/api/seller/${userId}/storeHome`,
-                {
-                    headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                    },
-                }
-            );
-            console.log(response.data)
-        }
-        responseGet();
+        
     }, [ps]);
     
-    const update = () => {
-        console.log("put")
-        
+    const update = async () => {
+        console.log("put")        
 
-        axiosInstance.put(
+        await axiosInstance.put(
             `http://3.34.149.107:8082/api/seller/profile/item/update/${productId}`,
             ps,
             
         );
+
+        trigger(1);
     }
 
-    const onRegis = () => {
+    const onRegis = async () => {
         const formData = formDataRef.current
         
         formData.append(
             "itemInput",
             JSON.stringify({
                 itemNm: ps.itemNm,
-                price: parseInt(ps.price),
-                stockNumber: parseInt(ps.stockNumber),
+                price: ps.price,
+                stockNumber: ps.stockNumber,
             })
         );
         
@@ -82,7 +75,7 @@ export default function ProductComp({price,name,imageUrl,stock,bt,productId}:inf
         }
 
         console.log(localStorage.getItem("token"));
-        axiosInstance.post(
+        await axiosInstance.post(
             "http://3.34.149.107:8082/api/seller/profile/item/add",
             formData,
             {
@@ -93,13 +86,16 @@ export default function ProductComp({price,name,imageUrl,stock,bt,productId}:inf
                
             }
         );
+
+        trigger(1);
     }
 
-    const deleteItem = () => {
-         axiosInstance.delete(
+    const deleteItem = async () => {
+        await axiosInstance.delete(
             `http://3.34.149.107:8082/api/seller/profile/item/delete/${productId}`,
              
         );
+        trigger(1);
     }
     
 
@@ -136,11 +132,7 @@ export default function ProductComp({price,name,imageUrl,stock,bt,productId}:inf
                         )}`,
                         "Content-Type": "multipart/form-data",
                     },
-                    // transformRequest: [
-                    //     function () {
-                    //         return formData;
-                    //     },
-                    // ],
+                    
                 }
                 
             );
@@ -162,47 +154,6 @@ export default function ProductComp({price,name,imageUrl,stock,bt,productId}:inf
 
     return (
         <div>
-            <div>
-                <div className="flex ]justify-center mb-[3rem]">
-                    <div className="mr-[2rem]">
-                        <div className="border-2 border-indigo-500 rounded-lg h-[11rem] w-[11rem] flex justify-center items-center">
-                            {image ? (
-                                <img
-                                    className="h-[10rem] w-[10rem]"
-                                    src={image}
-                                    alt="product"
-                                />
-                            ) : (
-                                "No Image"
-                            )}
-                        </div>
-                        <input
-                            type="file"
-                            id="input-file"
-                            className="hidden"
-                            ref={selectFile}
-                            onChange={handleFileChange}
-                        ></input>
-                        <div className="flex justify-center">
-                            {bt === 0 ? (
-                                <button
-                                    className="btn bg-indigo-400 hover:bg-indigo-300 mt-[1rem]"
-                                    onClick={handleFileClick}
-                                >
-                                    사진 등록
-                                </button>
-                            ) : (
-                                <button
-                                    className="btn bg-indigo-400 hover:bg-indigo-300 mt-[1rem]"
-                                    onClick={handleFileClick}
-                                >
-                                    사진 수정
-                                </button>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div className="flex border-[1px] border-indigo-500 p-2 rounded-md mb-[2rem] bg-indigo-50">
                 <div className="mr-[2rem]">
                     <div className="border-[1px] border-indigo-500 rounded-lg h-[11rem] w-[11rem] flex justify-center items-center bg-white">
@@ -216,87 +167,86 @@ export default function ProductComp({price,name,imageUrl,stock,bt,productId}:inf
                             "No image"
                         )}
                     </div>
-                    <div>
-                        <input
-                            type="text"
-                            placeholder={`${name}`}
-                            className="input input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
-                            name="itemNm"
-                            onChange={handleInputChange}
-                        />
-                        <input
-                            type="text"
-                            placeholder={`${price}`}
-                            className="input input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
-                            name="price"
-                            onChange={handleInputChange}
-                        />
-                        <input
-                            type="text"
-                            placeholder={`${stock}`}
-                            className="input input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
-                            name="stockNumber"
-                            onChange={handleInputChange}
-                        />
-                        <div className="flex justify-center">
-                            {bt === 0 ? (
-                                <button
-                                    className="btn bg-indigo-400 hover:bg-indigo-300"
-                                    onClick={onRegis}
-                                >
-                                    상품 등록
-                                </button>
-                            ) : (
-                                <div>
-                                    <button
-                                        className="btn bg-indigo-400 hover:bg-indigo-300 mr-[1rem]"
-                                        onClick={update}
-                                    >
-                                        상품 수정
-                                    </button>
-                                    <button
-                                        className="btn bg-indigo-400 hover:bg-indigo-300"
-                                        onClick={deleteItem}
-                                    >
-                                        상품 삭제
-                                    </button>
-                                </div>
-                            )}
-                        </div>
+                    <input
+                        type="file"
+                        id="input-file"
+                        className="hidden"
+                        ref={selectFile}
+                        onChange={handleFileChange}
+                    ></input>
+                    <div className="flex justify-center">
+                        {bt === 0 ? (
+                            <button
+                                className="btn bg-indigo-400 hover:bg-indigo-300 mt-[1rem]"
+                                onClick={handleFileClick}
+                            >
+                                사진 등록
+                            </button>
+                        ) : (
+                            <button
+                                className="btn bg-indigo-400 hover:bg-indigo-300 mt-[1rem]"
+                                onClick={handleFileClick}
+                            >
+                                사진 수정
+                            </button>
+                        )}
                     </div>
                 </div>
                 <div>
                     <input
                         type="text"
-                        placeholder="상품 이름"
-                        className="input input-accent w-full max-w-xs block mb-[1rem] border-[1px] border-indigo-500 focus:outline-indigo-500"
+                        placeholder={ps.itemNm}
+                        value={ps.itemNm}
+                        className="input input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
                         name="itemNm"
                         onChange={handleInputChange}
                     />
                     <input
                         type="text"
-                        placeholder="상품 가격"
-                        className="input input-accent w-full max-w-xs block mb-[1rem] border-[1px] border-indigo-500 focus:outline-indigo-500"
+                        // placeholder={`${ps.price}`}
+                        value={ps.price}
+                        className="input input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
                         name="price"
                         onChange={handleInputChange}
                     />
                     <input
                         type="text"
-                        placeholder="재고 수량 입력"
-                        className="input input-accent w-full max-w-xs block mb-[1rem] border-[1px] border-indigo-500 focus:outline-indigo-500"
+                        // placeholder={`${ps.stockNumber}
+                        value={ps.stockNumber}
+                        className="input input-accent w-full max-w-xs block mb-[1rem] border-2 border-indigo-500 focus:outline-indigo-500"
                         name="stockNumber"
                         onChange={handleInputChange}
                     />
-                    <div className="flex justify-end">
-                        <button
-                            className="btn bg-indigo-400 hover:bg-indigo-300"
-                            onClick={onRegis}
-                        >
-                            상품 등록
-                        </button>
-                    </div>                
+                    <div className="flex justify-center">
+                        {bt === 0 ? (
+                            <button
+                                className="btn bg-indigo-400 hover:bg-indigo-300"
+                                onClick={onRegis}
+                            >
+                                상품 등록
+                            </button>
+                        ) : (
+                            <div>
+                                <button
+                                    className="btn bg-indigo-400 hover:bg-indigo-300 mr-[1rem]"
+                                    onClick={update}
+                                >
+                                    상품 수정
+                                </button>
+                                <button
+                                    className="btn bg-indigo-400 hover:bg-indigo-300"
+                                    onClick={deleteItem}
+                                >
+                                    상품 삭제
+                                </button>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
     );
 }
+
+
+
