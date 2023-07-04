@@ -31,6 +31,7 @@ export default function LoginPage() {
       localStorage.setItem("expiresIn", response.data.expiresIn);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("sellerId", response.data.sellerId);
+      localStorage.setItem("nickname", response.data.nickname);
 
       window.location.href = "/";
 
@@ -49,6 +50,8 @@ export default function LoginPage() {
         localStorage.removeItem("userId");
         localStorage.removeItem("expiresIn");
         localStorage.removeItem("token");
+        localStorage.removeItem("sellerId");
+        localStorage.removeItem("nickname");
       }, thirtyMinutes);
     } catch (error) {
       console.error("로그인 실패", error);

@@ -14,7 +14,7 @@ export default function Review() {
   const [showErrorAlert, setShowErrorAlert] = useState(false);
   const { id } = useParams<{ id: string }>();
   const storeId = Number(id);
-  const userId = localStorage.getItem("userId");
+  const nickname = localStorage.getItem("nickname");
 
   useEffect(() => {
     fetchReviewList();
@@ -48,8 +48,7 @@ export default function Review() {
           },
         }
       )
-      .then((response) => {
-        console.log(response);
+      .then(() => {
         setNewReview("");
         fetchReviewList();
       })
@@ -132,7 +131,7 @@ export default function Review() {
                   </div>
                   <div>{review.comment}</div>
                 </div>
-                {userId === review.email && (
+                {nickname === review.email && (
                   <div
                     className="text-indigo-400 cursor-pointer rounded-full"
                     onClick={() => deleteReview(review.id)}
