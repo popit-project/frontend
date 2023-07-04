@@ -5,11 +5,11 @@ import { LoginTokenAtom } from "../recoilAtom/LoginTokenAtom";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 
 interface UserInfo {
-  email: string,
-  nickname: string
-  phone: string
-  userId: string
-  sellerModeButton: string
+  email: string;
+  nickname: string;
+  phone: string;
+  userId: string;
+  sellerModeButton: string;
 }
 
 const MyProfilePage = () => {
@@ -33,18 +33,23 @@ const MyProfilePage = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("recoil-persist");
     localStorage.removeItem("likedStoreIds");
+    localStorage.removeItem("sellerId");
+    localStorage.removeItem("nickname");
 
     window.location.href = "/";
-  }
+  };
 
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await axiosInstance.get("http://3.34.149.107:8082/api/user/info", {
-          params: {
-            userId: currentUserId,
-          },
-        });
+        const response = await axiosInstance.get(
+          "http://3.34.149.107:8082/api/user/info",
+          {
+            params: {
+              userId: currentUserId,
+            },
+          }
+        );
         const data = response.data;
         setUserInfo(data);
         // console.log(userInfo)
@@ -59,14 +64,17 @@ const MyProfilePage = () => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await axiosInstance.get("http://3.34.149.107:8082/api/seller/storeHome", {
-          params: {
-            userId: currentUserId,
-          },
-        });
+        const response = await axiosInstance.get(
+          "http://3.34.149.107:8082/api/seller/storeHome",
+          {
+            params: {
+              userId: currentUserId,
+            },
+          }
+        );
         const data = response.data;
         // setUserInfo(data);
-        console.log(data)
+        console.log(data);
       } catch (error) {
         console.error(error);
       }
@@ -74,7 +82,6 @@ const MyProfilePage = () => {
 
     fetchUserInfo();
   }, []);
-  
 
   // const storeInfo = async () => {
   //   const storeInfoData = await axiosInstance.get(
@@ -99,28 +106,27 @@ const MyProfilePage = () => {
   //   console.log(tmp)
   //   storeInfo()
 
-  useEffect(() => {    
+  useEffect(() => {
+    const fetchData = async () => {
+      const userId = localStorage.getItem("sellerId");
+      try {
+        const response = await axiosInstance.get(
+          `http://3.34.149.107:8082/api/seller/${userId}/storeHome`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        localStorage.setItem("sellerId", response.data.sellerId);
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-      const fetchData = async () => {
-        const userId = localStorage.getItem("sellerId");
-        try {
-          const response = await axiosInstance.get(
-            `http://3.34.149.107:8082/api/seller/${userId}/storeHome`,
-            {
-              headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-              },
-            }
-          );
-          localStorage.setItem("sellerId", response.data.sellerId);
-          console.log(response.data);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-  
-      fetchData();
-    }, []);
+    fetchData();
+  }, []);
 
   const saveNickname = async () => {
     try {
@@ -128,7 +134,7 @@ const MyProfilePage = () => {
         "http://3.34.149.107:8082/api/user/changeUserInfo",
         {
           email: userInfo?.email,
-          newNickname: newNickname
+          newNickname: newNickname,
         },
         {
           headers: {
@@ -159,25 +165,31 @@ const MyProfilePage = () => {
         <>
           <Link to="/sellerRegisPage">
             <div>
-              <p className="btn btn-outline mb-5 border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400" >스토어 정보 수정</p>
+              <p className="btn btn-outline mb-5 border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400">
+                스토어 정보 수정
+              </p>
             </div>
           </Link>
           {/* <Link to={`/popuplist/${tmp}`}> */}
           <Link to={"/seller"}>
             <div>
-              <p className="btn btn-outline mb-5 border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400" >My 스토어 가기</p>
+              <p className="btn btn-outline mb-5 border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400">
+                My 스토어 가기
+              </p>
             </div>
           </Link>
         </>
-      )
+      );
     } else {
       return (
         <Link to="/sellerRegisPage">
           <div>
-            <p className="btn btn-outline mb-5 border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400" >셀러 등록</p>
+            <p className="btn btn-outline mb-5 border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white hover:border-indigo-400">
+              셀러 등록
+            </p>
           </div>
         </Link>
-      )
+      );
     }
   };
 
@@ -189,7 +201,7 @@ const MyProfilePage = () => {
         </div>
         <div>
           <div className="py-3 pt-10 relative border-b pb-10">
-            {isEditing ?
+            {isEditing ? (
               <div className="flex items-center">
                 <p className="inline-block w-20">닉네임</p>
                 <input
@@ -201,13 +213,14 @@ const MyProfilePage = () => {
                   onChange={(e) => setNewNickname(e.target.value)}
                 />
               </div>
-              :
+            ) : (
               <div className="flex">
                 <p className="inline-block w-20 flex items-center">닉네임</p>
                 <div className="w-72 h-12 bg-indigo-50 flex items-center pl-5 pb-1 rounded-lg">
                   {userInfo?.nickname}
                 </div>
-              </div>}
+              </div>
+            )}
             <p
               className="btn absolute right-0 top-10 p-2 bg-indigo-400 border-indigo-400 text-white hover:bg-indigo-300 hover:border-indigo-300"
               onClick={isEditing ? saveNickname : handleEditClick}
@@ -237,7 +250,12 @@ const MyProfilePage = () => {
         </div>
         {renderSellerButton()}
         <div className="flex justify-center mt-16">
-          <p className="btn btn-outline w-4/5 mb-5 border-indigo-400 text-white bg-indigo-400 hover:bg-indigo-500 hover:border-indigo-500" onClick={logOut}>로그아웃</p>
+          <p
+            className="btn btn-outline w-4/5 mb-5 border-indigo-400 text-white bg-indigo-400 hover:bg-indigo-500 hover:border-indigo-500"
+            onClick={logOut}
+          >
+            로그아웃
+          </p>
         </div>
       </div>
     </div>
