@@ -22,6 +22,7 @@ function MapPage() {
   const [selectedPlaceId, setSelectedPlaceId] = useState('');
   const [recoilLat, setRecoilLat] = useRecoilState(latState);
   const [recoilLng, setRecoilLng] = useRecoilState(lngState);
+  console.log(recoilLat,recoilLng)
 
   useEffect(() => {
     const storedLat = localStorage.getItem("lat");

@@ -3,7 +3,6 @@ import { useMap } from "../hooks/useMap"
 import { PlaceType } from "./mapTypes"
 import { axiosInstance } from "../../components/AxiosInstance/AxiosConfig";
 import axios from "axios";
-import { BiCurrentLocation } from 'react-icons/Bi';
 
 interface SearchLocationProps {
   onUpdatePlaces: (places:PlaceType[]) => void
@@ -141,7 +140,11 @@ const SearchLocation = (props:SearchLocationProps) => {
         onClick={handleFindMyLocation}
         className="bg-indigo-500 hover:bg-indigo-700 text-white text-sm font-bold py-1 px-2 rounded"
       >
-        <BiCurrentLocation size={28}/>
+        <svg width="25" height="25" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.0002 32.8574C27.101 32.8574 32.8574 27.101 32.8574 20.0002C32.8574 12.8994 27.101 7.14307 20.0002 7.14307C12.8994 7.14307 7.14307 12.8994 7.14307 20.0002C7.14307 27.101 12.8994 32.8574 20.0002 32.8574Z" stroke="white" stroke-width="2.85714" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20.0003 21.4289C20.7893 21.4289 21.4289 20.7893 21.4289 20.0003C21.4289 19.2114 20.7893 18.5718 20.0003 18.5718C19.2114 18.5718 18.5718 19.2114 18.5718 20.0003C18.5718 20.7893 19.2114 21.4289 20.0003 21.4289Z" stroke="white" stroke-width="2.85714" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20.0001 7.143V1.42871M20.0001 38.5716V32.8573M32.8573 20.0001H38.5716M1.42871 20.0001H7.143" stroke="white" stroke-width="2.85714" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </button>
       </form>
       <ul className="list-none m-0 p-0">

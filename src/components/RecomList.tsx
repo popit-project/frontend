@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { CommentIcon, FillLikeIcon, LikeIcon } from "../assets/icons/Icons";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
-import { AiOutlineRight } from 'react-icons/Ai';
 import { Link } from "react-router-dom";
 import { Popup } from "../pages/PopupListPage";
 
@@ -67,7 +66,7 @@ const RecomList = () => {
   if (popupList.length === 0) {
     return (
       <div className="pt-16 pb-16">
-        <p className="pb-5 pl-2 font-bold text-xl flex items-center">내 주변 팝업 스토어 <AiOutlineRight /></p>
+        <p className="pb-5 pl-2 font-bold text-xl flex items-center">내 주변 팝업 스토어 &gt;</p>
         <div className="pt-10 pb-5 pl-2 font-bold text-xl text-stone-400">내 주변 팝업 스토어를 찾아보세요!</div>
       </div>
     )
@@ -75,7 +74,7 @@ const RecomList = () => {
 
   return (
     <div className="pt-16 pb-16">
-        <p className="pb-10 pl-2 font-bold text-xl flex items-center">내 주변 팝업 스토어 <AiOutlineRight /></p>
+        <p className="pb-10 pl-2 font-bold text-xl flex items-center">내 주변 팝업 스토어 &gt;</p>
       <div>
         {popupList.map((popup) => (
           <Link to={`/popuplist/${popup.id}`} key={popup.id}>
