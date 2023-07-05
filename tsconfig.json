@@ -17,6 +17,10 @@
       "kakao.maps.d.ts",
       "node"
     ],
+    "baseUrl": ".",
+    "paths": {
+      "react-icons/*": ["node_modules/react-icons/*"]
+    },
 
     /* Linting */
     "strict": true,
