@@ -54,7 +54,7 @@ export default function SellerRegisPage() {
         });
     };
 
-    const select = (e) => {
+    const select = (e: any) => {
         setStoreData((prev) => {
             return { ...prev, storeType: e.target.value };
         })
