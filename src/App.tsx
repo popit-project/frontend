@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import "./App.css";
 import PopupListPage from "./pages/PopupListPage";
 import PopupDetailPage from "./pages/PopupDetailPage";
@@ -22,6 +21,7 @@ import SellerManagementPage from "./pages/SellerManagementPage";
 
 function App() {
   const loginState = useRecoilValue(LoginTokenAtom);
+  console.log(loginState)
   const isLoggedIn =
     localStorage.getItem("loginState") === "true" ? true : false;
 
