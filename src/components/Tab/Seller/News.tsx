@@ -143,7 +143,7 @@ export default function News({ storeName }: NewsProps) {
                 handleSubmit();
               }}
             >
-              리뷰등록
+              소식등록
             </button>
           </form>
           {showImageSection && (

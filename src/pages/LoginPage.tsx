@@ -6,7 +6,7 @@ import { useRecoilState } from "recoil";
 import { LoginTokenAtom } from "../recoilAtom/LoginTokenAtom";
 import Loading from "../components/Loading";
 
-import google from "../assets/images/googleLogin.png";
+import google from "../assets/images/818cf8.png";
 
 //구글로그인은 -> 버튼클릭하면 api/google호출해서 응답받은걸로(url) navigate를 하면은 그 url로 이동하기 !
 //로그아웃 버튼이 있어야하고. 로그아웃을 하면 localStorage에서 로그인 아이디 및 인증토큰들을 다 지워야함.
@@ -120,7 +120,7 @@ export default function LoginPage() {
           <div className="w-full flex justify-center">
             <div className="flex justify-center mb-[3.8rem] min-w-3xl">
               <img
-                className="w-30 h-12 bg-indigo-200 hover:bg-indigo-300 rounded-lg hover:cursor-pointer"
+                className="w-30 h-12 bg-indigo-100 border-none hover:bg-indigo-200 rounded-lg hover:cursor-pointer"
                 src={google}
                 onClick={googleLogin}
               ></img>

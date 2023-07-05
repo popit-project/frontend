@@ -197,7 +197,7 @@ export default function SellerRegisPage() {
             </div>
         </div>
         <div className="lg:flex lg:justify-center lg:pl-[120px]">
-            <div className="lg:pr-20 lg:flex lg:items-center lg:-mt-10 lg:border-r lg:pr-16">
+            <div className="lg:flex lg:items-center lg:border-r lg:pr-10 lg:-ml-2">
                 <div>
                     <div className="flex justify-center">
                         <div className="border-[1px] border-indigo-500 rounded-lg h-[13rem] w-[20rem] flex justify-center items-center">

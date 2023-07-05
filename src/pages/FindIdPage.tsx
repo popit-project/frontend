@@ -40,7 +40,7 @@ export default function FindIdPage() {
                     <input
                         type="text"
                         placeholder="이메일"
-                        className="input input-bordered max-w-md"
+                        className="input w-[350px] input-bordered"
                         name="email"
                         onChange={changeInfo}
                     />
