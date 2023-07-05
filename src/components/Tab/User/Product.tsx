@@ -19,7 +19,7 @@ interface ProductProps {
 export default function Product({ storeId }: ProductProps) {
   const [cartItems, setCartItems] = useRecoilState<CartItem[]>(cartListAtom);
   const [products, setProducts] = useState<products[]>([]);
-  const sellerId = localStorage.getItem("sellerId");
+
 
   useEffect(() => {
     axiosInstance
@@ -31,7 +31,7 @@ export default function Product({ storeId }: ProductProps) {
       .catch((error) => {
         console.error(error);
       });
-  }, [sellerId]);
+  }, [storeId]);
 
   const addToCart = (id: number) => {
     const selectedItem = products.find((product) => product.id === id);

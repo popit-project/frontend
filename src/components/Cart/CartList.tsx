@@ -16,6 +16,7 @@ export default function CartList({ data }: { data: CartItem }) {
       return cartItem;
     });
     setCartListState([...updatedCartList]);
+    console.log(cartListState);
   };
 
   const removeCount = (id: number) => {

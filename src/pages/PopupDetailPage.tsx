@@ -5,7 +5,6 @@ import Product from "../components/Tab/User/Product";
 import Review from "../components/Tab/User/Review";
 import { useParams } from "react-router-dom";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
-import loopy from "../assets/images/KakaoTalk_Photo_2023-06-23-22-43-57 004.jpeg";
 
 interface Popup {
   storeAddress: string;
