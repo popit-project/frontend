@@ -1,14 +1,5 @@
 import { useRef, useState,useEffect } from "react";
-import {
-    atom,
-    useRecoilState,
-    useSetRecoilState,
-    useRecoilValue,
-} from "recoil";
-import { productListAtom } from "../recoilAtom/ProductListAtom";
-import { productDataAtom } from "../recoilAtom/ProductDataAtom";
 import { axiosInstance } from "./AxiosInstance/AxiosConfig";
-import axios from "axios";
 
 
 
@@ -29,12 +20,10 @@ export default function ProductComp({price,name,imageUrl,stock,bt,productId,trig
     const [image, setImage] = useState<string | null>(null);   
     const [ps, setPs] = useState({itemNm:name , price:price, stockNumber:stock});
     const formDataRef = useRef<FormData>(new FormData());
-    
-    
-    
+        
     useEffect(() => {
         setImage(imageUrl);
-    }, [])
+    },[imageUrl])
     
     useEffect(() => {
         console.log(ps);

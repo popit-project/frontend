@@ -1,8 +1,6 @@
-import Nav from "../components/LoginNav";
 import React, { useEffect, useState } from "react";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 import Loading from "../components/Loading";
-import axios from "axios";
 
 //현재 register login info find-id 전부다 동작
 
@@ -38,6 +36,7 @@ export default function SignUpPage() {
                 "http://3.34.149.107:8082/api/user/register",userInfo
                 
             );
+            console.log(response.data);
             window.location.href = "/login";
           
         } catch (error) {
@@ -63,6 +62,7 @@ export default function SignUpPage() {
                     }
                 }
             );
+            console.log(response.data);
             alert("사용 불가능한 아이디 입니다.");           
         }
         catch (error) {

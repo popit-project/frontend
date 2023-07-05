@@ -1,5 +1,3 @@
-import Nav from "../components/LoginNav";
-import Footer from "../components/Footer";
 import { useState } from "react";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 

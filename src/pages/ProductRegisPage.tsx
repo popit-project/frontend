@@ -1,14 +1,6 @@
-import MainNav from "../components/MainNav";
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ProductComp from "../components/ProductComp";
-import {
-    atom,
-    useRecoilCallback,
-    useRecoilState,
-    useRecoilValue,
-} from "recoil";
-import { productListAtom } from "../recoilAtom/ProductListAtom";
-import { productDataAtom } from "../recoilAtom/ProductDataAtom";
+
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 
 interface item{
@@ -22,18 +14,15 @@ interface item{
 export default function ProductRegisPage() {
 
     const [productList, setProductList] = useState([]);
-    const [sellerOn, setSellerOn] = useState("");    
-    const [formData, setFormData] = useState<FormData>(new FormData());
+    const [sellerOn, setSellerOn] = useState("");
     const [trigger, setTrigger] = useState(0);
 
     const newTrigger = (value : number) => {
         setTrigger((prev) => prev + value);
+        console.log(trigger)
     }
     
-    const onRegist = () => {
-        console.log(formData);   
         
-    }
 
     useEffect(() => {
         const userId = localStorage.getItem("sellerId");

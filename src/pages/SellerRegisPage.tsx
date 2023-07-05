@@ -1,6 +1,4 @@
-import { ChangeEvent, useState,useRef, useEffect} from "react";
-import Nav from "../components/LoginNav";
-import Footer from "../components/Footer";
+import {  useState,useRef, useEffect} from "react";
 import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 
 //userId를 localstorage에서 받아와서 userId랑 이미지url , 팝업스토어 이름, 주소, 운영시간 보내기. POST
@@ -11,7 +9,6 @@ import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
 export default function SellerRegisPage() {
     const selectFile = useRef<HTMLInputElement>(null);
     const [image, setImage] = useState<string | null>(null);
-    const sellerId = localStorage.getItem("userId");
     const formDataRef = useRef<FormData>(new FormData());
     const [storeData, setStoreData] = useState({
         storeName: "",
@@ -191,7 +188,7 @@ export default function SellerRegisPage() {
 
     return (
         <div className="max-w-7xl mx-auto ">
-        <div className="py-3 pt-10 relative border-b py-[2rem] mb-10 lg:border-none">
+        <div className="pt-10 relative border-b py-[2rem] mb-10 lg:border-none">
             <div className="flex justify-center text-2xl font-bold">
                 셀러 등록
             </div>
@@ -233,7 +230,7 @@ export default function SellerRegisPage() {
                 <form className="pb-8">
                     <div className="flex justify-center mt-3">
                         <div className="flex">
-                            <label className="block text-center w-[105px] flex justify-end items-center mr-2 md:mr-8">
+                            <label className="block text-center w-[105px] justify-end items-center mr-2 md:mr-8">
                                 팝업스토어 이름
                             </label>
                             <input
@@ -242,13 +239,13 @@ export default function SellerRegisPage() {
                                 name="storeName"
                                 onChange={handleInputChange}
                                 value={storeData.storeName}
-                                className="input input-bordered input-accent w-30 max-w-xs border-indigo-500 hover:border-indigo-500 focus:outline-none"
+                                className="input input-accent w-30 max-w-xs border-indigo-500 hover:border-indigo-500 focus:outline-none"
                             />
                         </div>
                     </div>
                     <div className="flex justify-center mt-3">
                         <div className="flex">
-                            <label className="block text-center w-[105px] flex justify-end items-center mr-2 md:mr-8">
+                            <label className="block text-center w-[105px] justify-end items-center mr-2 md:mr-8">
                                 주소
                             </label>
                             <input
@@ -257,13 +254,13 @@ export default function SellerRegisPage() {
                                 value={storeData.storeAddress}
                                 placeholder="주소"
                                 onChange={handleInputChange}
-                                className="input input-bordered w-30 input-accent max-w-xs border-indigo-500 hover:border-indigo-500 focus:outline-none"
+                                className="input w-30 input-accent max-w-xs border-indigo-500 hover:border-indigo-500 focus:outline-none"
                             />
                         </div>
                     </div>
                     <div className="flex justify-center">
                         <div className="flex mt-3 -ml-7 lg:ml-14">
-                            <label className="block text-center w-[105px] flex justify-end items-center mr-2 md:mr-8">
+                            <label className="block text-center w-[105px] justify-end items-center mr-2 md:mr-8">
                                 운영 시간
                             </label>
                             <input
@@ -272,7 +269,7 @@ export default function SellerRegisPage() {
                                 name="openTime"
                                 value={storeData.openTime}
                                 onChange={handleInputChange}
-                                className="input input-bordered input-accent max-w-[8rem] border-indigo-500 hover:border-indigo-500 focus:outline-none"
+                                className="input input-accent max-w-[8rem] border-indigo-500 hover:border-indigo-500 focus:outline-none"
                             />
                             <span className="flex justify-end items-center">~</span>
                             <input
@@ -281,13 +278,13 @@ export default function SellerRegisPage() {
                                 value={storeData.closeTime}
                                 name="closeTime"
                                 onChange={handleInputChange}
-                                className="input input-bordered input-accent max-w-[8rem] mx-0.5 border-indigo-500 hover:border-indigo-500 focus:outline-none"
+                                className="input input-accent max-w-[8rem] mx-0.5 border-indigo-500 hover:border-indigo-500 focus:outline-none"
                             />
                         </div>
                     </div>
                     <div className="flex justify-center">
                         <div className="flex mt-3 -ml-7 lg:ml-14">
-                            <label className="block text-center w-[105px] flex justify-end items-center mr-2 md:mr-8">
+                            <label className="block text-center w-[105px] justify-end items-center mr-2 md:mr-8">
                                 운영 기간
                             </label>
                             <input
@@ -296,7 +293,7 @@ export default function SellerRegisPage() {
                                 name="openDate"
                                 value={storeData.openDate}
                                 onChange={handleInputChange}
-                                className="input input-bordered input-accent max-w-[8rem] border-indigo-500 hover:border-indigo-500 focus:outline-none"
+                                className="input input-accent max-w-[8rem] border-indigo-500 hover:border-indigo-500 focus:outline-none"
                             />
                             <span className="flex justify-end items-center">~</span>
                             <input
@@ -305,13 +302,13 @@ export default function SellerRegisPage() {
                                 name="closeDate"
                                 value={storeData.closeDate}
                                 onChange={handleInputChange}
-                                className="input input-bordered input-accent max-w-[8rem] border-indigo-500 hover:border-indigo-500 focus:outline-none"
+                                className="input input-accent max-w-[8rem] border-indigo-500 hover:border-indigo-500 focus:outline-none"
                             />
                         </div>
                     </div>
                     <div className="flex justify-center">
                         <div className="flex mt-3">
-                            <label className="block text-center flex w-[105px] justify-end items-center mr-2 md:mr-8">
+                            <label className="block text-center w-[105px] justify-end items-center mr-2 md:mr-8">
                                 스토어 구분
                             </label>
                             <select
@@ -326,7 +323,7 @@ export default function SellerRegisPage() {
                     </div>
                     <div className="flex justify-center w-full">
                         <div className="flex mt-3">
-                            <label className="block text-center flex w-[105px] justify-end items-center mr-2 md:mr-8">
+                            <label className="block text-center w-[105px] justify-end items-center mr-2 md:mr-8">
                                 사업자등록번호
                             </label>
                             <input
@@ -335,7 +332,7 @@ export default function SellerRegisPage() {
                                 onChange={handleInputChange}
                                 value={storeData.businessNumber}
                                 placeholder="사업자등록번호"
-                                className="input input-bordered input-accent w-30 max-w-xs border-indigo-500 hover:border-indigo-500 focus:outline-none"
+                                className="input input-accent w-30 max-w-xs border-indigo-500 hover:border-indigo-500 focus:outline-none"
                             />
                         </div>
                     </div>

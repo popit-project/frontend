@@ -15,6 +15,7 @@ export default function LoginPage() {
   const [loginData, setLoginData] = useState({ userId: "", password: "" });
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(LoginTokenAtom);
   const [loading, setLoading] = useState(false);
+  
 
   const loginRequest = async () => {
     try {
@@ -35,7 +36,7 @@ export default function LoginPage() {
 
       window.location.href = "/";
 
-      const expiration = localStorage.getItem("expiresIn");
+      
 
       //자동 로그아웃 구현 expiresIn 파싱해서 하는 방법 다시 생각해보기.
       //일단 지금은 만료시간이 로그인 하는 시점 + 30분이라 이렇게 구현.
@@ -55,15 +56,10 @@ export default function LoginPage() {
       }, thirtyMinutes);
     } catch (error) {
       console.error("로그인 실패", error);
+      console.log(isLoggedIn);
     }
   };
 
-  // const changeData = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = e.target;
-  //   setLoginData((prevData) => ({ ...prevData, [name]: value }));
-  //   console.log(loginData);
-
-  // }, [loginData]);
 
   const googleLogin = async () => {
     const response = await axiosInstance.post(
