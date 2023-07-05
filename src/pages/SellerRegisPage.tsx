@@ -316,11 +316,11 @@ export default function SellerRegisPage() {
                             </label>
                             <select
                                 className="border-indigo-500 px-[72px] hover:border-indigo-500 focus:outline-none select select-primary"
-                                onClick={select}
+                                onChange={select}
                             >
                                 <option disabled selected></option>
                                 <option value="POPUP_STORE">팝업 스토어</option>
-                                <option value="FELA_MARKET">플리 마켓</option>
+                                <option value="FLEA_MARKET">플리 마켓</option>
                             </select>
                         </div>
                     </div>
