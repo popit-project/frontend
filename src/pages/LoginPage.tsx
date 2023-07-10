@@ -21,7 +21,7 @@ export default function LoginPage() {
     try {
       setLoading(true);
       const response = await axiosInstance.post(
-        "http://3.34.149.107:8082/api/user/login",
+        "https://pop-it.store/api/user/login",
         loginData
       );
 
