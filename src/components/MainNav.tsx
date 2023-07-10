@@ -17,7 +17,7 @@ export default function MainNav() {
     const fetchNotificationCount = async () => {
       try {
         const response = await axios.get(
-          "http://3.34.149.107:8082/api/seller/notifications/count",
+          "https://pop-it.store/api/seller/notifications/count",
           {
             headers: {
               Authorization: localStorage.getItem("token"),
@@ -37,7 +37,7 @@ export default function MainNav() {
     const fetchNotification = async () => {
       try {
         const response = await axios.get(
-          "http://3.34.149.107:8082/api/seller/notifications",
+          "https://pop-it.store/api/seller/notifications",
           {
             headers: {
               Authorization: localStorage.getItem("token"),
@@ -56,7 +56,7 @@ export default function MainNav() {
 
   const deleteNoti = (id: number) => {
     axios
-      .delete(`http://3.34.149.107:8082/api/seller/notifications/${id}`, {
+      .delete(`https://pop-it.store/api/seller/notifications/${id}`, {
         headers: {
           Authorization: localStorage.getItem("token"),
         },

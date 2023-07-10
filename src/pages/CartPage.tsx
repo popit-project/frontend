@@ -29,7 +29,7 @@ export default function CartPage() {
     };
 
     axiosInstance
-      .post("http://3.34.149.107:8082/api/order", requestData, {
+      .post("https://pop-it.store/api/order", requestData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

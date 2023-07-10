@@ -63,7 +63,7 @@ export default function LoginPage() {
 
   const googleLogin = async () => {
     const response = await axiosInstance.post(
-      "http://3.34.149.107:8082/api/login/google"
+      "https://pop-it.store/api/login/google"
     );
     console.log(response.data);
     window.location.href = `${response.data}`;

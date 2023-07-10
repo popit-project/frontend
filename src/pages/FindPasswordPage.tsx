@@ -16,7 +16,7 @@ export default function FindPasswordPage() {
     const sendRequest = async () => {
         try {
             const response = await axiosInstance.post(
-                "http://3.34.149.107:8082/api/user/reset-password",
+                "https://pop-it.store/api/user/reset-password",
                 emailInfo
             );
             alert(response.data);

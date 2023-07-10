@@ -31,7 +31,7 @@ export default function SellerManagementPage() {
       const sellerId = localStorage.getItem("sellerId");
       try {
         const response = await axiosInstance.get(
-          `http://3.34.149.107:8082/api/seller/${sellerId}/storeHome`,
+          `https://pop-it.store/api/seller/${sellerId}/storeHome`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

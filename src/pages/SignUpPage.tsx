@@ -33,7 +33,7 @@ export default function SignUpPage() {
         setLoading(true);
         try {
             const response = await axiosInstance.post(
-                "http://3.34.149.107:8082/api/user/register",userInfo
+                "https://pop-it.store/api/user/register",userInfo
                 
             );
             console.log(response.data);
@@ -56,7 +56,7 @@ export default function SignUpPage() {
     const idAuth = async () => {
         try {
             const response = await axiosInstance.get(
-                "http://3.34.149.107:8082/api/user/info", {
+                "https://pop-it.store/api/user/info", {
                     params: {
                         userId:userInfo.userId,
                     }

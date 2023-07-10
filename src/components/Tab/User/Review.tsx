@@ -22,7 +22,7 @@ export default function Review() {
 
   const fetchReviewList = () => {
     axiosInstance
-      .get(`http://3.34.149.107:8082/api/review/read/${storeId}/comment`)
+      .get(`https://pop-it.store/api/review/read/${storeId}/comment`)
       .then((response) => {
         const data = response.data;
         setReviewList(data);
@@ -40,7 +40,7 @@ export default function Review() {
 
     axiosInstance
       .post(
-        `http://3.34.149.107:8082/api/review/write/${storeId}`,
+        `https://pop-it.store/api/review/write/${storeId}`,
         newReviewItem,
         {
           headers: {
@@ -62,7 +62,7 @@ export default function Review() {
 
   const deleteReview = (reviewId: number) => {
     axiosInstance
-      .delete(`http://3.34.149.107:8082/api/review/delete/${reviewId}`, {
+      .delete(`https://pop-it.store/api/review/delete/${reviewId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

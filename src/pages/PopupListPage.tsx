@@ -43,7 +43,7 @@ const PopupListPage: React.FC = () => {
 
   const fetchPopupList = () => {
     axiosInstance
-      .get("http://3.34.149.107:8082/api/store/searchAll")
+      .get("https://pop-it.store/api/store/searchAll")
       .then((response) => {
         const data = response.data;
         setPopupList(data);
@@ -62,7 +62,7 @@ const PopupListPage: React.FC = () => {
 
   const handleLiked = (id: number) => {
     axiosInstance
-      .post(`http://3.34.149.107:8082/api/store/${id}/toggle-like`, null, {
+      .post(`https://pop-it.store/api/store/${id}/toggle-like`, null, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

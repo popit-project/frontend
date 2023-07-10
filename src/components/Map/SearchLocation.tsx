@@ -29,7 +29,7 @@ const SearchLocation = (props:SearchLocationProps) => {
 
   const fetchPopups = async () => {
     try {
-      const { data } = await axios.get("http://3.34.149.107:8082/api/store/searchAll");
+      const { data } = await axios.get("https://pop-it.store/api/store/searchAll");
       setMapData(data);
     } catch (error) {
       console.error("Error fetching popups:", error);
@@ -42,7 +42,7 @@ const SearchLocation = (props:SearchLocationProps) => {
 
   useEffect(() => {
     axiosInstance
-      .get("http://3.34.149.107:8082/api/store/searchAll")
+      .get("https://pop-it.store/api/store/searchAll")
       .then((response) => {
         const data = response.data;
         setMapData(data);

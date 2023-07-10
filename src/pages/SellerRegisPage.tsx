@@ -88,7 +88,7 @@ export default function SellerRegisPage() {
         try {
             const tmp1 = async () => {
                 const tmp2 = await axiosInstance.post(
-                "http://3.34.149.107:8082/api/sellerEnter",
+                "https://pop-it.store/api/sellerEnter",
                     formData,
                     {
                         headers: {
@@ -130,7 +130,7 @@ export default function SellerRegisPage() {
         };        
 
         await axiosInstance.put(
-            "http://3.34.149.107:8082/api/seller/sellerEnter",
+            "https://pop-it.store/api/seller/sellerEnter",
             updateData,
             {
                 headers: {
@@ -147,7 +147,7 @@ export default function SellerRegisPage() {
     useEffect(() => {
         const storeInfo = async () => {
             const storeInfoData = await axiosInstance.get(
-                `http://3.34.149.107:8082/api/seller/${localStorage.getItem(
+                `https://pop-it.store/api/seller/${localStorage.getItem(
                     "sellerId"
                 )}/storeHome`,
                 {

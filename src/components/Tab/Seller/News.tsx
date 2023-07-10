@@ -27,7 +27,7 @@ export default function News({ storeName }: NewsProps) {
 
   const fetchNewsList = (storeName: string | null) => {
     axiosInstance
-      .get(`http://3.34.149.107:8082/api/${storeName}/news`)
+      .get(`https://pop-it.store/api/${storeName}/news`)
       .then((response) => {
         const data = response.data;
         console.log(data.data);
@@ -72,7 +72,7 @@ export default function News({ storeName }: NewsProps) {
     }
 
     axiosInstance
-      .post("http://3.34.149.107:8082/api/seller/news", formData, {
+      .post("https://pop-it.store/api/seller/news", formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "multipart/form-data",
@@ -93,7 +93,7 @@ export default function News({ storeName }: NewsProps) {
 
   const handleDeleteNews = (id: number) => {
     axiosInstance
-      .delete(`http://3.34.149.107:8082/api/seller/news/${id}`, {
+      .delete(`https://pop-it.store/api/seller/news/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
