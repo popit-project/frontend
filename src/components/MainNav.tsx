@@ -75,7 +75,7 @@ export default function MainNav() {
 
     stompClient.configure({
       // brokerURL: "wss://3.34.149.107:8082/wss",
-      brokerURL: "wss:/pop-it.store//wss",
+      brokerURL: "wss://pop-it.store/wss",
       onConnect: (frame) => {
         console.log("Connected:", frame);
 
