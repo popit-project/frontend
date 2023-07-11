@@ -64,7 +64,6 @@ export default function LoginPage() {
     console.log(response.data);
     window.location.href = `${response.data}`;
   };
-
   const changeData = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
