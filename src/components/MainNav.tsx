@@ -74,7 +74,8 @@ export default function MainNav() {
     const userId = localStorage.getItem("userId");
 
     stompClient.configure({
-      brokerURL: "wss://3.34.149.107:8082/wss",
+      // brokerURL: "wss://3.34.149.107:8082/wss",
+      brokerURL: "wss:/pop-it.store//wss",
       onConnect: (frame) => {
         console.log("Connected:", frame);
 
