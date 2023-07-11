@@ -4,7 +4,7 @@ import News from "../components/Tab/User/News";
 import Product from "../components/Tab/User/Product";
 import Review from "../components/Tab/User/Review";
 import { useParams } from "react-router-dom";
-import { axiosInstance } from "../components/AxiosInstance/AxiosConfig";
+import axios from "axios";
 
 interface Popup {
   storeAddress: string;
@@ -36,7 +36,7 @@ export default function PopupDetailPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosInstance.get(
+        const response = await axios.get(
           "https://pop-it.store/api/store/searchAll"
         );
         const popupList: Popup[] = response.data;

@@ -22,7 +22,6 @@ export default function News({ storeName }: NewsProps) {
       .get(`https://pop-it.store/api/${storeName}/news`)
       .then((response) => {
         const data = response.data.data;
-        console.log(data);
         setNews(data);
       })
       .catch((error) => {
