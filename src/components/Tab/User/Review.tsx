@@ -28,7 +28,6 @@ export default function Review() {
         setReviewList(data);
       })
       .catch((error) => {
-        console.log(`${storeId}`);
         console.error(error);
       });
   };
@@ -39,15 +38,11 @@ export default function Review() {
     };
 
     axiosInstance
-      .post(
-        `https://pop-it.store/api/review/write/${storeId}`,
-        newReviewItem,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      )
+      .post(`https://pop-it.store/api/review/write/${storeId}`, newReviewItem, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then(() => {
         setNewReview("");
         fetchReviewList();

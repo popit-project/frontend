@@ -15,7 +15,6 @@ interface products {
   itemSellStatus: string;
 }
 
-//api변수 sellerId
 export default function Product({ storeId }: ProductProps) {
   const [products, setProducts] = useState<products[]>([]);
 
@@ -23,7 +22,6 @@ export default function Product({ storeId }: ProductProps) {
     axiosInstance
       .get(`https://pop-it.store/api/seller/item/${storeId}`)
       .then((response) => {
-        console.log("완성");
         const data = response.data;
         setProducts(data);
       })

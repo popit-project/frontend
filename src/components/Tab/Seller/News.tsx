@@ -79,7 +79,6 @@ export default function News({ storeName }: NewsProps) {
         },
       })
       .then(() => {
-        console.log("post완료!");
         setInputValue("");
         setSelectedImage("");
         fetchNewsList(storeName);

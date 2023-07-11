@@ -13,7 +13,6 @@ interface ReviewProps {
   storeId: number | null;
 }
 
-//api변수 storeid
 export default function Review({ storeId }: ReviewProps) {
   const [reviewList, setReviewList] = useState<Review[]>([]);
 

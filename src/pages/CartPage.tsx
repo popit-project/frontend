@@ -37,9 +37,7 @@ export default function CartPage() {
       })
       .then((response) => {
         if (response.status === 200) {
-          // console.log("Payment confirmed");
           setShowModal(false);
-          // console.log(response);
           setCartListState([]);
         }
       })
