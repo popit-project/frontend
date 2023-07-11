@@ -12,6 +12,7 @@ export default function CartPage() {
   const [cartListState, setCartListState] = useRecoilState(cartListAtom);
   const [showModal, setShowModal] = useState(false);
   const [showErrorAlert, setShowErrorAlert] = useState(false);
+  const [error, setError] = useState(null);
 
   const handlerPayment = () => {
     setShowModal(true);
@@ -29,22 +30,22 @@ export default function CartPage() {
     };
 
     axiosInstance
-      .post("http://3.34.149.107:8082/api/order", requestData, {
+      .post("https://pop-it.store/api/order", requestData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((response) => {
         if (response.status === 200) {
-          console.log("Payment confirmed");
           setShowModal(false);
-          console.log(response);
           setCartListState([]);
         }
       })
       .catch((error) => {
         console.error("payment error:", error);
-        if (error.response.status === 400) {
+        if (error.response && error.response.status === 400) {
+          console.log(error.response.data);
+          setError(error.response.data);
           setShowErrorAlert(true);
           setShowModal(false);
         }
@@ -121,7 +122,7 @@ export default function CartPage() {
                     d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-                <span className="font-semibold">재고가 부족합니다!</span>
+                <span className="font-semibold">{error}</span>
               </div>
             </div>
           )}
