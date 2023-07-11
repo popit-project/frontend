@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import logo from "../assets/images/logo.png";
 import axios from "axios";
+import { Client } from "@stomp/stompjs";
 
 export default function MainNav() {
   const totalQuantityValue = useRecoilValue(QuantityItem);
@@ -14,45 +15,41 @@ export default function MainNav() {
   const [notificationCount, setNotificationCount] = useState(0);
 
   useEffect(() => {
-    const fetchNotificationCount = async () => {
-      try {
-        const response = await axios.get(
-          "https://pop-it.store/api/seller/notifications/count",
-          {
-            headers: {
-              Authorization: localStorage.getItem("token"),
-            },
-          }
-        );
-        setNotificationCount(response.data);
-      } catch (error) {
-        console.error("Error fetching notification count:", error);
-      }
-    };
-
+    connectWebSocket();
     fetchNotificationCount();
-  }, []);
+    fetchNotification();
+  });
 
-  useEffect(() => {
-    const fetchNotification = async () => {
-      try {
-        const response = await axios.get(
-          "https://pop-it.store/api/seller/notifications",
-          {
-            headers: {
-              Authorization: localStorage.getItem("token"),
-            },
-          }
-        );
+  const fetchNotificationCount = () => {
+    axios
+      .post("https://pop-it.store/api/seller/notifications/count", null, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        setNotificationCount(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching notification count:", error);
+      });
+  };
+
+  const fetchNotification = () => {
+    axios
+      .get("https://pop-it.store/api/seller/notifications", {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
         console.log(response.data);
         setNotificationArray(response.data);
-      } catch (error) {
-        console.error("Error fetching notification count:", error);
-      }
-    };
-
-    fetchNotification();
-  }, []);
+      })
+      .catch((error) => {
+        console.error("Error fetching notifications:", error);
+      });
+  };
 
   const deleteNoti = (id: number) => {
     axios
@@ -71,6 +68,44 @@ export default function MainNav() {
         console.error("Error deleting notification:", error);
       });
   };
+
+  function connectWebSocket() {
+    const stompClient = new Client();
+    const userId = localStorage.getItem("userId");
+
+    stompClient.configure({
+      brokerURL: "ws://pop-it.store/ws",
+      onConnect: (frame) => {
+        console.log("Connected:", frame);
+
+        stompClient.subscribe(
+          `/user/${userId}/topic/notifications/count`,
+          (notifications) => {
+            setNotificationCount(JSON.parse(notifications.body));
+          }
+        );
+
+        stompClient.subscribe(
+          `/user/${userId}/topic/notifications`,
+          (notification) => {
+            console.log(JSON.parse(notification.body));
+          }
+        );
+
+        fetchNotificationCount();
+
+        fetchNotification();
+      },
+      onStompError: (error) => {
+        console.error("STOMP Error:", error);
+      },
+      onWebSocketClose: () => {
+        console.log("WebSocket disconnected");
+      },
+    });
+
+    stompClient.activate();
+  }
 
   return (
     <div className="w-full">
@@ -158,8 +193,17 @@ export default function MainNav() {
             to="/profile"
             className="w-12 h-12 flex items-center justify-center rounded-[50%] hover:bg-zinc-300 transition-colors"
           >
-            <svg width="25" height="25" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 15C13.625 15 12.4479 14.5104 11.4688 13.5312C10.4896 12.5521 10 11.375 10 10C10 8.625 10.4896 7.44792 11.4688 6.46875C12.4479 5.48958 13.625 5 15 5C16.375 5 17.5521 5.48958 18.5312 6.46875C19.5104 7.44792 20 8.625 20 10C20 11.375 19.5104 12.5521 18.5312 13.5312C17.5521 14.5104 16.375 15 15 15ZM5 25V21.5C5 20.7917 5.1825 20.1404 5.5475 19.5463C5.9125 18.9521 6.39667 18.4992 7 18.1875C8.29167 17.5417 9.60417 17.0571 10.9375 16.7338C12.2708 16.4104 13.625 16.2492 15 16.25C16.375 16.25 17.7292 16.4117 19.0625 16.735C20.3958 17.0583 21.7083 17.5425 23 18.1875C23.6042 18.5 24.0887 18.9533 24.4538 19.5475C24.8188 20.1417 25.0008 20.7925 25 21.5V25H5Z" fill="black"/>
+            <svg
+              width="25"
+              height="25"
+              viewBox="0 0 30 30"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15 15C13.625 15 12.4479 14.5104 11.4688 13.5312C10.4896 12.5521 10 11.375 10 10C10 8.625 10.4896 7.44792 11.4688 6.46875C12.4479 5.48958 13.625 5 15 5C16.375 5 17.5521 5.48958 18.5312 6.46875C19.5104 7.44792 20 8.625 20 10C20 11.375 19.5104 12.5521 18.5312 13.5312C17.5521 14.5104 16.375 15 15 15ZM5 25V21.5C5 20.7917 5.1825 20.1404 5.5475 19.5463C5.9125 18.9521 6.39667 18.4992 7 18.1875C8.29167 17.5417 9.60417 17.0571 10.9375 16.7338C12.2708 16.4104 13.625 16.2492 15 16.25C16.375 16.25 17.7292 16.4117 19.0625 16.735C20.3958 17.0583 21.7083 17.5425 23 18.1875C23.6042 18.5 24.0887 18.9533 24.4538 19.5475C24.8188 20.1417 25.0008 20.7925 25 21.5V25H5Z"
+                fill="black"
+              />
             </svg>
           </Link>
         </div>
