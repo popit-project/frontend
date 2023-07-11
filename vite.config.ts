@@ -7,7 +7,7 @@ export default defineConfig({
     server: {
         proxy: {
             "/api": {
-                target: "http://3.34.149.107:8082",
+                target: "https://pop-it.store",
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/api/, ""),
                 secure: false,
