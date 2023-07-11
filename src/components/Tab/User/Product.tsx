@@ -23,7 +23,7 @@ export default function Product({ storeId }: ProductProps) {
 
   useEffect(() => {
     axiosInstance
-      .get(`http://3.34.149.107:8082/api/seller/item/${storeId}`)
+      .get(`https://pop-it.store/api/seller/item/${storeId}`)
       .then((response) => {
         const data = response.data;
         setProducts(data);

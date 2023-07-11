@@ -19,7 +19,7 @@ export default function News({ storeName }: NewsProps) {
 
   useEffect(() => {
     axiosInstance
-      .get(`http://3.34.149.107:8082/api/${storeName}/news`)
+      .get(`https://pop-it.store/api/${storeName}/news`)
       .then((response) => {
         const data = response.data.data;
         console.log(data);

@@ -34,7 +34,7 @@ export default function ProductComp({price,name,imageUrl,stock,bt,productId,trig
         console.log("put")        
 
         await axiosInstance.put(
-            `http://3.34.149.107:8082/api/seller/profile/item/update/${productId}`,
+            `https://pop-it.store/api/seller/profile/item/update/${productId}`,
             ps,
             
         );
@@ -65,7 +65,7 @@ export default function ProductComp({price,name,imageUrl,stock,bt,productId,trig
 
         console.log(localStorage.getItem("token"));
         await axiosInstance.post(
-            "http://3.34.149.107:8082/api/seller/profile/item/add",
+            "https://pop-it.store/api/seller/profile/item/add",
             formData,
             {
                 headers: {
@@ -81,7 +81,7 @@ export default function ProductComp({price,name,imageUrl,stock,bt,productId,trig
 
     const deleteItem = async () => {
         await axiosInstance.delete(
-            `http://3.34.149.107:8082/api/seller/profile/item/delete/${productId}`,
+            `https://pop-it.store/api/seller/profile/item/delete/${productId}`,
              
         );
         trigger(1);
@@ -112,7 +112,7 @@ export default function ProductComp({price,name,imageUrl,stock,bt,productId,trig
         console.log(formDataRef.current.get("file"));
         if (bt === 1) {
             axiosInstance.put(
-                `http://3.34.149.107:8082/api/seller/item/${productId}/image`,
+                `https://pop-it.store/api/seller/item/${productId}/image`,
                 formDataRef.current,
                 {
                     headers: {

@@ -60,16 +60,16 @@ function CarouselComponent() {
           infiniteLoop
         >
           <div>
-            <img src="../../src/assets/images/KakaoTalk_Photo_2023-06-23-22-43-57 002.jpeg" />
+            <img src="https://popits3.s3.ap-northeast-2.amazonaws.com/%E1%84%86%E1%85%B5%E1%84%82%E1%85%B5.jpeg" />
           </div>
           <div>
-            <img src="../../src/assets/images/KakaoTalk_Photo_2023-06-23-22-43-57 004.jpeg" />
+            <img src="https://popits3.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%A9%E1%84%85%E1%85%A6%E1%84%8B%E1%85%A9.jpeg" />
           </div>
           <div>
-            <img src="../../src/assets/images/KakaoTalk_Photo_2023-06-23-22-43-57 006.jpeg" />
+            <img src="https://popits3.s3.ap-northeast-2.amazonaws.com/%E1%84%89%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%86%B7%E1%84%83%E1%85%A5%E1%86%BC%E1%84%8F%E1%85%B3.jpeg" />
           </div>
           <div>
-            <img src="../../src/assets/images/KakaoTalk_Photo_2023-06-23-22-43-56 001.jpeg" />
+            <img src="https://popits3.s3.ap-northeast-2.amazonaws.com/%E1%84%89%E1%85%B0%E1%86%A8%E1%84%89%E1%85%B0%E1%86%A8.jpeg" />
           </div>
         </Carousel>
       </div>

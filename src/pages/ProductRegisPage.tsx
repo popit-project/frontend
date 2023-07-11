@@ -33,7 +33,7 @@ export default function ProductRegisPage() {
 
         const productSearch = async () => {
             const res = await axiosInstance.get(
-                `http://3.34.149.107:8082/api/seller/item/${sellerOn}`,
+                `https://pop-it.store/api/seller/item/${sellerOn}`,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(

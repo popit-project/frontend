@@ -37,7 +37,7 @@ export default function PopupDetailPage() {
     const fetchData = async () => {
       try {
         const response = await axiosInstance.get(
-          "http://3.34.149.107:8082/api/store/searchAll"
+          "https://pop-it.store/api/store/searchAll"
         );
         const popupList: Popup[] = response.data;
         const selectPopup = popupList.find(

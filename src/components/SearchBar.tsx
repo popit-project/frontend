@@ -19,7 +19,7 @@ const SearchBar = () => {
 
   useEffect(() => {
     axiosInstance
-      .get<PopupItem[]>("http://3.34.149.107:8082/api/store/searchAll")
+      .get<PopupItem[]>("https://pop-it.store/api/store/searchAll")
       .then((response) => {
         const data = response.data;
         setPopupList(data);

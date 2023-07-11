@@ -13,7 +13,7 @@ const RecomList = () => {
 
   const fetchPopups = async (lat: number, lng: number) => {
     try {
-      const { data } = await axios.get(`http://3.34.149.107:8082/api/store/searchAll/5km?userLat=${lng}&userLon=${lat}`);
+      const { data } = await axios.get(`https://pop-it.store/api/store/searchAll/5km?userLat=${lng}&userLon=${lat}`);
       setPopupList(data);
     } catch (error) {
       console.error("Error fetching popups:", error);
@@ -30,7 +30,7 @@ const RecomList = () => {
 
   const handleLiked = (id: number) => {
     axiosInstance
-      .post(`http://3.34.149.107:8082/api/store/${id}/toggle-like`, null, {
+      .post(`https://pop-it.store/api/store/${id}/toggle-like`, null, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

@@ -19,7 +19,7 @@ export default function Review({ storeId }: ReviewProps) {
 
   useEffect(() => {
     axiosInstance
-      .get(`http://3.34.149.107:8082/api/review/read/${storeId}/comment`)
+      .get(`https://pop-it.store/api/review/read/${storeId}/comment`)
       .then((response) => {
         const data = response.data;
         setReviewList(data);

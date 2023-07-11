@@ -47,7 +47,7 @@ function MapPage() {
           localStorage.setItem("lng", lng.toString());
           
           try {
-            const response = await axios.get(`http://3.34.149.107:8082/api/store/searchAll/5km?userLat=${lng}&userLon=${lat}`);
+            const response = await axios.get(`https://pop-it.store/api/store/searchAll/5km?userLat=${lng}&userLon=${lat}`);
             const storesWithin5km = response.data;
   
             if (storesWithin5km.length > 0) {

@@ -43,7 +43,7 @@ const MyProfilePage = () => {
     const fetchUserInfo = async () => {
       try {
         const response = await axiosInstance.get(
-          "http://3.34.149.107:8082/api/user/info",
+          "https://pop-it.store/api/user/info",
           {
             params: {
               userId: currentUserId,
@@ -65,7 +65,7 @@ const MyProfilePage = () => {
     const fetchUserInfo = async () => {
       try {
         const response = await axiosInstance.get(
-          "http://3.34.149.107:8082/api/seller/storeHome",
+          "https://pop-it.store/api/seller/storeHome",
           {
             params: {
               userId: currentUserId,
@@ -111,7 +111,7 @@ const MyProfilePage = () => {
       const userId = localStorage.getItem("sellerId");
       try {
         const response = await axiosInstance.get(
-          `http://3.34.149.107:8082/api/seller/${userId}/storeHome`,
+          `https://pop-it.store/api/seller/${userId}/storeHome`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -131,7 +131,7 @@ const MyProfilePage = () => {
   const saveNickname = async () => {
     try {
       const response = await axiosInstance.post(
-        "http://3.34.149.107:8082/api/user/changeUserInfo",
+        "https://pop-it.store/api/user/changeUserInfo",
         {
           email: userInfo?.email,
           newNickname: newNickname,

@@ -17,7 +17,7 @@ export default function FindIdPage() {
     const sendRequest = async () => {
         try {
             const response = await axiosInstance.post(
-                "http://3.34.149.107:8082/api/user/find-id",
+                "https://pop-it.store/api/user/find-id",
                 emailInfo
             );
             alert(response.data);
