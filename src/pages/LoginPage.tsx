@@ -15,7 +15,6 @@ export default function LoginPage() {
   const [loginData, setLoginData] = useState({ userId: "", password: "" });
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(LoginTokenAtom);
   const [loading, setLoading] = useState(false);
-  
 
   const loginRequest = async () => {
     try {
@@ -35,8 +34,6 @@ export default function LoginPage() {
       localStorage.setItem("nickname", response.data.nickname);
 
       window.location.href = "/";
-
-      
 
       //자동 로그아웃 구현 expiresIn 파싱해서 하는 방법 다시 생각해보기.
       //일단 지금은 만료시간이 로그인 하는 시점 + 30분이라 이렇게 구현.
@@ -59,7 +56,6 @@ export default function LoginPage() {
       console.log(isLoggedIn);
     }
   };
-
 
   const googleLogin = async () => {
     const response = await axiosInstance.post(
