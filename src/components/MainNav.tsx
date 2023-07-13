@@ -18,7 +18,7 @@ export default function MainNav() {
     connectWebSocket();
     fetchNotificationCount();
     fetchNotification();
-  });
+  }, []);
 
   const fetchNotificationCount = () => {
     axios
